@@ -12,14 +12,8 @@ var AppRouter = Backbone.Router.extend({
         "Register": "registerView",
         "SearchDoctor": "searchDoctorView",
         "SearchDoctorResult": "searchDoctorResultView",
-        "Demo": "demoMenu",
-        "RevisionTypeMenu": "revisionTypeMenu",
-        "QuestionBrowser": "questionBrowserView",
-		"QuestionBrowser/:hash": "questionBrowserView",
-        "QuestionBrowserAnswer": "questionBrowserAnswerView",
-        "SessionReview": "sessionReview",
-        "PreviousQuestion": "previousQuestion",
-        "NextQuestion": "nextQuestion"
+        "SearchDoctorList": "searchDoctorListView",
+        "Demo": "demoMenu"
     },
 
 
@@ -63,6 +57,10 @@ var AppRouter = Backbone.Router.extend({
 
         this.on('SearchDoctorResult', function () {
             this.navigate("SearchDoctorResult", { trigger: true, replace: true });
+        });
+
+        this.on('SearchDoctorList', function () {
+            this.navigate("SearchDoctorList", { trigger: true, replace: true });
         });
 
         this.on('selectRevisionType', function () {
@@ -203,6 +201,14 @@ var AppRouter = Backbone.Router.extend({
         appLib.track('SearchDoctorResultTemplate');
 
         this.changePage(new SearchDoctorResultView({ model: oe.auth }));
+    },
+
+    //## searchDoctorResultView
+    searchDoctorListView: function () {
+
+        appLib.track('SearchDoctorListViewTemplate');
+
+        this.changePage(new SearchDoctorListView({ model: oe.auth }));
     },
 
 

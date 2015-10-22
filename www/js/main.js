@@ -194,30 +194,6 @@ var oe = {
 
     //## Get the user's exam list
     getUserExams: function (onSuccess) {
-        oe.ajax('GetActiveExams',
-				{
-				    token: oe.auth.get('key')
-				},
-				function (data, textStatus) {
-				    if (_.isUndefined(data.d) || _.isUndefined(data.d.Exams)) {
-				        appLib.alert('Your exams could not be downloaded');
-				        return;
-				    } else if (data.d.ErrorMessage != null && data.d.ErrorMessage.length > 0) {
-				        appLib.alert(data.d.ErrorMessage);
-				        return;
-				    } else if (data.d.Exams.length == 0) {
-                        appLib.alert('You do not have any active subscriptions');
-                        return;
-					}
-
-				    onSuccess(data.d.Exams, data.d.CurrentExamId);
-				},
-				function (xhr, msg, ex) {
-				    if (oe.isLoginExpired(ex))
-				        return;
-
-				    //appLib.alert('Unable to download your exams');
-				});
     },
 
 

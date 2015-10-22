@@ -123,6 +123,35 @@ var LoginView = Backbone.View.extend({
 	
 	tryAuth: function(email, password) {
 	    var view = this;
+
+	    view.model.set('email', email);
+
+	    view.model.set('key', "");
+
+	    view.model.set('userId', "");
+
+	    var locumRole = email;
+
+
+	    var appEvent = 'SearchDoctor';
+	    if (locumRole && locumRole.toLowerCase().indexOf('hos') >= 0) {
+
+	        view.model.set('userType', UserTypes.Hospital);
+	    } else {
+
+	        view.model.set('userType', UserTypes.Doctor);
+	        appEvent = 'SearchDoctorResult';
+	    }
+
+
+	    app.trigger(appEvent);
+
+	    return;
+
+
+
+
+
 		oe.ajax('login', 
 				{
 				    name:email
@@ -355,20 +384,55 @@ var SearchDoctorResultView = Backbone.View.extend({
 
 
     events: {
-        "click #selectExam": "selectExam"
+        "click #viewSavedList": "viewSavedList"
     },
 
-    selectExam: function () {
-        var selectedExamId = $('#examList').val();
+    viewSavedList: function () {
+       
 
-        if (selectedExamId == null) {
-            appLib.alert('Please select an exam');
-            return;
-        }
+        alert(1);
+        app.trigger('SearchDoctorList');
+    }
+});
 
 
-        oe.selectedExamId = selectedExamId;
-        app.trigger('selectRevisionType');
+//========================================================================================
+
+//## Search Doctor list
+var SearchDoctorListView = Backbone.View.extend({
+    template: _.template($('#SearchDoctorListTemplate').html()),
+
+    render: function (eventName) {
+        //## Get the user's exams
+        oe.getUserExams(this.renderUserExams);
+
+        $(this.el).html(this.template({ selectExamButton: 'Select Revision Options' }));
+
+        return this;
+    },
+
+    renderUserExams: function (exams, currentExamId) {
+        var options = _.map(exams, function (item) {
+            return {
+                id: item.ExamId,
+                text: item.ExamName,
+                selected: (item.ExamId == currentExamId)
+            }
+        });
+
+        appLib.fillDropDown('examList', options, '', '');
+    },
+
+
+    events: {
+        "click #viewSavedList": "viewSavedList"
+    },
+
+    viewSavedList: function () {
+
+
+        alert(1);
+        app.trigger('SearchDoctorList');
     }
 });
 
