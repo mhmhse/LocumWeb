@@ -124,34 +124,6 @@ var LoginView = Backbone.View.extend({
 	tryAuth: function(email, password) {
 	    var view = this;
 
-	    view.model.set('email', email);
-
-	    view.model.set('key', "");
-
-	    view.model.set('userId', "");
-
-	    var locumRole = email;
-
-
-	    var appEvent = 'SearchDoctor';
-	    if (locumRole && locumRole.toLowerCase().indexOf('hos') >= 0) {
-
-	        view.model.set('userType', UserTypes.Hospital);
-	    } else {
-
-	        view.model.set('userType', UserTypes.Doctor);
-	        appEvent = 'SearchDoctorResult';
-	    }
-
-
-	    app.trigger(appEvent);
-
-	    return;
-
-
-
-
-
 		oe.ajax('login', 
 				{
 				    name:email
@@ -188,14 +160,13 @@ var LoginView = Backbone.View.extend({
                                 appEvent = 'SearchDoctorResult';
 				            }
 
-                            
                             app.trigger(appEvent);
 
 						}
 					}
 				}, 
 				function (xhr, msg, errorText) {
-				    alert(msg);
+
                 });
 
 	}
@@ -365,7 +336,24 @@ var SearchDoctorResultView = Backbone.View.extend({
         //## Get the user's exams
         oe.getUserExams(this.renderUserExams);
 
-        $(this.el).html(this.template({ selectExamButton: 'Select Revision Options' }));
+        if (oe.auth.get('userType') == 'doctor') {
+
+            doctorStyleL = 'display:none;';
+            hospitalStyleL = '';
+        } else {
+
+            doctorStyleL = '';
+            hospitalStyleL = 'display:none;';
+            
+            
+        }
+
+
+        $(this.el).html(this.template({
+            doctorStyle: doctorStyleL,
+            hospitalStyle: hospitalStyleL
+
+        }));
 
         return this;
     },
@@ -390,7 +378,6 @@ var SearchDoctorResultView = Backbone.View.extend({
     viewSavedList: function () {
        
 
-        alert(1);
         app.trigger('SearchDoctorList');
     }
 });
@@ -430,8 +417,6 @@ var SearchDoctorListView = Backbone.View.extend({
 
     viewSavedList: function () {
 
-
-        alert(1);
         app.trigger('SearchDoctorList');
     }
 });

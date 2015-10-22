@@ -16,6 +16,9 @@
 var oe = {
     //======================= Properties
     //## Questions
+
+    swipeList: [],
+
     questionBank: new QuestionBank(),
 
     userBaseBank: new UserBaseBank(),
@@ -86,7 +89,6 @@ var oe = {
                 appLib.log(data);
 
                 
-                alert(JSON.stringify(data));
 
                 
                 successFunc(data, textStatus);
@@ -94,8 +96,6 @@ var oe = {
             },
             error: function (xhr, msg, err) {
 
-                alert("fail");
-                alert("msg");
 
                 appLib.maskUI(false);
 
@@ -107,7 +107,6 @@ var oe = {
 
         options = oe.addAjaxOptions(options);
 
-        alert('Calling ' + oeConstants.baseUrl + serviceName + ' via ' + options.type + ' as ' + options.contentType);
 
 
 
