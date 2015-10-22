@@ -2,7 +2,7 @@
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        "": "loginView",
+        "": "home",
         "SelectDemoExam": "demoExamMenu",
         "Settings": "settingsMenu",
         "GettingStarted": "gettingStartedMenu",
@@ -111,6 +111,12 @@ var AppRouter = Backbone.Router.extend({
     home: function () {
         appLib.track('home');
 
+        if (!oe.auth.get('email')) {
+
+            this.navigate('Login', { trigger: true, replace: true });
+            return;
+        }
+
         this.changePage(new HomeView({ model: oe.currentSession() }));
     },
 
@@ -128,6 +134,8 @@ var AppRouter = Backbone.Router.extend({
         appLib.track('settings');
 
         this.changePage(new SettingsView({ model: oe.auth }));
+
+
     },
 
     //### Getting Started
@@ -155,6 +163,7 @@ var AppRouter = Backbone.Router.extend({
 
     //## Login
     loginView: function () {
+
         if (oe.auth.get('key') != null) {
             //## Don't login - key already present
             this.navigate('SearchDoctor', { trigger: true, replace: true });
@@ -309,7 +318,6 @@ var AppRouter = Backbone.Router.extend({
     //## Request previous question
     previousQuestion: function () {
         this.moveToPreviousQuestion();
-
         oe.save();
 
         appLib.track('previous-question');

@@ -2,6 +2,66 @@
 //## - QuestionBank and Session stores the answers. This is because I wasn't sure if a user would ever be able to answer a question
 //##   more than once, i.e. a 2nd attempt. Currently this isn't the case, so we could get rid of Session.answers
 
+//## Issues:
+//## - QuestionBank and Session stores the answers. This is because I wasn't sure if a user would ever be able to answer a question
+//##   more than once, i.e. a 2nd attempt. Currently this isn't the case, so we could get rid of Session.answers
+
+UserTypes = {
+
+    Doctor: 'doctor',
+    Hospital: 'hospital'
+};
+
+UserBase = Backbone.Model.extend({
+    defaults: {
+        id: null,
+        type: 'base',
+        name: null,
+        email: null,
+        password: null
+    },
+    clearAnswer: function () {
+        this.set('name', null);
+    },
+
+    isAnswered: function () {
+        return this.get('name') != null;
+    }
+});
+
+DoctorUser = UserBase.extend({
+
+    initialize: function (data) {
+        this.set('type', UserTypes.Doctor);
+    }
+});
+
+HospitalUser = UserBase.extend({
+
+    initialize: function (data) {
+        this.set('type', UserTypes.Hospital);
+    }
+});
+
+
+UserBaseBank = Backbone.Collection.extend({
+    model: UserBase,
+    initialize: function (data) {
+
+        if (!_.isUndefined(data) && data != null && data.length > 0 && _.isUndefined(data[0].get)) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                if (data[i].type == UserTypes.Doctor)
+                    data[i] = new DoctorUser(data[i]);
+                else if (data[i].type == UserTypes.Hospital)
+                    data[i] = new HospitalUser(data[i]);
+                
+            }
+        }
+    }
+});
+
 
 QuestionTypes = {
     BestOfFive: 'bof',
@@ -471,6 +531,7 @@ QuestionBank = Backbone.Collection.extend({
     model: QuestionBase,
 
     initialize: function (data) {
+
         if (!_.isUndefined(data) && data != null && data.length > 0 && _.isUndefined(data[0].get)) {
             //## Provided data items are plain objects so convert to required models
             for (var i = 0; i < data.length; i++) {
@@ -919,13 +980,15 @@ Auth = Backbone.Model.extend({
 	defaults: {		
 		email: null,
 		key: null,
-		userId: null
+		userId: null,
+		userType:null
 	},
 	
 	reset: function() {
 		this.set('email', null);
 		this.set('key', null);
 		this.set('userId', null);
+		this.set('userType', null);
 	},
 
 	uploadAnswers: function() {

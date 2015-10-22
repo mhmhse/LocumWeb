@@ -1,9 +1,7 @@
 ﻿var oeConstants = {	
     alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
 
-    baseUrl: 'https://api.onexamination.com/1.1.5/Assessment/AssessmentService.asmx/',
-    //baseUrl: 'http://localhost:8080/API/Assessment/AssessmentService.asmx/',
-    //baseUrl: 'http://api.local/Assessment/AssessmentService.asmx/',
+    baseUrl: 'http://172.24.10.113:8080/',
 
     //======================= Constants
     version: '1.7.4',
@@ -19,6 +17,8 @@ var oe = {
     //======================= Properties
     //## Questions
     questionBank: new QuestionBank(),
+
+    userBaseBank: new UserBaseBank(),
 
     //## User
     auth: new Auth(),
@@ -41,6 +41,8 @@ var oe = {
     //## Local copy of demo questions - initially downloaded via API
     //## Format: Array of { examId: int, questions: QuestionBank, updatedAt: int }
     demoQuestions: [],
+
+    demoUsers: [],
 
     //## Flag to download images
     downloadImages: true,
@@ -74,20 +76,27 @@ var oe = {
             url: oeConstants.baseUrl + serviceName + '?cacheBuster=' + cacheBuster,
             data: JSON.stringify(data),
             success: function (data, textStatus) {
+
+                
+                
+
                 appLib.maskUI(false);
 
                 appLib.log('Ajax success');
                 appLib.log(data);
 
-                if (!_.isUndefined(data.d.ErrorMessage) && data.d.ErrorMessage != null && data.d.ErrorMessage.length > 0) {
-                    appLib.log('API returned warning message');
-                    errorFunc(null, '', data.d.ErrorMessage);
-                } else {
-                    appLib.log('Calling success func');
-                    successFunc(data, textStatus);
-                }
+                
+                alert(JSON.stringify(data));
+
+                
+                successFunc(data, textStatus);
+                
             },
             error: function (xhr, msg, err) {
+
+                alert("fail");
+                alert("msg");
+
                 appLib.maskUI(false);
 
                 appLib.log('Ajax error: ' + err + ' (' + msg + ')');
@@ -98,7 +107,9 @@ var oe = {
 
         options = oe.addAjaxOptions(options);
 
-        appLib.log('Calling ' + oeConstants.baseUrl + serviceName + ' via ' + options.type + ' as ' + options.contentType);
+        alert('Calling ' + oeConstants.baseUrl + serviceName + ' via ' + options.type + ' as ' + options.contentType);
+
+
 
         jQuery.ajax(options);
     },
@@ -163,6 +174,7 @@ var oe = {
         this.auth = new Auth(data.auth);
         this.sessions = new Sessions(data.sessions);
         this.questionBank = new QuestionBank(data.questionBank);
+
         this.assessmentId = data.assessmentId;
         this.selectedExamId = data.selectedExamId;
 
@@ -171,6 +183,7 @@ var oe = {
 
         //## Demo questions - array of { examId: int, questions: questionObject, updatedAt: int }
         this.demoQuestions = data.demoQuestions;
+
     },
 
     save: function () {

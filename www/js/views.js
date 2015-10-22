@@ -2,13 +2,22 @@
 
 //## Home
 var HomeView = Backbone.View.extend({
+
+
     template: _.template($('#HomeTemplate').html()),
-	
-    render: function(eventName) {
+
+    render: function (eventName) {
+
+
 		var hideContinueSession = _.isUndefined(this.model) || this.model == null;		
 		var continueSessionButtonStyle = (hideContinueSession ? 'display:none;' : '');
+
+
+		var loginStyle = (oe.auth.get('email') ? 'display:none;' : '');
+
+
 		
-		var html = this.template({ buttonStyle: continueSessionButtonStyle });
+		var html = this.template({ buttonStyle: loginStyle });
         $(this.el).html(html);		
                                     
         return this;
@@ -24,39 +33,20 @@ var HomeView = Backbone.View.extend({
 var SettingsView = Backbone.View.extend({
     template: _.template($('#SettingsTemplate').html()),
 
-    render: function(eventName) {		
-        $(this.el).html(this.template({ version: oeConstants.version + (oe.isMinified() ? '' : ' <span style=\'color:red;\'>(Dev. Build)</span>') }));        						
+    render: function (eventName) {
+
+        $(this.el).html(this.template({ email : oe.auth.get('email')}));
         return this;
     },
 	
 	
 	events: {
-		"click #clearSignIn": "clearSignIn"
+	    "click #searchDoctor": "searchDoctor"
 	},
 	
-	clearSignIn: function() {                                          
-		var session = oe.currentSession();
-	
-		if(session != null && session.hasAnswersToUpload())
-			appLib.confirm('You have answers to upload.\n\nAre you sure you wish to lose these answers and Log Out?',
-							 this.clearSignInConfirmation,
-							 'Log Out',
-							 'Yes,No');
-		else
-			appLib.confirm('Are you sure you wish to Log Out?',
-							 this.clearSignInConfirmation,
-							 'Log Out',
-							 'Yes,No');										 
-	},
-			
-	
-	clearSignInConfirmation: function(buttonIndex) {
-		if(buttonIndex == 1) {
-			//## Reset everything!
-			oe.reset();
-			
-			appLib.alert('You have been Logged Out successfully', function() { app.trigger('home'); });
-		}
+	searchDoctor: function () {
+
+	    app.trigger("SearchDoctorResult");
 	}
 });
 
@@ -132,13 +122,10 @@ var LoginView = Backbone.View.extend({
 	
 	
 	tryAuth: function(email, password) {
-		var view = this;
-			
-		oe.ajax('AuthenticateUser', 
+	    var view = this;
+		oe.ajax('login', 
 				{
-					deviceId: appLib.getDeviceId(),
-					emailAddress: email,
-					password: password
+				    name:email
 				},
 				function(data, textStatus) { 
                     /*
@@ -148,26 +135,38 @@ var LoginView = Backbone.View.extend({
                     appLib.log(data.d.AssessmentAPIToken.UserId);
                     */
                 
-					if (!_.isUndefined(data.d) && !_.isUndefined(data.d.AssessmentAPIToken)) {						
-						if(data.d.AssessmentAPIToken.Token != null) {												
-							view.model.set('email', email);
-							view.model.set('key', data.d.AssessmentAPIToken.Token);
-							view.model.set('userId', data.d.AssessmentAPIToken.UserId);
-							
-                            //## Signal where to navigate to. Default to selecting exam, but can optionally be session review
-							var appEvent = 'SearchDoctor';
-                            if(oe.destination != null) {
-                                appLib.log('destination is ' + oe.destination);
-                                appEvent = oe.destination;
-                                oe.destination = null;
-                            }       
-                
-							app.trigger(appEvent);
+				    
+				    if (!_.isUndefined(data) && !_.isUndefined(data.valid)) {
+				        
+				        if (data.valid) {
+				            
+				            view.model.set('email', email);
+				            
+				            view.model.set('key', "");
+				            
+				            view.model.set('userId', "");
+				            
+				            var locumRole = data.locumRole
+
+				            
+                            var appEvent = 'SearchDoctor';
+                            if (locumRole && locumRole.toLowerCase().indexOf('hos') >= 0) {
+
+                                view.model.set('userType', UserTypes.Hospital);
+				            } else {
+
+                                view.model.set('userType', UserTypes.Doctor);
+                                appEvent = 'SearchDoctorResult';
+				            }
+
+                            
+                            app.trigger(appEvent);
+
 						}
 					}
 				}, 
 				function (xhr, msg, errorText) {
-				    
+				    alert(msg);
                 });
 
 	}
@@ -323,7 +322,6 @@ var SearchDoctorView = Backbone.View.extend({
     searchDoctor: function () {
 
         app.trigger('SearchDoctorResult');
-        alert(2);
     }
 });
 
