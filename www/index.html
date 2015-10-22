@@ -1215,7 +1215,17 @@
 	
     <script language="javascript" type="text/javascript" src="lib/jquery.flot.js"></script>
     <script language="javascript" type="text/javascript" src="lib/jquery.flot.pie.js"></script>	
-		
+
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).bind('mobileinit',function(){
+		$.mobile.changePage.defaults.changeHash = false;
+		$.mobile.hashListeningEnabled = false;
+		$.mobile.pushStateEnabled = false;
+	});
+	</script>
+	<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+
 	<script src="js/imageLib.js"></script>
     <script src="js/models.js"></script>
     <script src="js/demoQuestions.js"></script>
