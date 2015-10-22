@@ -1,0 +1,1327 @@
+﻿<!DOCTYPE html>
+<html class="ui-mobile-rendering">
+<head>
+    <title>BMJ OnExamination</title>
+	<meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+    <!-- Custom theme version -->
+    
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.2.0.min.css" />
+    <link rel="stylesheet" href="css/oe-custom.css" />
+    
+    <link rel="stylesheet" type="text/css" href="css/swipe.css">
+	
+	
+    <!-- Page Templates ========================================================================= -->
+
+	<!-- Home -->
+    <script type="text/template" id="HomeTemplate">
+	<div data-role="header" class="home">
+	    <span class="logo">
+	    	<img src="img/logo.png" />
+	    </span>
+	</div>
+	
+	<div data-role="content" class="home">
+	    <h1 class="brandTagLine">Revision on the move</h1>
+	    <div class="buttonsWrapper">
+			<fieldset data-role="controlgroup"  class="continueButton">
+			    <a href="#QuestionBrowser" data-role="button" data-theme="e" data-icon="arrow-l" style="<%= buttonStyle %>">Continue Previous Session</a>  
+			</fieldset>
+			<fieldset data-role="controlgroup" class="optionButtons">
+			    <a href="#Login" data-role="button" data-theme="e">Sign In</a>
+			    <a href="#Settings" data-role="button" data-icon="gear" data-iconpos="left" data-theme="e">Settings</a>
+			    <a href="#GettingStarted" data-role="button" data-icon="info" data-iconpos="left" data-theme="e">Information</a>
+			</fieldset>
+	    </div>
+	    <div class="mainImage">
+			<span>
+				<img src="img/StudentsLg.jpg" />
+			</span>
+	    </div>
+	    <div class="webLink">
+			<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+	    </div>
+		<div id="mainmenu"></div>
+	</div>
+    </script>
+	
+	
+	
+    <!-- Settings -->
+    <script type="text/template" id="SettingsTemplate">
+        <div data-role="header">
+	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    	<h1>Settings</h1>
+        </div>
+
+        <div data-role="content" class="settings">
+	    
+		    <div class="logout">
+				<h4>Log Out and clear Sign In details</h4>
+				<button id="clearSignIn" data-theme="e" data-icon="alert">Log Out</button>
+		    </div>
+		    <br />
+		    <div class="hr"><hr /></div>
+		    <div class="appInfo">
+				<h4>BMJ OnExamination mobile app</h4>
+				<p>Version <%= version %></p>
+				<p>&copy; 2014 BMJ Publishing Group Ltd. All rights reserved</p>
+			
+				<div data-role="controlgroup">
+				    <a href="#TermsConditions" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">Terms &amp; Conditions</a>
+				    <a href="#PrivacyPolicy" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">Privacy Policy</a>
+				</div>
+			
+		    </div>
+
+		    <br /><br />
+		    
+		    <div class="webLink">
+				<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+		    </div>
+	      
+        </div>
+    </script>
+    
+    <!-- Terms & Conditions -->
+    <script type="text/template" id="TermsConditionsTemplate">
+        <div data-role="header">
+	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    	<h1>T&amp;Cs</h1>
+        </div>
+
+        <div data-role="content" class="settings">
+	    
+	    <!--// Text from bmj legal //-->
+		    <h2>BMJ Group mobile software application ("App") is owned by the BMJ Publishing Group Limited ("BMJ Group").</h2>
+
+		    <h3>Use of our App</h3>
+		    
+		    <p>Please read the following Terms and Conditions, which relate to information regarding general use of our App. By using our BMJ Group App, you are agreeing to these Terms and Conditions and abide by them. From time to time we may change these Terms and Conditions, and will post revisions on any new editions of any App. We recommend that you read these Terms and Conditions for each new App and/or its upgrade (if applicable) and you are responsible for doing so.</p>
+		    <p>Our App uses Google Analytics to anonymously track usage data within the App.</p>
+		    
+		    <h3>Privacy</h3>
+		    
+		    <p>Use of the data that you provide us, or which is collected by use on our App, is governed by our Privacy Policy. By using our App you consent to such processing.</p>
+		    
+		    <h3>Our Products and Services</h3>
+		    
+		    <p>BMJ Group Apps contain information designed for health professionals (unless otherwise expressly indicated). A description of what is included in each BMJ Group App is available prior to purchase. It should only be considered current for the period indicated when purchased but is subject to disclaimers as indicated in any end user licence and below.
+		    Accounts and Passwords</p>
+		    
+		    <p>If you have registered or subscribed to use any service within the App or on our website , any user identification code or password is personal and non transferable and must be kept confidential and used only by you (unless agreed in writing with the BMJ Group) for the specified term of your use of the App or subscription or registration period  as applicable (which may be terminated at the discretion of the BMJ Group). We have the right to take action should this requirement be breached.</p>
+		    
+		    <h3>Intellectual Property Rights & Your Licence</h3>
+		    
+		    <p>The content, layout, design, data, databases and graphics on this App are protected by UK and other international intellectual property laws and are owned by the BMJ Group or it's licensors.</p>
+		    
+		    <p>The BMJ Group products made available through the App are licensed, not sold, to you. This licence granted to you for the App is limited to a non-transferable licence to use the App on certain mobile devices running the iOS (minimum supported operating system is iOS 3.0) or Android operating systems-based device (including, but not limited to iPad, iPhone or iPod touch) that you own or control. This licence does not allow you to use the App on any mobile  device that you do not own or control, and you may not distribute or make the App available over a network where it could be used by multiple devices at the same time. You may not rent, lease, lend, sell, redistribute or sub licence the App. You may not copy (except as expressly permitted by this licence), decompile, reverse engineer, disassemble, attempt to derive the source code of, modify, adapt, or create derivative works of the App or any part thereof, any updates (if so part of your subscription), or any part thereof (except as and only to the extent any foregoing restriction is prohibited by applicable law or to the extent as may be permitted by the licensing terms governing use of any open sourced components included with the App. Any attempt to do so is a violation of the rights of the BMJ Group and its licensors. If you breach this restriction, you may be subject to prosecution and damages. In addition if you use any material from our App in breach of these terms of use, your right to use this App will cease immediately and you must destroy all copies, full or partial, of the App. All rights not expressly granted in these terms or any express written licence, are reserved.</p>
+		    <p>The terms of the licence will govern any upgrades provided by BMJ Group (if any upgrades are expressly included in your subscription) unless such upgrade is accompanied by a separate licence in which case the terms of that licence will govern.</p>
+		    <p>The BMJ Group's trademarks and logos which are displayed on the App are the trademarks of the BMJ Group and its licensors. Any use including framing, metatags or other text utilising the BMJ Group's trademarks or other trademarks displayed, is strictly prohibited without our (or our licensor's) express written consent.</p>
+		    
+		    <h3>Permission for use of our Intellectual Property</h3>
+		    
+		    <p>For permission to use our content or images, or other use of our intellectual property not authorised under a subscription for BMJ or BMJ Journals visit <a onclick="window.open('http://group.bmj.com/group/rights-licensing/permissions', '_system');">group.bmj.com</a> and for other permissions please email support.onexamination.com @bmjgroup.com</p>
+		    
+		    <h3>Links</h3>
+		    
+		    <p>Should any App have links including hyperlinks which may take you outside of the BMJ Group's App or its websites, those links are provided for your convenience, and an inclusion of any link does not imply endorsement or approval by us of the linked website, its operator or content. We have no control over the contents or functionality of those sites and accept no responsibility for any loss or damages that may arise from your use of them. We are not responsible for any website outside the BMJ Group websites, and such websites use will be subject to relevant terms and conditions and privacy policies.</p>
+		    
+		    <h2>Disclaimers and Limitations of Liability</h2>
+		    
+		    <h3>Disclaimers</h3>
+		    
+		    <p>Description or reference to an organisation, product or publication or service does not imply endorsement of that organisation, product or publication unless it is owned by the BMJ Group and in which case it is subject to the disclaimers and limitations of liability herein and within any licence or other agreement with you the latter of which shall prevail in the event of a conflict.. To the fullest extent permitted by law the material and information displayed on our App is provided on an "as is" basis without any guarantees, conditions or warranties as to accuracy. You should note that for content that is periodically updated, the last updated date will be stated and you should check this date. We do not warrant that any changes will be made on any frequency including for important changes in evidence or drug information or otherwise.</p>
+		    
+		    <h2>Additional Product Specific Disclaimers</h2>
+		    
+		    <h3>Best Health</h3>
+		    
+		    <p>Best Health is designed for non-medically trained individuals. It does not offer medical advice and should not be seen as a replacement for consultation with a doctor or other health professional. The articles and information on the Best Health website are designed for you to help you talk to your doctor, not to be used instead of seeing your doctor.</p>
+		    
+		    <p>Categories presented in Best Health indicate a judgement about the strength of evidence and the relevant importance of benefits and risks. We rely on our authors to confirm accuracy.</p>
+		    
+		    <p>Readers should be aware that professionals in the field may have different opinions. Also there are regular advances in medical research. Our categories do not indicate whether a particular treatment is generally appropriate or whether it is suitable for an individual.</p>
+			    
+		    <p>Best Practice, Best Practice DX, Evidence Summary Pages and Action Sets & Drug Databases linked to from within</p>
+		    
+		    <p>Best Practice (including DX), the Evidence Summary Pages and Action Sets are intended for use by licensed medical health professionals. You are responsible for your decisions on diagnosis, treatment and follow up for a patient, or from choosing or not choosing specific treatments based on this. The content does not, provide any conclusive checklists, endorse drugs, diagnose patients, or recommend therapy. Users should use their professional judgment in using the BMJ Group or licensed in content, which is done at their own risk. They should always check and ensure that in each situation at the point of care they are qualified to consult and/or treat and/or prescribe at the point of care of a patient. Categories presented indicate a judgment about the evidence and strength of evidence available to our authors and licensors prior to publication and the relevant importance of benefit and harms. BMJ Group relies on its authors to confirm the accuracy of the information presented to prescribe generally accepted practices.</p>
+				
+		    <p>Users should be aware that professionals in the field may have different opinions. Because of this fact and because of regular advances in medical research and the possibility of human error, users should independently verify specified diagnosis methods, evidence, treatments, follow up, drugs and any contraindications or side effects including via manufacturers guidance. Also, the categories and information do not indicate whether a particular diagnosis, evidence, treatment andor drug or other follow up is generally appropriate or whether it is up to date and suitable for a particular individual. The Content is no substitute for individual patient assessment based upon the healthcare provider's examination of each patient and consideration of laboratory data and other factors unique to the patient. Please also note that information whilst not warranted to be accurate, is generally updated annually, so may be out of date and you should check the last updated date for any section being used. Ultimately it is the User's responsibility to make your own professional judgments, so to appropriately advise and treat yourself or your patients</p>
+		    
+		    
+		    <h3>BMJ Updates</h3>
+		    
+
+		    <p>The information contained in BMJ Updates is intended for medical professionals. BMJ Updates provides an educational service for practising clinicians, designed to alert clinicians to important new research; however we cannot warrant its accuracy. It is intended to support evidence based decision making, by providing links to published research reports about the diagnosis, treatment, preduction and prognosis, etiology and economics of medical conditions. However, "evidence does not make decisions". Clinicians making decisions about the care of their patients must take into account the limitations of evidence from research as well as the unique nature of their patients' circumstances and wishes. Readers should also be aware that professionals in the field may have different opinions. Because of this fact and also because of regular advances in medical research, we strongly recommend that readers independently verify any information they chose to rely on. Ultimately it is the reader's responsibility to make their own professional judgements.
+		    BMJ Updates attempts to provide access to the best new research of relevance for clinical practice in the fields of primary medical care and sub specialties of internal medicine. It does not report all research but uses explicit criteria (<a onclick="window.open('http://tiny.cc/purpose_and_procedure', '_system');">tiny.cc/purpose_and_procedure</a>) to define a subset of published research that is likely to be valid and ready for clinical attention. Practising physicians then provide their assessments of the relevance and newsworthiness of the reports through an online review process, the McMaster Online Rating of Evidence (MORE, <a onclick="window.open('http://hiru.mcmaster.ca/MORE', '_system');">http://hiru.mcmaster.ca/MORE</a>). Individual clinicians who then receive these reviews must then apply their own judgement concerning the strength and applicability of this evidence to their own patients.</p>
+		    
+		    <h3>BMJ, Student BMJ, BMJ Journals (including BMJ Case Reports), BMJ Careers, Veterinary Record & Vet Record Careers</h3>
+		    
+		    <p>We rely on our authors of articles, contractors and third party data providers to confirm the accuracy of information and advertisements presented and to describe generally accepted practices and therefore we as the publisher and editors cannot warrant its accuracy. Differences may occur also between the print and online text of articles and advertisements. Readers should be aware that professionals in the field may have different opinions. Because of this fact and also because of regular advances in medical research we strongly recommend that readers independently verify any information that they chose to rely upon. Ultimately it is the reader's responsibility to make their own professional judgements.</p>
+		    
+		    <h3>BMJ Learning</h3>
+		    
+		    <p>We do not warrant that the completion of any Modules or use of other BMJ will be all the necessary continuing professional development you need nor that it is accurate. We rely on our authors of articles, contractors and third party data providers to confirm the accuracy of information presented and to describe generally accepted practices and therefore we as the publisher and editors cannot warrant its accuracy or that this meets all or any requirements for professional development. Readers should be aware that professionals in the field may have different opinions. Because of this fact and also because of regular advances in medical research we strongly recommend that readers independently verify any information that they chose to rely upon. Ultimately it is the reader's responsibility to make their own professional judgements</p>
+		    
+		    <h3>Clinical Evidence</h3>
+		    
+		    <p>The information contained in this publication is intended for medical professionals. Categories presented in Clinical Evidence indicate a judgement about the strength of the evidence available to our authors prior to publication and the relevant importance of benefit and harms. We rely on our authors to confirm the accuracy of the information presented to describe generally accepted practices. Readers should be aware that professionals in the field may have different opinions. Because of this fact and because of regular advances in medical research we strongly recommend that readers independently verify specified treatments and drugs including manufacturers' guidance. Also, the categories do not indicate whether a particular treatment is generally appropriate or whether it is suitable for a particular individual. Ultimately it is the reader's responsibility to make their own professional judgements, so to appropriately advise and treat their patients</p>
+		    
+		    <h3>BMJ OnExamination</h3>
+		    
+		    <p>The information contained on BMJ OnExamination websites and services is intended for medical professionals. It is intended for use as an exam revision or personal development resource. It is not a substitute for clinical judgement as a professional. Any reference to drug dosage should be checked with your local formulary before prescribing. The BMJ Group does not make any guarantees that use of BMJ OnExamination products or services will guarantee success in any examination or other test of any nature.</p>
+		    
+		    <h3>Limitation of Liability</h3>
+		    
+		    <p>To the fullest extent permitted by law, the BMJ Group expressly exclude:</p>
+		    <p>
+			<ol>
+			    <li>all conditions, warranties and other terms which might otherwise be implied by statute, common law or the law of equity;</li>
+			    <li>any liability caused by events outside of our reasonable control;</li>
+			    <li>any obligation of effectiveness or accuracy;</li>
+			    <li>any liability for any direct, indirect or consequential loss or damage incurred by any user in connection with the information contained on or use or inability to use or result of the use of our App, any websites linked from it and any material posted on it, including without limitation any liability for loss of income or revenue, loss of business, loss of profits or contracts, loss of anticipated savings, loss of data, loss of goodwill, wasted management or office time and for any other loss or damage of any kind, however arising and whether caused by tort (including negligence), breach of contract or otherwise, even if foreseeable; and</li>
+			    <li>any direct losses in excess of twice any subscription fees paid.</li>
+			</ol>
+		    </p>
+		    
+		    <p>Nothing in this provision affects our or our contractors' liability for death or personal injury arising from our (or their) negligence nor our (or their) liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter nor any other liability which cannot be excluded or limited under an applicable law.</p>
+		    
+		    <h3>Your Conduct</h3>
+		    
+		    <p>You must not use the App or any website linked from it in any way that causes or is likely to cause the website or access to it to be interrupted, damaged or impaired in any way. You understand that you are solely responsible for all electronic communications and contents sent from your computer to us. You must use the App for lawful purposes only. You must not use the App, its content or any website linked from the App for any of the following:
+			<ol>
+			    <li>Fraudulent purposes in connection with a criminal offence or otherwise unlawful activity</li>
+			    <li>To send, use or re-use any material that is illegal, offensive, abusive, indecent, harmful, defamatory, obscene or menacing; or in breach of copyright, trademark, confidence, privacy or any other right; or is otherwise injurious to third parties; or objectionable; or which consists of or contains software viruses, trojan horses, worms, time bombs, keystroke loggers, spyware, adware or any other harmful or similar computer code designed to adversely affect the operation of any computer software or hardware, political campaigning, commercial solicitation, chain letters, mass mailings or any spam</li>
+			    <li>To cause annoyance, inconvenience or needless anxiety</li>
+			    <li>To reproduce, duplicate, copy or resell any part of our App in contravention with these terms of use.</li>
+			</ol>
+		    </p>
+		    
+		    <h3>Governing Law</h3>
+		    
+		    <p>These Terms and Conditions shall be governed and construed in accordance with the laws of England and Wales, whose courts shall have exclusive jurisdiction, although we retain the right to bring proceedings against you for breach of these conditions in your country of residence or other relevant country.</p>
+		    <p>Last Updated: July  2012 &copy; The BMJ Publishing Group Limited 2012.</p>
+
+		    
+		    
+		    
+		    <a href="#Settings" data-role="button" data-theme="e" data-icon="back">Back</a>
+
+
+	        <br /><br /><br />                                                                                                                                                                                                                                                                         
+		    <br /><br />
+
+		    <div class="webLink">
+				<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+		    </div>
+	      
+        </div>
+    </script>
+    
+    
+    
+    <!-- Privacy Policy -->
+    <script type="text/template" id="PrivacyPolicyTemplate">
+        <div data-role="header">
+	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Back</a>
+	    	<h1>Privacy Policy</h1>
+        </div>
+
+        <div data-role="content" class="settings">
+	    
+		    <div>
+				<p>Protecting your privacy is one of our top priorities. Please take a few minutes to review this policy.</p>
+				<h2>Introduction</h2>
+				<h3>Our privacy commitment</h3>
+				<p>This document sets out the basis on which the BMJ Publishing Group Limited ("BMJ Group") will process any personal data we collect from you. The BMJ Group shall be the data controller. We will make every effort to protect your privacy by adopting a consistently high level of security and adhering to strict company policies on how we store and use personal information. This privacy policy has been developed in accordance with our legal obligations and may be updated from time to time. If we make any changes to this privacy policy, we will post the revisions within our various mobile software applications ("App"). If in response to any communication we have with you or otherwise, you are directed to any of our websites, the privacy policy contained herein will govern the collection and use of your data. We may from time to time amend that privacy policy and post those revisions on the BMJ Group site.</p>
+				<h2>1. What information is being collected and how is it used?</h2>
+				<h3>1.1 App Users</h3>
+				<p>
+				Some of our Apps require registration to access certain functions, services or content or ask for you to opt in to our database for email communications. You will know what information is being collected via these processes when you complete required details prior to submission (including which information is mandatory).</p>
+				<p>Once you start using our Apps, we may track and keep a record of the pages overall that our users you visit. We do this via tracking a UDID. We collect this data from groups of users to get a sense of how people are using our Apps and which content and areas are most popular. This helps us improve what we offer on our Apps.</p>
+				If we wish to send you marketing emails, you may be given an opportunity to opt in or out (as applicable) from receiving these from the BMJ Group.<br /><br />
+				<p>For users who have opted to receive marketing emails from BMJ Group, and visit our websites through links provided in these emails, we may send back information about your website usage to our third party email direct marketing provider. This is for the purpose of understanding the effectiveness of our email marketing campaigns and for targeting future email campaigns.</p>
+				<br />
+				<h3>1.2 What else do we collect when you use our website?</h3>
+				<p>If you contact us, we may keep a record of that correspondence and use it to contact you in response and/or to update our records. We may use all information to enforce our legal rights and protect against unauthorised access, use, activity and/or copying, either personally or via third party contractors and advisors. This may involve using your name and subscription details on a database with other publishers' data for detection purposes.</p>
+				<h3>1.3 What else do we use personal information for?</h3>
+				<p>Other than for fulfilling our obligations to you (where these exist), on some occasions we use the information provided to produce aggregate statistics in relation to pages being accessed. We may also use it to monitor usage patterns of our content in order to improve navigation and design features to help you get information more easily. This information is provided to us as daily logged files. In order to help us develop our services, we may provide such aggregate information to third parties. The statistics however will not include any information that can be used to identify any individual. We may contact you to notify you about changes to our service. We also may send you non marketing emails for the purpose of inviting you to partake in surveys or market research which we conduct or which third parties are conducting. In addition to responding to complaints or claims received or discovered referred to above or any breaches of our relevant terms of use, all information supplied or collected by us may be used to enforce our legal rights and protect against unauthorised access, use, activity and/or copying, either personally or via third party contractors and advisors and/or protect the rights, property, or personal safety other users of the websites and the public. This may involve using any details supplied by you including your name and contact details.</p>
+				<h2>2. How long do we keep the information we collect?</h2>
+				<p>We keep (including via our contractors) your personal information for asng as necessary to fulfil our obligations to you and to protect our legal interests.</p>
+				<h2>3. To whom will information be disclosed?</h2>
+				<p>Other than as expressly agreed by you or stated when data is collected or within this policy we will not disclose your personal data to any third parties other than:</p>
+				<p>(i) our co-owners (where applicable),Licensors, contractors and advisors who must keep this data confidential and who may be located outside of the EEA;</p>
+				<p>(ii) as required to enforce our legal rights (including property, safety, our customers or others);</p>
+				<p>(iii) fraud protection and credit risk reduction; and</p>
+				<p>(iv) where our company or its assets (to which your data relates) are to be acquired by a new company location data may be shared;</p>
+				<h2>4. How personal information is stored and protected</h2>
+				<p>Your personal data is stored in our databases or those of our contractors which is only available to the web administrators of us and our contractors and selected authorised people on a password protected basis. The data that we collect from you may be transferred to and stored at a destination outside of the European Economic Area ("EEA"). It may also be processed by staff operating outside of the EEA who work for us or are of our suppliers. Such staff may be engaged in among other things, hosting the fulfilment of your order, processing of your payment details and the provision of support services by submitting your personal data, you agree to this transfer, storing or process. We will take all steps reasonably necessary to ensure that your data is treated securely by us and our contractors and in accordance with this privacy policy.</p>
+				<h3>4.1 Security</h3>
+				<p>We understand that the security of your information is important to you. We also understand that our continued success as a publisher relies on our ability to communicate with you in a secure manner. We adhere to the highest standards of decency, fairness, and integrity in our operations. We use several measures to authenticate your identity when you visit our sites or access out content. We also take steps to protect your information as it travels the internet, and to make sure all information is as secure as possible against unauthorised access and use (for example, by hackers). We review our security measures regularly.</p>
+				<p>Despite our best efforts, and the best efforts of other firms, "perfect security" does not exist on the internet, or anywhere else. Unfortunately, the transmission of information via the internet is not completely secure. Although we will do our best to protect your personal data, we cannot guarantee the security of your data transmitted to our sites; any transmission is at your own risk. Once we have received your information, we will use strict procedures and security features to try to prevent unauthorised access.</p>
+				<h3>4.2 Email</h3>
+				<p>Any email between you and the BMJ Group is not encrypted. It will be stored securely within our corporate firewall (see below).</p>
+				<h3>4.3 Data within our walls</h3>
+				<p>The information we collect about people is stored in secure environments that are not available to any other individual or party. We have mechanisms in place to protect data. One such mechanism is called a "firewall." A firewall is a barrier that allows only authorised traffic through. It safeguards our computer systems and your information. We also use system and application logs to track all access. We review these logs periodically and investigate any anomalies or discrepancies.</p>
+				<h2>5 Contact us</h2>
+				<p>Please contact us if any of the data we hold about you becomes inaccurate and if you have any queries or concerns about the data we are holding about you. Also we welcome your feedback about what you like or don't like about our sites. Your feedback is stored on a secure internal system that allows the appropriate person to respond to you. Please contact us through our <a onclick="window.open('http://group.bmj.com/group/contact', '_system');">Contact us </a>section.</p>
+				<h2>6. Your consent</h2>
+				<p>By submitting your information, you consent to the use of that information as set out in this policy. You should review this policy regularly, to note any changes as to how we collect and use personal information. Thank you for reviewing this information.</p>
+				<p>If you have any questions, please send us an e-mail through our <a onclick="window.open('http://group.bmj.com/group/contact', '_system');">Contact us</a> section.</p>
+				<p><em>Last updated December 2011</em></p>
+
+			    <a href="#Settings" data-role="button" data-theme="e" data-icon="back">Back</a><br /><br /><br />
+			</div>	    
+		    <div class="webLink">
+				<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+		    </div>
+	      
+        </div>
+    </script>
+
+    
+    <!-- Getting Started -->
+    <script type="text/template" id="GettingStartedTemplate">
+        <div data-role="header">
+	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+        	<h1>Getting Started</h1>
+        </div>
+        <div data-role="content" class="gettingStarted">
+	    	<h1 class="pageHeading">Revise Using our Free Questions</h1>
+	    	<p>The BMJ OnExamination app lets you revise anytime, anywhere with our clinically rich case problems that test your knowledge across a range of relevant topics and question formats.</p>
+			<p>You can choose to revise with or without a data connection, enabling you to answer questions both on and offline.</p>
+			<p>Our app containing a selection of free questions is available on a range of our revision resources including:</p>
+		
+			<ul class="gettingStartedExamList">
+			
+				<li><a onclick="window.open('http://www.onexamination.com/general-medicine/mrcp-part-1?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCP Part 1</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/general-medicine/mrcp-part-2-written?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCP Part 2 written</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/general-practice/mrcgp?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCGP</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/general-practice/gp-st-stage-2-knowledge-test?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">GP ST</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/students/medical-student-finals?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Medical Student Finals</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/students/situational-judgement-test?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Situational Judgement Test for Students</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/students/medical-student-years-2-to-3?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Medical Student Years 2-3</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/students/medical-student-year-1?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Medical Student Year 1</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/obs-and-gynae/mrcog-part-1?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCOG Part 1</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/obs-and-gynae/mrcog-part-2?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCOG Part 2</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/obs-and-gynae/drcog?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">DRCOG</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/child-health/mrcpch-part-1-a-and-b?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCPCH Part 1 A &amp; B</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/child-health/mrcpch-part-2?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCPCH Part 2</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/surgery/mrcs-part-a-papers-1-and-2?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">MRCS Part A Papers 1 & 2</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/surgery/frcs-general-surgery?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">FRCS General Surgery</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/worldwide/plab?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">PLAB</a></li>
+				
+				<li><a onclick="window.open('http://www.onexamination.com/anaesthesia/frca-primary?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">FRCA Primary</a></li>
+				
+			</ul>
+		
+			<p>and many more.</p>
+			
+			<p>Choose to revise with either Work Smart - which allows you to answer questions by topic, level of difficulty or key word; or Work Hard - which delivers revision questions to you in a random order to fully prepare you for exam day.</p>
+
+			<p>Check your scores at the end of each session to see how well you performed. </p>
+		    
+		    <h3>Current BMJ OnExamination Customers</h3>
+		    <p>Once signed in to your account you can download up to 100 questions at a time and revise using both Work Hard or Work Smart. After completing a set of questions your answers and scores will synchronise back to your account (if an internet connection is available). You can also work offline and answer previously downloaded questions.</p> 
+	        
+	        <h3>Get a Revision Account with BMJ OnExamination</h3>
+		    <p>If you don't already have a revision account with BMJ OnExamination, you can sign-up for the full database of questions at <a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">BMJ OnExamination</a>.</p>
+		    
+		    <h3>Answering Questions</h3>
+		    <p>You need an internet connection to download questions before you are able to answer them offline. Questions can download in batches of up to 100  at a time. Once a question has been answered the correct option, explanation and links to further reading will be displayed.</p>
+		    
+		    <h3>Scores</h3>
+		    <p>At the end of each session to will be given a score to know how well you did in that session. If an internet connection is available your scores will be synchronised with your online revision resource.</p>
+		    <br />
+	    	<div class="clear"></div>
+	    	<div class="webLink">
+				<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+	    	</div>
+        
+        </div>
+    </script>
+	
+	
+	
+    <!-- Login -->
+    <script type="text/template" id="LoginTemplate">
+	<div data-role="header">
+	    
+	    <h1>Sign In Locum Matcher</h1>
+	</div>
+	<div data-role="content" class="login">
+	    <h1 class="pageHeading">Sign in to your account:</h1>
+	    <div class="ui-hide-label">
+			<fieldset data-role="controlgroup">
+			    <label for="email">Email address</label>
+			    <input id="email" placeholder="email" value="" type="email" pattern="[^ @]*@[^ @]*" class="marginBottom" />
+				<label for="password">Password</label>
+			    <input id="password" placeholder="password" value="" type="password" />	
+			</fieldset>
+
+			<br />
+			<button id="login-button" data-theme="e" data-icon="arrow-r">Sign In</button>
+	    </div>
+		<br />
+			
+		<div class="hr"><hr /></div>
+
+	    
+    	<div style="<%= demoModeStyle %>">
+			<div>
+		    	<h4>Don't have a Locum account?</h4>
+			</div>
+			<fieldset data-role="controlgroup">
+			    <a href='#Register' data-role="button" data-theme="e">Register now</a>   
+			</fieldset>
+    	</div>
+    	<br />
+    	<div class="clear"></div>
+	    <div class="webLink">
+			<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+	    </div>
+	</div>
+    </script>
+	
+    <!-- Register -->
+    <script type="text/template" id="RegisterTemplate">
+        <div data-role="header">
+            <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+            <h1>Register Locum Matcher</h1>
+        </div>
+        <div data-role="content" class="login">
+            <h1 class="pageHeading">Register to your account:</h1>
+            <div class="ui-hide-label">
+                <fieldset data-role="controlgroup">
+                    <label for="email">Email address</label>
+                    <input id="email" placeholder="email" value="" type="email" pattern="[^ @]*@[^ @]*" class="marginBottom" />
+                    <label for="password">Password</label>
+                    <input id="password" placeholder="password" value="" type="password" />
+                </fieldset>
+                <br />
+                <button id="login-button" data-theme="e" data-icon="arrow-r">Register</button>
+            </div>
+            <br />
+        </div>
+    </script>
+	
+    <!-- Demo intro -->
+    <script type="text/template" id="DemoTemplate">
+	<div data-role="header">
+	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    <h1>Demo Questions</h1>		
+	</div>
+	<div data-role="content" class="demo">
+	    <p>Test yourself with our sample of 25 exam format questions. At the moment our App is only available on our MRCP Part 1 resource but all of our other resources are coming soon.</p>
+	    <p>To get more revision, visit the <a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">BMJ OnExamination website</a></p>
+	    <br />
+	    <button id="startQuestions" data-icon="arrow-r" data-theme="e">Start Demo Questions</button>
+	    
+	    <div class="webLink">
+		    <a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Find out more about BMJ OnExamination.</a>  	
+	    </div>
+	</div>
+	
+    </script>
+	
+
+
+    <!-- search Doctor View -->
+    <script type="text/template" id="SearchDoctorTemplate">	
+		<div data-role="header">
+			<a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+			<h1>Locum Search</h1>			
+		</div>
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<h1 class="pageHeading">Who are you looking for today?</h1>
+                <div class="ui-hide-label">
+                    <fieldset data-role="controlgroup">
+                        <label for="speciality">Speciality</label>
+                        <select name="speciality" data-theme="e" id="speciality">
+                            <option value="">
+                                Please select speciality
+                            </option>
+                            <option value="Cardiology">
+                                Cardiology
+                            </option>
+                            <option value="Respiratory">
+                                Respiratory
+                            </option>
+                            <option value="Accident Emergency">
+                                Accident Emergency
+                            </option>
+                        </select>
+                        <select name="grade" data-theme="e" id="grade">
+                            <option value="">
+                                Please select grade
+                            </option>
+                            <option value="Foundation Year 2">
+                                Foundation Year 2
+                            </option>
+                            <option value="Registrar">
+                                Registrar
+                            </option>
+                            <option value="Consultant">
+                                Consultant
+                            </option>
+                        </select>
+                    </fieldset>
+                    <br />
+                    <button id="searchDoctor" data-theme="e" data-icon="arrow-r">Search
+                    </button>
+                </div>
+                <br />
+			</div>
+		</div>
+    </script>
+	
+	
+    <!-- search Doctor View -->
+    <script type="text/template" id="SearchDoctorResultTemplate">
+        <div data-role="header">
+            <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+            <h1>Locum Search Result</h1>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <h1 class="pageHeading">Who are you looking for today?</h1>
+                <div id="container">
+                    <div class="buddy" style="display: block;"><div class="avatar" style="display: block; background-image: url(http://1.bp.blogspot.com/_qEbjiFbQWGM/TCBVlN3mkYI/AAAAAAAADCM/7CjYqUHwbgY/s1600/workshop_modell_0126.jpg)"></div></div>
+                    <div class="buddy"><div class="avatar" style="display: block; background-image: url(http://static.stylemagazin.hu/medias/29280/Nem-ehezik-a-Women-of-the-Year-legjobb-modell-dijara-eselyes-szepseg_32fc7c86954a8847610499a0fc7261e2.jpg)"></div></div>
+                    <div class="buddy"><div class="avatar" style="display: block; background-image: url(http://w1nd.cc/promo/347.jpg)"></div></div>
+                    <div class="buddy"><div class="avatar" style="display: block; background-image: url(http://static.168ora.hu/db/09/AF/orban-d0001C9AFa1ba9618c180.jpg)"></div></div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </script>
+	
+    <!-- Revision Type Menu -->
+    <script type="text/template" id="RevisionTypeTemplate">	
+	<div data-role="header">
+	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    <h1>Revision Type</h1>			
+	</div>
+	<div data-role="content">
+	    <div data-role="fieldcontain">
+			<h1 class="pageHeading">How would you like to Revise?</h1>
+			<label for="revisionType" class="fullWidth marginTop">Choose your Revision Style:</label>
+			<select name="revisionType" data-theme="e" id="revisionType">
+				<option value="WorkHard">
+					Work Hard
+				</option>
+				<option value="WorkSmart">
+					Work Smart
+				</option>					
+				<!--
+				<option value="PastPaper">
+					Past Paper
+				</option>
+				-->
+			</select>
+	    </div>
+	    <!-- Past Paper Filters: -->
+	    <div data-role="fieldcontain" style="display: none;" id="pastPaperGroup">
+		<label for="pastPaper" class="fullWidth">Select a Past Paper</label>
+		<select name="pastPaper" data-theme="e" id="pastPaper">
+			<option value="Test">Test</option>					
+		</select>
+	    </div>
+	    <!-- Work Smart Filters: -->
+	    <div id="workSmartGroup" style="display: none;">
+		    <div data-role="fieldcontain">
+			<label for="questionDifficulty" class="fullWidth">Question Difficulty:</label>
+			<select name="questionDifficulty" id="questionDifficulty" data-theme="e">
+			    <option value="AllQuestions">
+				    All Questions
+			    </option>
+			    <option value="SelectDifficulty">
+				    Select Difficulty
+			    </option>						
+			</select>
+			<div id="difficultySliderGroup" style="display: none;">
+			    <div class="sliderWrapper">
+				<span class="diffEasy">Easy</span><span class="diffHard">Hard</span>
+				<input type="range" name="slider" data-theme="e" data-track-theme="a" id="questionDifficultyValue" value="5" min="0" max="10" data-highlight="true" class="ui-hidden-accessible diffSlider" />
+			    </div>
+			</div>
+		    </div>
+		    
+		    
+		    <div data-role="fieldcontain">
+			<label for="questionStatus" class="fullWidth">With Questions:</label>
+			<select name="questionStatus" id="questionStatus" data-theme="e">
+			    <option value="NotSeen">
+				    I have not seen before
+			    </option>
+			    <option value="AllQuestions">
+				    All Questions
+			    </option>
+			    <option value="WrongQuestions">
+				    I have got wrong before
+			    </option>
+			    <option value="TaggedQuestions">
+				    I have tagged
+			    </option>
+			</select>
+		    </div>
+		    
+		    <div data-role="fieldcontain">
+			<label for="questionCategory" class="fullWidth">Filter by Category:</label>
+			<select name="questionCategory" id="questionCategory" data-theme="e">
+			    <option value="AllCategories">
+				    All Categories
+			    </option>
+			    <option value="SelectCategories">
+				    Select Categories
+			    </option>
+			</select>
+		    </div>
+		    <div data-role="fieldcontain" id="questionCategorySection" style="display:none;">
+                <div data-role="controlgroup" data-type="horizontal" style='padding-bottom:10px;'>
+                    <legend>Categories:</legend>
+                    <button id="selectAllCats" data-theme="e">Select All</button>
+                    <button id="selectNoCats" data-theme="e">Select None</button>
+                </div>			
+			
+			    <fieldset data-role="controlgroup" id="questionCategoryList">											
+			    </fieldset>				
+		    </div>		    
+	    </div>		
+        
+        <!-- Shared question type filter -->    
+        <div data-role="fieldcontain">
+		<label for="questionType" class="fullWidth">Filter by Question Type:</label>
+		<select name="questionType" id="questionType" data-theme="e">
+			<option value="AllQuestionTypes">
+				All Types
+			</option>
+			<option value="SelectQuestionTypes">
+				Select Types
+			</option>
+		</select>
+		</div>
+		<div data-role="fieldcontain" id="questionTypeSection" style="display:none;">
+			<fieldset data-role="controlgroup" id="questionTypeList">											
+			</fieldset>
+		</div>
+		
+		
+        <!-- Shared number of question filter -->						
+	    <div data-role="fieldcontain" class="marginBottom">
+		<label for="questionLimit" class="fullWidth">Number of Questions:</label>
+		<select name="questionLimit" data-theme="e" id="questionLimit">					
+		    <option value="10">10 questions</option>
+		    <option value="20">20 questions</option>
+		    <option value="30">30 questions</option>
+		    <option value="40">40 questions</option>
+		    <option value="50">50 questions</option>
+		    <option value="60">60 questions</option>
+		    <option value="70">70 questions</option>
+		    <option value="80">80 questions</option>
+		    <option value="90">90 questions</option>
+		    <option value="100">100 questions</option>
+		</select>
+	    </div>
+	    
+	    <div class="marginTop">
+			<button id="startQuestions" data-icon="check" data-theme="b">Start Questions</button>			
+	    </div>
+		
+		<div id="workHardStatus" class="progress-bar">
+ 			<div class="progress-bar-inner"></div>
+  			<p class="progress-text"></p>
+  		</div.
+	</div>
+    </script>
+	
+
+	
+    <!-- Popup Menu -->		
+	<script type="text/template" id="QuestionPreviewHeaderTemplate">
+		<div class="questionNav">
+			<h1 class="questionNavQCount"><%= questionCount %> question(s) available</h1>
+			<div class="nav-instruction">Touch a question number to preview</div>
+			<div class="questionNumberBlock" style="height: <%= height %>px;">
+				<%= questionOptionHtml %>
+			</div>
+			
+			<div id="questionPreview"></div>
+		</div>
+	</script>
+	
+	<script type="text/template" id="QuestionOptionPreviewTemplate">
+		<div id="questionPreview<%= id %>" class="questionPreviewBlock <%= colour %>">
+			<span>
+				<p><%= id %></p>
+			</span>
+		</div>
+	</script>
+	
+    <script type="text/template" id="QuestionPreviewFooterTemplate">
+		<div style="clear:both;">
+			<span>Q<%= id %>:</span> <%= text %>
+		</div>
+		<div style="padding-top:5px;">
+			<div class="ui-grid-a" style="min-height:40px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<button id="moveToPreviewQuestionButton" value="<%= id %>" data-theme="a" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-mini="true">Go to Question</button>		
+				</div>
+				<div class="ui-block-b" style="text-align:right; <%= reviewButtonStyle %>">
+					<button id="sessionReviewButton" class="sessionReview" data-theme="a" data-icon="custom" data-inline="true" data-mini="true">Review</a>
+				</div>			
+			</div>
+		</div>
+	</script>
+	
+
+    <!-- Ask a BoF/NOM Question -->	
+    <script type="text/template" id="QuestionBrowserTemplate">
+        <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
+            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
+        </div>
+
+        <div data-role="content" class="questionPage" >
+	        <div class="question">
+		        <h1 class="questionHeading">Question:</h1>
+		        <%= text %>
+	        </div>
+		
+	        <fieldset data-role="controlgroup" id="optionList" >								
+		        <legend><%= selectText %></legend>
+		        <%= optionHtml %>
+	        </fieldset>		
+			
+			<div class="ui-grid-solo">
+				<div class="ui-block-a marginTop answerButton">
+					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
+				</div>
+			</div>	        
+		</div>
+	
+		<div data-role="footer">
+			<div class="ui-grid-b">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" data-icon="arrow-l" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" >Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" data-role="button"  data-icon="grid" data-shadow="false" data-inline="true" >Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" data-icon="arrow-r"  data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" >Next</a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+	
+    <!-- View BoF/NOM Question Answer -->
+    <script type="text/template" id="QuestionBrowserAnsweredTemplate">        
+	<div data-role="header">
+	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    <h1><%= questionIndex %> of <%= questionCount %></h1>
+	    <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
+	</div>
+				
+	<div data-role="content" class="answerPage">		
+	    <h2 class="<%= resultColour %>"><%= result %></h2>
+	    <div class="questionAnswer">
+		<h5>Explanation:</h5>
+		<%= comment %>
+	    </div>
+	    <div class="hr"><hr /></div>
+	    <div class="questionAnswer">
+		<h5>Question:</h5>
+		<%= text %>
+	    </div>
+    
+	    <fieldset data-role="controlgroup" id="optionList" data-theme="e">								
+		    <legend><i><%= selectText %></i></legend>
+		    <%= optionHtml %>
+	    </fieldset>
+
+	
+	</div>
+	<div data-role="footer">
+		<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+			<div class="ui-block-a" style="text-align:left;">
+				<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+			</div>		        
+			<div class="ui-block-b" style="text-align:center;">
+				<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-theme="a"  data-icon="grid" data-inline="true" data-mini="true">Overview</a>
+			</div>
+			<div class="ui-block-c" style="text-align:right;">
+				<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
+			</div>		        
+		</div>
+	</div>
+    </script>
+
+
+    <!-- Ask a MCQ Question -->	
+    <script type="text/template" id="MCQTemplate">
+        <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
+            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
+        </div>
+
+        <div data-role="content" class="questionPage">
+	        <div class="question">
+		        <h5>Question:</h5>
+		        <%= text %>
+	        </div>
+			
+            <div class="mcqQuestionOptions"> 
+		        <%= optionHtml %>
+            </div>
+	        		
+			<div class="ui-grid-solo">
+				<div class="ui-block-a marginTop answerButton">
+					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
+				</div>
+			</div>	        
+		</div>
+	
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" data-role="button"  data-theme="a" data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r"  data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+
+    <!-- View MCQ Answer -->
+    <script type="text/template" id="MCQAnsweredTemplate">        
+	    <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <h1><%= questionIndex %> of <%= questionCount %></h1>
+	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
+	    </div>
+				
+	    <div data-role="content" class="answerPage">		
+	        <h2 class="<%= resultColour %>"><%= result %></h2>
+	        <div class="questionAnswer">
+		        <h5>Explanation:</h5>
+		        <%= comment %>
+	        </div>
+	        <div class="hr"><hr /></div>
+	        <div class="questionAnswer">
+		        <h5>Question:</h5>
+		        <%= text %>
+	        </div>
+    
+	        <div class="mcqQuestionOptions"> 
+		        <%= optionHtml %>
+            </div>
+
+
+	    </div>
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a"  data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+
+
+     <!-- Ask a EMQ Question -->	
+    <script type="text/template" id="EMQTemplate">
+        <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
+            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
+        </div>
+
+        <div data-role="content" class="questionPage">
+	        <div class="question">
+                <h4>Theme: <%= theme %></h4>
+
+                <table class='alphaList'>
+                    <%= choiceList %>
+                </table>
+		        
+		        <span class="emqInstruction"><%= text %></span>
+	        </div>
+                        
+		    <%= stemHtml %>            
+	        		
+			<div class="ui-grid-solo">
+				<div class="ui-block-a marginTop answerButton">
+					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
+				</div>
+			</div>	        
+		</div>
+	
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+
+     <!-- View EMQ Answer -->	
+    <script type="text/template" id="EMQAnsweredTemplate">
+        <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <h1><%= questionIndex %> of <%= questionCount %></h1>
+	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
+	    </div>
+				
+	    <div data-role="content" class="answerPage">		
+	        <h2 class="<%= resultColour %>"><%= result %></h2>
+	        <div class="questionAnswer">
+		        <h5>Explanation:</h5>
+		        <%= comment %>
+	        </div>
+            <div class="questionAnswer">                
+                <table class='alphaList'>
+                    <%= choiceList %>
+                </table>
+		        
+		        <span class="emqInstruction"><%= text %></span>
+	        </div>
+                        
+		    <%= stemHtml %>            
+	        		
+
+	    </div>
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" class="icon-graph" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
+				</div>		        
+	        </div>
+	    </div>	
+	
+    </script>
+
+
+    <!-- Ask a SJQ Question -->	
+    <script type="text/template" id="SJQTemplate">
+        <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
+            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
+        </div>
+
+        <div data-role="content" class="questionPage">
+	        <div class="question">
+		        <h5>Question:</h5>
+		        <%= text %>
+	        </div>
+			
+            
+            <table class="sjqAnswersTable" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<th class="sjqInstruction ui-bar-a "><p><%= selectionInfo %></p></th>
+			</tr>
+		        <%= optionHtml %>
+            </table>
+	        		
+			<div class="ui-grid-solo">
+				<div class="ui-block-a marginTop answerButton">
+					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
+				</div>
+			</div>	        
+		</div>
+	
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+
+    <!-- View SJQ Answer -->
+    <script type="text/template" id="SJQAnsweredTemplate">        
+	    <div data-role="header">
+	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	        <h1><%= questionIndex %> of <%= questionCount %></h1>
+	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
+	    </div>
+				
+	    <div data-role="content" class="answerPage">		
+	        <h2 class="<%= resultColour %>"><%= result %></h2>
+	        <div class="questionAnswer">
+		        <h5>Explanation:</h5>
+		        <%= comment %>
+	        </div>
+	        <div class="hr"><hr /></div>
+	        <div class="questionAnswer">
+		        <h5>Question:</h5>
+		        <%= text %>
+	        </div>
+    
+   			<div class="sjqAnswerList">
+		        <h4>Your choices</h4>
+				<ul>
+					<%= userChoicesHtml %>
+				</ul>
+	            <h4>Correct order</h4>
+				<ul>
+					<%= correctChoicesHtml %>
+				</ul>
+			</div>
+
+	    </div>
+		<div data-role="footer">
+			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
+				<div class="ui-block-a" style="text-align:left;">
+					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
+				</div>		        
+				<div class="ui-block-b" style="text-align:center;">
+					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
+				</div>
+		        <div class="ui-block-c" style="text-align:right;">
+					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
+				</div>		        
+	        </div>
+	    </div>
+    </script>
+
+
+    <!-- Review Session -->
+    <script type="text/template" id="SessionReviewTemplate">
+	<div data-role="header">
+	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+	    <h1>Session Review</h1>
+	</div>
+
+	<div data-role="content" class="sessionResults">
+	    <div class="sessionScore ui-grid-b">
+		<div class="ui-block-a"><p>You<br />scored<br /><span class="sessionStat"><%= percentCorrect %></span><span class="percentageSign">&#37;</span></p></div>
+		<div class="ui-block-b"><p>Questions<br />answered<br /><span class="sessionStat"><%= questionsAnswered %></span></p></div>
+		<div class="ui-block-c"><p>Questions<br />correct<br /><span class="sessionStat"><%= questionsCorrect %></span></p></div>
+	    </div>
+	    <div class="graphWrapper">
+		<div id="livePie" class="graph"></div>
+	    </div>
+	    <div class="sessionStatus">
+		<span>Status: </span>
+		<span id="reviewStatus">Processing results...</span>
+	    </div>
+	    <div class="uploadAnswersButton">	
+		<a data-role="button" data-theme="e" data-icon="refresh" style="display:none;" id="uploadAnswersButton">Try Upload Again</a>
+	    </div>
+	    <div id="reviewMainMenuButton" style="display:none;">
+		<a href="#" data-role="button" data-theme="e" data-icon="home" >Main Menu</a>
+	    
+	    </div>
+	    <div class="webLink">
+		<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Get more revision from BMJ OnExamination.</a>  	
+	    </div>
+	</div>
+
+    </script>
+
+	
+	
+	<!-- Component Templates ========================================================================= -->
+	<!-- NOTE: Underscore.js allows JS in the <% %> blocks. See: http://documentcloud.github.com/underscore/#template  -->
+	
+	<!-- Question Radio Option -->
+    <script type="text/template" id="QuestionOptionTemplate">    
+	    <input type="radio" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" />
+	    <label for="question-option-<%= id %>"><%= text %></label>
+    </script>	
+	
+    <!-- Disabled Question Radio Option -->
+    <script type="text/template" id="DisabledQuestionOptionTemplate">    
+	    <input type="radio" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" disabled="disabled" <%= checked %> />
+	    <label for="question-option-<%= id %>"><%= text %></label>
+    </script>
+
+
+    <!-- Question Checkbox Option -->
+    <script type="text/template" id="OptionCheckboxTemplate">    
+	    <input type="checkbox" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" />
+	    <label for="question-option-<%= id %>"><%= text %></label>
+    </script>	
+	
+    <!-- Disabled Question Checkbox Option -->
+    <script type="text/template" id="DisabledOptionCheckboxTemplate">    
+	    <input type="checkbox" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" disabled="disabled" <%= checked %> />
+	    <label for="question-option-<%= id %>"><%= text %></label>
+    </script>
+
+
+    <!-- SJQ Question Option -->
+    <script type="text/template" id="SJQOptionTemplate">    
+        <tr class="sjqOption">
+            <td class="sjqOptionRank">
+	            <input type="number" data-theme="e" id="question-option-<%= id %>" value="" maxlength="1" data-mini="true" />
+            </td>
+            <td class="sjqOptionText">
+	            <label for="question-option-<%= id %>"><%= answerText %></label>
+            </td>
+        </tr>
+    </script>	
+	
+    <!-- Disabled SJQ Question Option -->
+    <script type="text/template" id="AnsweredSJQOptionTemplate">    
+        <li><%= answerText %></li>
+    </script>
+
+
+    <!-- MCQ Options -->
+    <script type="text/template" id="MCQOptionTemplate">    
+        <div class="mcqOptionRow">
+			<span class="mcqOptionText">
+				<%= answerText %>
+			</span>
+			<span class="mcqOption">
+				<fieldset data-role="controlgroup" data-theme="e" data-type="horizontal">
+					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-true" data-theme="e"  value="1" />
+					<label for="question-option-<%= id %>-true">True</label>
+					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-false" data-theme="e" value="0" />
+					<label for="question-option-<%= id %>-false">False</label>
+				</fieldset>
+			</span>
+		</div>	
+    </script>
+
+    <!-- Disabled MCQ Options -->
+    <script type="text/template" id="DisabledMCQOptionTemplate">    
+        <div class="mcqOptionRow">
+			<span class="mcqOptionText">
+				<%= answerText %>
+			</span>
+			<span class="mcqOption">
+				<fieldset data-role="controlgroup" data-theme="e" data-type="horizontal">
+					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-true" data-theme="e" value="1" disabled="disabled" <%= trueSelected %> />
+					<label for="question-option-<%= id %>-true">True</label>
+	
+					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-false" data-theme="e" value="0" disabled="disabled" <%= falseSelected %> />
+					<label for="question-option-<%= id %>-false">False</label>
+				</fieldset>
+			</span>
+		</div>
+    </script>
+	
+
+    <!-- EMQ Choice (Alphabetic) -->
+    <script type="text/template" id="AlphabeticChoiceTemplate">    
+	    <tr><th style='width: 20px;'><%= letter %></th><td><%= text %></td></tr>
+    </script>	
+
+
+    <!-- EMQ Question Stem -->
+    <script type="text/template" id="EMQQuestionStemTemplate"> 
+        <div class="emqQuestionStem">
+			<span class="emqStemText" style="<%= style %>"><%= text %></span>
+			<span class="emqOption">
+				<select id="stem-<%= id %>" data-theme="e" data-additional-answer="<%= isAdditionalAnswer %>" >
+					<option value="-1">Please select an option</option>
+					<%= choiceHtml %>
+				</select>
+			</span>
+		</div>
+    
+    </script>	
+
+    <!-- EMQ Answered Question Stem -->
+    <script type="text/template" id="EMQAnsweredQuestionStemTemplate"> 
+        
+			<%= result %>
+			<span class="emqStemText" style="<%= style %>"><%= text %></span>
+			<span class="emqOption">
+				<select id="stem-<%= id %>" data-theme="e" disabled="disabled">            
+					<%= choiceHtml %>
+				</select>
+			</span>
+			<%= correctAnswerText %>
+			<div class="emqStemExplanation">
+				<%= comment %>
+			</div>
+		<!--// END OF DIV OPENED IN VIEWS  //-->
+		</div>
+        
+    </script>		
+		
+    <script type="text/javascript" src="cordova.js"></script>   
+	 
+    <!-- Scripts -->
+    <script src="lib/json2.js"></script>
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="js/jqm-config.js"></script>
+    <script src="lib/jquery.mobile-1.2.0.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>    
+    <script src="lib/jquery.imagesloaded.min.js" type="text/javascript"></script>	
+	
+    <script language="javascript" type="text/javascript" src="lib/jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="lib/jquery.flot.pie.js"></script>	
+		
+	<script src="js/imageLib.js"></script>
+    <script src="js/models.js"></script>
+    <script src="js/demoQuestions.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/routes.js"></script>
+   
+    <script type="text/javascript">	
+        var analytics;       	
+		var app;
+		
+		function onDeviceReady() {						
+			app = new AppRouter();
+			Backbone.history.start();
+			
+			appLib.log('On Device Ready');
+			
+			//## Android: Return to home screen if back button is pressed, if already on home screen then exit app
+			document.addEventListener("backbutton", function() { 
+				if(appLib.isUIMasked())
+					return;
+				
+				if($('#mainmenu').length > 0) {
+					//## Exit app
+					appLib.log('Exiting app...');
+					setTimeout(function() { navigator.app.exitApp(); });
+				} else {
+				    //## Return to homepage
+
+					appLib.log('Return to homepage');
+					app.trigger('Login');
+				}
+			}, false);
+			//## Android: Return to home screen if menu button is pressed
+			document.addEventListener("menubutton", function() { 
+				if(!appLib.isUIMasked())
+				    app.trigger('Login');
+			}, false);	
+
+			
+			//## Attempt to setup GA tracker
+			try {
+				analytics = window.plugins.gaPlugin;											
+				analytics.init(function() { appLib.log('ga success'); }, function() { appLib.log('ga fail'); }, "UA-140972-23", 10);
+			} catch(err) {
+				appLib.log(err);				
+			}
+
+			swipe();
+		}
+
+		function swipe() {
+
+		    $(".buddy").on("swiperight", function () {
+		        $(this).addClass('rotate-left').delay(700).fadeOut(1);
+		        $('.buddy').find('.status').remove();
+
+		        $(this).append('<div class="status like">Like!</div>');
+		        if ($(this).is(':last-child')) {
+		            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
+		        } else {
+		            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+		        }
+		    });
+
+		    $(".buddy").on("swipeleft", function () {
+		        $(this).addClass('rotate-right').delay(700).fadeOut(1);
+		        $('.buddy').find('.status').remove();
+		        $(this).append('<div class="status dislike">Dislike!</div>');
+
+		        if ($(this).is(':last-child')) {
+		            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
+		            alert('Oops...No more matches. Check back later!');
+		        } else {
+		            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
+		        }
+		    });
+
+
+
+		}
+        				
+
+		function onLoad() {
+			if(appLib.isPhoneGap()) {
+				document.addEventListener("deviceready", onDeviceReady, false);
+			} else {
+				$(document).ready(function() {
+					onDeviceReady();
+				});
+			}
+		}
+		
+		
+		function onUnload() {
+			try {
+				//## Attempt to unload GA plugin
+				analytics.exit(function() { }, function() { });
+			} catch(e) { 
+			}
+		}
+	</script>
+
+</head>
+
+<body onload="onLoad();" onunload="onUnload();">	
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+/*--//	VARIABLES	//--*/
+
+
+/* Easy Responsive Styles */
+
+/* Large desktop */
+$very-large-screen: "only screen and (min-width: 1025px) and (max-width: 1152px) and (orientation: portrait)";
+
+/* Large desktop */
+$large-screen: "only screen and (min-width: 541px) and (max-width: 1024px) and (orientation: portrait)";
+
+/* Landscape phone to portrait tablet */
+$medium-screen: "only screen and (min-width: 321px) and (max-width: 540px) and (orientation: portrait)";
+
+/* Landscape phones and down */
+$small-screen: "only screen and (min-width: 241px) and (max-width: 320px) and (orientation: portrait)";
+
+/* Retina & high res screens */
+$high-res: "only screen and (max-width : 767px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width : 767px) and  (min--moz-device-pixel-ratio: 1.5), only screen and (max-width : 767px) and (min-resolution: 240dpi)";
+
+
+$base-font-size: 17px;
+$base-line-height: 23px;
+$base-margin: 0.882rem;
+
+
+/* BASE MIXIN TAKES FONT-SIZE, 
+IF NOT GIVEN DEFAULTS TO $BASE-FONT-SIZE */
+@mixin base($size : 'null') {
+    @if $size == null {
+      $size : $base-font-size; 
+    }
+    font-size: $size;
+    font-family: Helvetica,Arial,sans-serif !important; 
+    font-weight: 300;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+$white: rgba(255,255,255,1);
+$black: rgba(0,0,0,1);
+
+$blue: rgba(42,110,187,1);
+$blue60: rgba(127,168,214,1);
+$blue20: rgba(212,226,241,1);
+
+$textGrey: rgba(51,51,51,1);
+
+$grey: rgba(116,118,120,1);
+$grey60: rgba(172,173,174,1);
+$grey30: rgba(227,228,228,1);
+
+$yellow: rgba(240,171,0,1);
+$orange: rgba(227,114,34,1);
+$red: rgba(205,32,44,1);
+$pink: rgba(197,0,132,1);
+
+$purple: rgba(125,92,198,1);
+$teal: rgba(0,178,169,1);
+$green: rgba(105,190,40,1);
+
+
+
+/* BORDER MIXIN */
+@mixin bordered($radius, $size, $color) {
+  @include border-radius($radius);
+  @include trailer();
+  border: $size solid $color;
+}
+
+
+/* OPACITY OVERLAYS */
+@function black($opacity){
+    @return rgba(0,0,0,$opacity)
+}
+@function white($opacity){
+    @return rgba(255,255,255,$opacity)
+}
+
+/* DROP SHADOW MIXIN */
+@mixin shadow($opacity){
+    box-shadow:black($opacity) -2px 5px 20px;
+}
+
+
+@mixin bundle-warning($color, $font-color, $proximity, $amount) {
+  background-color: $color;
+  color: $font-color;
+  #{$proximity}: $amount;
+  position: absolute;
+  text-align: center;
+  z-index: 19;
+  width: 95%;
+  padding: $base-margin;
+  margin: 0;
+  font-size: $base-font-size * 0.75;
+  @include border-radius(3px);
+
+}
+
+
+@mixin blue-gradient{@include background-image(linear-gradient(top, $blue 0%, lighten($blue, 10%) 50%,lighten($blue, 5%) 51%,$blue 100%))}
+@mixin teal-gradient{@include background-image(linear-gradient(top, darken($teal, 3%) 0%, lighten($teal, 5%) 50%,lighten($teal, 2%) 51%, darken($teal, 3%) 100%))}
+
+
+@mixin horizontal-list-left($padding: 0.15em, $direction: left) {
+  @include horizontal-list-container;
+  li {
+    @include horizontal-list-item($padding, $direction);}
+}
+
+@mixin horizontal-list-right($padding: 0.15em, $direction: right) {
+  @include horizontal-list-container;
+  li {
+    @include horizontal-list-item($padding, $direction);}
+}
+
+
+
+
+

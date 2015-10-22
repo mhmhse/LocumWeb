@@ -1,0 +1,383 @@
+/*--//	BMJ ONEXAMINATION MOBILE APP MAIN CSS  //--*/
+
+/*--//	COMPASS IMPORTS	//--*/
+@import "compass/css3";
+@import "compass/typography/vertical_rhythm";
+@import "compass/typography/lists/horizontal-list";
+
+/*--//	ADDITIONAL STYLESHEET IMPORTS	//--*/
+@import "_variables.scss";
+@import "_onExamination.scss";
+
+/*--//	TYPOGRAPHIC RHYTHM	//--*/
+// Establishes a font baseline for the given font-size in _base.scss
+@include establish-baseline;
+* {@include base();}
+
+.marginTop {@include leader(1.5);}
+.marginBottom {@include trailer();}
+.marginLeft {margin-left: $base-margin;}
+.noMargin {margin:0;}
+.noPadding {padding: 0;}
+.fullWidth {width: 100% !important;}
+.alignRight {text-align: right;}
+.strong {font-weight: 500;}
+
+/*--- HEADING STYLES ---*/
+.ui-title {margin: 0.6em 30% !important; line-height: 30px;}
+.pageHeading {font-size: 1.176rem; margin-top: 0;}
+.brandTagLine {text-align: center; font-size: 0.941rem; color: $blue; @include leader(0.5); @include trailer(); }
+.questionHeading {font-size: 1.176rem;}
+.questionNavQCount {font-size: 1.1rem; margin-left: 0.941rem; margin: 0; color: $blue; padding: 0 0.58rem; text-shadow: none; }
+h2 {margin:22px 8px 8px 8px;}
+h3 {@extend h2}
+
+
+hr {display: none;}
+.hr {border-top: 1px dotted #CCC; @include leader(1); @include trailer(1);}
+.positionBottom {position: relative; bottom: 0;}
+.loadingMask {height: 100% !important}
+.gettingStartedExamList {margin-left: 10px; padding-left: 0;
+	li {list-style-type: none; display: block; line-height: 2.5em; margin-left: 0;}
+}
+div[data-role="header"]{padding: 5px 0 !important;
+	&.home {margin-left: 50%; background: none; border: none; margin-top: 5%; margin-bottom: 0;
+		@media #{$small-screen}{margin-top: 10%;}
+		span {display: block;
+			img {width: 100%; margin-left: -50%;}
+		}
+	}
+}
+
+/*--- HEADER NAV BUTTONS ---*/
+.ui-header {
+	.ui-btn-left  {position: absolute; top: 10px; left: 10px;}
+	.ui-btn-right {@extend .ui-btn-left; left: auto; right: 10px;}
+	.ui-btn-icon-left {
+		.ui-icon {top: 16px;}
+	}
+	.ui-btn-icon-right {
+		.ui-icon {top: 16px;}
+	}
+}
+
+.ui-icon-custom {background: url('../css/images/icon-graph-18-bmj-blue.png') 50% 50% no-repeat; background-size: 14px 14px; width: 18px; height: 18px; box-shadow: none; -webkit-box-shadow: none; margin-top: -8px !important;
+	@media #{$high-res}{background: url('../css/images/icon-graph-18-bmj-blue@2x.png') no-repeat 50% 50%; background-size: 14px 14px;}
+}
+
+
+/*--- HOMEPAGE OPTION BUTTONS ---*/
+div[data-role="content"].home {
+	.optionButtons {margin-top: 10px !important; position: relative; z-index: 9999;}
+	.continueButton {@extend .optionButtons;}
+}
+
+/*--- HOMEPAGE MAIN IMAGE ---*/
+div.mainImage{display: block; margin-left: 50%; margin-bottom: 0px;
+	@media #{$small-screen} {display: none;}
+	span {display: block; margin-bottom: 0px;
+		img {width: 100%; margin-left: -50%; position: absolute; bottom: 2rem;}
+	}
+}
+
+
+/*--- PROGRESS BAR ---*/
+.progress-bar {@include leader(2);  display:none; border:solid 1px #2a6ebb; background-color:$blue; position: relative; @include clearfix; min-height: 2rem;
+	.progress-bar-inner {background-color:$blue60; @include clearfix; position: relative;  @include padding-leader(); @include padding-trailer(1.35);}
+	.progress-text {position: absolute; z-index: 4; top: 0; width: 100%; text-align: center; color:$white; font-size: 0.9rem;} 
+}
+
+
+.ui-btn {border: 1px solid $grey30; margin: 0 !important;}
+.ui-footer {
+	.ui-btn {border: 1px solid $grey60 ;}
+}
+.ui-btn-hover-e {background: $grey30; }
+
+/* FOOTER BUTTONS */
+.ui-footer {
+	.ui-grid-b {padding:15px;
+		.ui-block-a {
+			a {width: 100%;}
+		}
+		.ui-block-b {
+			a {width: 100%;}
+		}
+		.ui-block-c {
+			a {width: 100%;}
+		}
+		.ui-icon {
+			@media #{$small-screen}{display:none;}
+		}
+
+	}
+	.ui-btn-icon-right {
+		.ui-btn-inner {
+			@media #{$small-screen} {padding-right: 11px;}
+		}
+	}
+	.ui-btn-icon-left {
+		.ui-btn-inner {
+			@media #{$small-screen} {padding-left: 11px;}
+		}
+	}
+
+	.ui-btn-left {
+		.ui-btn-icon-inner {padding-left: 0 !important;}
+	}
+}
+
+
+
+/*--- LINK IN FOOTER ---*/
+.webLink {text-align: center; width: 100%; display: block; margin: 0 0 0 -0.9rem; line-height: 2rem; background: $white; color: $blue !important; border-top: 1px solid $blue; position: absolute; bottom: 0; z-index: 1;
+	a { @include base(12px); text-shadow: none;}
+}
+.sessionResults .webLink {clear: both; margin-top: 10px;}
+
+
+/*---  DIFFICULTY SLIDER  ---*/
+.sliderWrapper {@include leader(0.75); @include trailer(0.75);
+	.diffEasy {font-size: 0.8em;}
+	.diffHard {@extend .diffEasy; float: right;}
+	.ui-slider-handle {top: -8px !important; background-color: $blue; @include bordered(16px, 1px, $blue);}
+	.ui-slider {width: 99% !important; margin: 0;}
+}
+
+/*--- FIELD CONTAINER FOR WORK HARD /WORK SMART OPTIONS LIST ---*/
+.ui-content {
+	.ui-field-contain:first-child {padding-top: 0}
+	.ui-field-contain {padding: 0.4em 0 0.8em;
+		.ui-select {width: 100%;
+			select {
+				option {color: $black !important;}
+			}
+		}
+	}
+}
+
+
+select option, #examList option {color: #000 !important; background-color: $white !important;}
+
+
+/*---  MAKE QUESTION TYPE SELECTION FULL WIDTH  ---*/
+#questionTypeList {
+	.ui-controlgroup-controls {width: 100%;}
+	
+}
+
+.question { 
+	h5 {margin: 0; font-size: 1.2rem; @include leader();}
+	p {margin: 5px 0;}
+	table {text-align: center; font-size: 15px; width: 100%; margin-bottom: 10px;
+		tr th, tr td {border-top: 1px dotted #ccc; padding: 5px 0;}
+		tr:last-child th, tr:last-child td {border-bottom: 1px dotted #ccc;}
+		tr th {text-align: left; letter-spacing: -1px;}
+	}
+	img {display: block; margin: 20px auto; max-width: 95%; text-align: center; }
+}
+.questionAnswer {@extend .question;}
+
+.questionPage, .answerPage {padding-bottom:2em;}
+.ui-page-header-fullscreen .ui-content, .ui-page-footer-fullscreen .ui-content {padding: 20px;}
+.questionPage .qControls {padding: 1px;}
+.questionPage .qControls .answerButton {text-align: right;}
+
+#imagePopupClose {background-color: $white;}
+
+
+/*---  QUESTION NAVIGATOR STYLES ---*/
+.ui-popup-screen.in {background-color: rgb(0,0,0); opacity: 0.7;}
+.ui-popup-notice {display: block; margin-top: 5px; margin-bottom: 0; font-size: 12px; }
+.ui-popup-close {float: right; margin-left: 5px; }
+.popNavClose {background-color: $white; }
+.nav-instruction {font-size: 0.88rem }
+.questionNumberBlock {width:100%; overflow-y:auto; margin: 0.58rem 0; font-size: 0.823rem;}
+#questionPreview {background: rgba(0,0,0,0.05); @include border-radius(5px); min-height: 100px; border-radius: 5px; padding:10px; position: absolute; bottom: 5px; left: 0; margin: 10px;}
+.questionPreviewBlock {float:left; text-align:center; margin: 0 1.5%; padding: 0;
+	@media #{$medium-screen}{margin: 0 2% !important;}
+	@media #{$large-screen}{margin: 0 2.5%;}
+	@media #{$very-large-screen}{margin: 0 3.5%;}
+	span {padding: 0; margin: 0; display: block; width: 3.5rem; height: 3.5rem; line-height: 3.5rem; 
+		@media #{$small-screen}{width: 3rem; height: 3rem; line-height: 3rem;}
+		p {padding: 0; margin: 0; display: block; color: $textGrey; text-shadow: none;}
+	}
+	&.redBlock {@include bordered(100%,1px,$red); background-color: $red; 
+		span p {color: $white;}
+	}
+	&.greenBlock {@include bordered(100%,1px,$green); background-color: $green;
+	span p {color: $white;}
+	}
+	&.yellowBlock {@include bordered(100%,1px,$yellow); background-color: $yellow;
+	span p {color: $white;}
+	}
+	&.blueBlock {@include bordered(100%,1px,$white); background-color: $white;
+	span p {color: $grey60;}
+	}
+	&.highlighted {@include bordered(100%, 1px, $grey); background-color: $white;
+		span {
+			p {text-decoration: underline; font-weight: bold;  margin-bottom: 0; color: $grey;}
+		}
+	}
+}
+
+
+/*--- COLOUR BLOCK AT TOP OF PAGE FOR CORRECT/PARTIAL/INCORRECT ---*/
+.answerPage {
+	h2 {margin: -20px -25px 0 -25px; padding: 20px 35px; color: white;
+		&.red {background-color: $red;}
+		&.green {background-color: $green;}
+		&.yellow {background-color: $yellow;}
+	}
+}
+
+.questionAnswer a[href^="http"], a.externalLink {padding-right: 20px; padding-top: 0px; background: url('../img/externalLinkIcon.png') no-repeat scroll right top transparent;}
+.questionAnswer a[href$=".pdf"] {padding-right: 20px; padding-top: 0px; background: url('../img/pdficon_small.png') no-repeat scroll right top transparent;}
+
+/*--- INDICATE INCORRECT & CORRECT ANSWERS ---*/
+.correct {color: $green; font-style: italic;}
+.incorrect {color: $red; font-style: italic;}
+
+
+/*--- SJQ QUESTION STYLING ---*/
+.sjqAnswersTable {margin-top: 1rem; width:100%;
+	.sjqInstruction {text-align: left; background: $blue; color: $white; margin: 0;  font-size: 0.8rem;}
+	.sjqOption {border: none; border-top: 1px dotted $grey60; min-height: 35px; display: block; padding: 5px; @include clearfix;
+		&:first-child {border-top: none; }
+		&:last-child {border-bottom: 1px dotted $grey60; }
+		&:nth-child(2n-1) {background: lighten($blue, 50);}
+	}
+	.sjqOptionRank  {padding-top: 0;  margin-bottom: 1rem;
+		input {width: 40px; padding: 5px; text-align: left; -webkit-user-modify: read-write-plaintext-only;}
+	}
+	.sjqOptionText {padding: 5px;
+		label {margin-left: 10px;}
+	}
+}
+
+.sjqAnswerList {
+	h4 {color: $blue; font-size: 1.25rem; margin-bottom: 0;}
+	ul {padding-left: 20px;
+		li {margin: 5px 0;
+			&:first-child {margin-top: 0;}
+		}
+	}
+}
+
+
+/*--- EMQ QUESTION STYLING ---*/
+.alphaList td {text-align: left}
+.emqInstruction {font-weight: bold; font-style: italic; display: block;}
+.emqAnswer {
+	.red, .green{margin: 0;}
+}
+
+.emqQuestionStem {display: block; margin-bottom: 10px; background: rgba(0,119,190,0.05 ); border: rgba(0,119,190,1);
+	.emqStemText {display: block; padding: 10px;
+		p:first-child {padding-top: 0; margin-top: 0;}
+	}
+	.emqOption {display: block; padding: 0 10px 10px; }
+	.emqStemExplanation {padding: 0 10px; display: block;
+		p {
+			&:last-child {margin-bottom: 15px;}
+		}
+	}
+	.emqStemWrong {color: $red; margin: 0 10px; padding: 0 10px;}
+	.emqStemCorrect {display: none;}
+
+}
+
+.emqHeadingBG {display: block; background-color: $white; padding: 5px 10px; border-bottom-width: 1px; border-bottom-style: solid; }
+
+.emqAnswerWrong {@extend .emqQuestionStem; background: lighten($red, 50);  margin-top: 1em;  padding-bottom: 0.5em;
+	h4 {color: white; margin: 0;}
+	.red {
+		.emqHeadingBG  {@extend .emqHeadingBG; color: $red; border-bottom-color: $red;}
+	}
+}
+.emqAnswerCorrect {@extend .emqAnswerWrong; background: rgba(15, 141, 46, 0.05);
+	h4 {}
+	.green {
+		.emqHeadingBG  {@extend .emqHeadingBG; color: $green; border-bottom-color: $green;}
+	}
+ }
+
+
+/*--- MCQ QUESTION STYLING ---*/
+
+.mcqOptionRow {padding: 10px; border: 1px dotted #CCC; border-left: none; border-right: none; border-bottom: none; 
+	&:last-child {border-bottom: 1px dotted #CCC;}
+	.mcqOption {display: block;
+		fieldset {width: 100%; margin: 5px auto; }
+	}
+	&:nth-child(2n+1){background: rgba(0,119,190,0.05 );}
+}
+
+
+/*--  SESSION RESULTS  ---*/
+.sessionScore {margin: 0 0 2rem 0;
+	p {text-align: center; color: $textGrey;  background: $white;
+		.sessionStat {font-size: 40px; font-weight: bold; letter-spacing: -1px; line-height: 1.3em;}
+	}
+	.ui-block-a { 
+		p {margin:0; border: none;}
+	}
+	.ui-block-b {border: none; border-right: 1px solid $blue; border-left: 1px solid $blue;
+		p {margin: 0 1em; border: none;}
+	}
+	.ui-block-c {
+		p {margin: 0; border: none;}
+	}
+	
+	.percentageSign {font-size: 1.5rem; font-weight: bold;}
+}
+
+.graphWrapper {margin-left: 50%; padding-bottom: 3rem;
+	.graph {width: 360px; height: 360px; margin: 3rem auto 3rem -10.588rem;
+		@media #{$very-large-screen} {width: 360px; height: 360px; margin: 3rem auto 3rem -10.588rem;}
+		@media #{$large-screen} {width: 360px; height: 360px; margin: 3rem auto 3rem -10.588rem;}
+		@media #{$medium-screen} {width: 180px; height: 180px; margin-left: -90px; margin-bottom: 1.5rem;}
+		@media #{$small-screen} {width: 180px; height: 180px; margin-left: -90px; margin-bottom: 1.5rem;}
+		.base {width: inherit; height: inherit;}
+		.legend {position: absolute; bottom: -47px; width: 100%;
+			@media #{$medium-screen} {margin-left: -90px; width: 200%;}
+			@media #{$small-screen} {margin-left: -90px; width: 200%;}
+			table {margin: 0 auto;
+				tr {float: left; margin-right: 0.5rem; text-align: center;}			
+			}
+		}
+	}
+}
+
+.sessionStatus {margin: 5px 0 10px; font-size:13px;  color: #333; text-align: center; border: 1px dotted #ccc; border-left: none; border-right: none; padding: 5px; }
+
+.ui-controlgroup .ui-checkbox label, .ui-controlgroup .ui-radio label {font-size: 14px;}
+
+#reviewMainMenuButton {margin-bottom: 3rem;}
+
+
+/*--  FIX FOR MULTI TOUCH ON ANDROID --*/
+.mcqOption .ui-btn-hover-e.ui-btn-down-e.ui-radio-off {background-color: #DFEFF8 !important; background: #DFEFF8 !important; background-image: none !important; color: #333; text-shadow: #E3E3E3 0px 1px 0px;}
+
+/*-- LOADING SPINNER --*/
+.ui-loader-default, .ui-loader-verbose {border: 1px solid !important; width: 100% !important; height: 100% !important;	top: 0 !important; left: 0 !important;	margin-left: 0px !important; margin-top: 0px !important; background-color: black !important; opacity: 0.8;}
+
+
+#block-ui {display: none; cursor: wait; z-index: 9; background-color: #333; opacity: 0.9; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; overflow:hidden;
+	h1 {text-align: center; color: white; font-family: Arial; font-size: 18pt; text-shadow: none; position: absolute; top: 48%; left: 50%; margin-left: -1.9em; @include opacity(0.7);}
+}
+
+#spinner {position: absolute; left: 50%; top: 45%; margin: -1em 0 0 -1em; height: 35px; width: 35px; white-space: nowrap; overflow: hidden; background: url('../css/images/loader.gif') bottom left; @include opacity(0.4);}
+
+
+/*--- iOS: Prevent user selecting or copying links ---*/
+* {
+-webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+-webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+} 
+
+/*--- iOS: Use the following code to allow the user to change the content of forms: ---*/
+input, textarea, select{-webkit-user-select: auto;-webkit-touch-callout: auto;}
+
