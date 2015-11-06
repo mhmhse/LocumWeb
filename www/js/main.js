@@ -109,7 +109,61 @@ var lm = {
         return this.sessions.at(this.sessions.length - 1);
     },
 
+    getCurrentSessionOrNewSession: function () {
 
+        if (this.currentSession() == null) {
+
+            this.startNewSession();
+        }
+        return this.currentSession();
+    },
+
+    search: function (parameters) {
+        
+        if (parameters == null) {
+
+            parameters = this.getCurrentSessionOrNewSession().get("searchParameter");
+        }
+
+        lm.ajax('search',
+				{
+				    searchType: parameters.searchType,
+				    grade: parameters.grade,
+				    specialty: parameters.specialty,
+				    postcode: parameters.postcode,
+				    range: parameters.range
+				},
+				function (data, textStatus) {
+
+				    if (!_.isUndefined(data) && !_.isUndefined(data.valid)) {
+
+				        //TODO
+				        return data;
+				    }
+				    return null;
+				},
+				function (xhr, msg, errorText) {
+				    alert("can't access webservice");
+				});
+
+    },
+
+    penddingStampOnImg: function (imgdiv, operationType) {
+
+        if (imgdiv) {
+
+            if (operationType == LocumOperationType.Accepted) {
+
+                imgdiv.append('<div class="status like">Save!</div>');
+
+            } else if (operationType == LocumOperationType.Denied) {
+
+
+                imgdiv.append('<div class="status dislike">Discard!</div>');
+            }
+        }
+
+    },
 
 
 

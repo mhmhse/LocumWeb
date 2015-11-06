@@ -138,15 +138,18 @@ var specialities = new Specialities([
 LocumOperationType = {
 
     NoOperation: "",
-    Accepted: "ACCEPT",
-    Deny: "DENY"
+    Accepted: "ACCEPTED",
+    Denied: "DENIED"
 }
 
 //## SearchResult
 
 SearchedRow = Backbone.Model.extend({
+    url: '/search',
     defaults: {
-
+        name: '',
+        url: '',
+        tel: '',
         grade: null,
         specialty: null,
         postcode: '',
@@ -155,35 +158,31 @@ SearchedRow = Backbone.Model.extend({
 
     initialize: function (data) {
 
-        if (!_.isUndefined(data) && data != null) {
 
-            data.operation = LocumOperationType.NoOperation;
-        }
     },
 
-    accept: function (data) {
+    accept: function () {
 
-        if (!_.isUndefined(data) && data != null) {
 
-            data.operation = LocumOperationType.Accepted;
-        }
+        this.set("operation", LocumOperationType.Accepted);
+
     },
 
     deny: function (data) {
 
-        if (!_.isUndefined(data) && data != null) {
 
-            data.operation = LocumOperationType.deny;
-        }
+        this.set("operation", LocumOperationType.Denied);
     }
 });
 
 SearchedResult = Backbone.Collection.extend({
-    url: '/Items',
     model: SearchedRow,
     initialize: function (data) {
 
+        if (!_.isUndefined(data) && data != null) {
 
+            data.operation = LocumOperationType.NoOperation;
+        }
     }
 });
 
@@ -194,7 +193,7 @@ SearchedResult = Backbone.Collection.extend({
 SearchParameters = Backbone.Model.extend({
 
     defaults: {
-
+        searchType:null,
         grade: null,
         specialty: null,
         postcode: '',
@@ -205,6 +204,13 @@ SearchParameters = Backbone.Model.extend({
 
         if (!_.isUndefined(data) && data != null) {
 
+            if (data.grade != null) {
+
+                searchType = data.grade;
+            } else {
+
+                searchType = 'ALL';
+            }
             
             if (data.grade != null) {
 
@@ -243,7 +249,7 @@ SearchParameters = Backbone.Model.extend({
 
     getQueryString: function (data) {
 
-        return "/" + grade + "/" + specialty + "/" + postcode + "/" + range;
+        return "/" + searchType + "/" + grade + "/" + specialty + "/" + postcode + "/" + range;
     }
 });
 
@@ -254,13 +260,14 @@ Session = Backbone.Model.extend({
     defaults: {
 
         searchParameter: null,
-        showUserIndex: 1,
+        showUserIndex: 0,
         searchedResult: null
     },
 
     initialize: function (data) {
         searchParameter = new SearchParameters();
         searchedResult = new SearchedResult();
+        showUserIndex = 0;
     }
 });
 

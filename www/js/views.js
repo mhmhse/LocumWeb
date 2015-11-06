@@ -149,14 +149,72 @@ var SearchForHospitalView = Backbone.View.extend({
 
 
 //========================================================================================
-//## Search Doctor Review
+//## Search Hospital Review
 var SearchHospitalResultView = Backbone.View.extend({
     template: _.template($('#SearchHospitalResultTemplate').html()),
 
     render: function (eventName) {
 
+        var searchParameter = lm.getCurrentSessionOrNewSession().get("searchParameter");
+
         
-        $(this.el).html(this.template({}));
+        //TODO
+        //var searchedResult = lm.search(searchParameter);
+        var searchedResult = new SearchedResult([
+
+            new SearchedRow({
+
+                name: 'test1',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BCH.jpg',
+                tel: 'teltest1',
+                grade: 'gradetest1',
+                specialty: 'specialtytest1',
+                postcode: 'postcodetest1',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test2',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BWH.jpg',
+                tel: 'teltest2',
+                grade: 'gradetest2',
+                specialty: 'specialtytest2',
+                postcode: 'postcodetest2',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test3',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/GOSH.jpg',
+                tel: 'teltest3',
+                grade: 'gradetest3',
+                specialty: 'specialtytest3',
+                postcode: 'postcodetest3',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test4',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/HEART_Logo.jpg',
+                tel: 'teltest4',
+                grade: 'gradetest4',
+                specialty: 'specialtytest4',
+                postcode: 'postcodetest4',
+                operation: null
+            })
+        ]);
+
+
+
+
+        //TODO END
+
+        lm.getCurrentSessionOrNewSession().set("searchedResult", searchedResult);
+        var showUserIndex = lm.getCurrentSessionOrNewSession().get("showUserIndex");
+
+        $(this.el).html(this.template({ searchedResult: searchedResult.toJSON(), showUserIndex: showUserIndex }));
+
+
 
         return this;
     },
@@ -173,46 +231,72 @@ var SearchHospitalResultView = Backbone.View.extend({
     },
     saveUser: function (e) {
         
-        if (this.model.currentSession() == null) {
+        var currSession = this.model.getCurrentSessionOrNewSession();
 
-            this.model.startNewSession();
-        }
-        var currSession = this.model.currentSession();
+        var currIndex = currSession.get("showUserIndex");
 
-        var currIMG = $(".buddy:nth-child(" + currSession.get("showUserIndex") + ")");
+        var searchResult = currSession.get("searchedResult");
+
+        var currRow = searchResult.at(currIndex);
+        currRow.accept();
+
+        var currIMG = $(".buddy:nth-child(" + (currSession.get("showUserIndex") + 1) + ")");
         currIMG.addClass('rotate-left').delay(700).fadeOut(1);
         $('.buddy').find('.status').remove();
-        currIMG.append('<div class="status like">Save!</div>');
+
+        this.model.penddingStampOnImg(currIMG, LocumOperationType.Accepted);
+
+        var nextIMG = null;
+        var nextRowIndex = 0;
 
         if (currIMG.is('.buddy:last')) {
 
-            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
-            currSession.set("showUserIndex", 1);
+            nextIMG = $('.buddy:nth-child(1)');
         } else {
-            currIMG.next().removeClass('rotate-left rotate-right').delay(700).fadeIn(400);
-            currSession.set("showUserIndex", currSession.get("showUserIndex") + 1);
+            nextIMG = currIMG.next()
+            nextRowIndex = currIndex + 1;
         }
+
+        var nextRow = searchResult.at(nextRowIndex);
+        currSession.set("showUserIndex", nextRowIndex);
+
+        nextIMG.removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
+        this.model.penddingStampOnImg(nextIMG, nextRow.get("operation"));
+        
 
     },
     denyUser: function (e) {
 
+        var currSession = this.model.getCurrentSessionOrNewSession();
 
-        if (this.model.currentSession() == null) {
+        var currIndex = currSession.get("showUserIndex");
 
-            this.model.startNewSession();
-        }
-        var currSession = this.model.currentSession();
+        var searchResult = currSession.get("searchedResult");
 
-        var currIMG = $(".buddy:nth-child(" + currSession.get("showUserIndex") + ")");
+        var currRow = searchResult.at(currIndex);
+        currRow.deny();
+
+        var currIMG = $(".buddy:nth-child(" + (currSession.get("showUserIndex") + 1) + ")");
         currIMG.addClass('rotate-right').delay(700).fadeOut(1);
         $('.buddy').find('.status').remove();
-        currIMG.append('<div class="status dislike">Discard!</div>');
+
+        this.model.penddingStampOnImg(currIMG, LocumOperationType.Denied);
+
+        var nextIMG = null;
+        var nextRowIndex = 0;
+
         if (currIMG.is('.buddy:last')) {
-            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
-            currSession.set("showUserIndex", 1);
+
+            nextIMG = $('.buddy:nth-child(1)');
         } else {
-            currIMG.next().removeClass('rotate-left rotate-right').delay(700).fadeIn(400);
-            currSession.set("showUserIndex", currSession.get("showUserIndex") + 1);
+            nextIMG = currIMG.next()
+            nextRowIndex = currIndex + 1;
         }
+
+        var nextRow = searchResult.at(nextRowIndex);
+        currSession.set("showUserIndex", nextRowIndex);
+
+        nextIMG.removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
+        this.model.penddingStampOnImg(nextIMG, nextRow.get("operation"));
     }
 });

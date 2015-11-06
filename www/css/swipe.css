@@ -21,16 +21,16 @@
 }
 .rotate-left {
   transform: rotate(30deg) scale(0.8);
-  transition: 1s;
-  margin-left: 400px;
+  transition: 2s;
+  margin-left: 300px;
   cursor: e-resize;
   opacity: 0;
 }
 .rotate-right {
   transform: rotate(-30deg) scale(0.8);
-  transition: 1s;
+  transition: 2s;
   opacity: 0;
-  margin-left: -400px;
+  margin-left: -300px;
   cursor: w-resize;
 }
 .avatar {

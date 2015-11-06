@@ -6,7 +6,7 @@ var AppRouter = Backbone.Router.extend({
         "Login": "loginView",
         "SearchForDoctor/:query": "searchForDoctorView",
         "SearchForHospital": "searchForHospitalView",
-        "SearchHospitalResult/:query1/:query2/:query3/:query4": "searchHospitalResultView"
+        "SearchHospitalResult/:query1/:query2/:query3/:query4/:query5": "searchHospitalResultView"
     },
 
 
@@ -78,9 +78,20 @@ var AppRouter = Backbone.Router.extend({
     },
 
     //## search Doctor View
-    searchHospitalResultView: function () {
+    searchHospitalResultView: function (grade, specialty, postcode, range) {
 
         appLib.track('searchHospitalResultTemplate');
+
+        var searchParameter = new SearchParameters({
+
+            grade: grade,
+            specialty: specialty,
+            postcode: postcode,
+            range: range
+        });
+
+        var currentSession = lm.getCurrentSessionOrNewSession();
+        currentSession.set("searchParameter", searchParameter);
 
         this.changePage(new SearchHospitalResultView({ model: lm }));
     },
