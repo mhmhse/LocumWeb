@@ -147,6 +147,46 @@ var SearchForHospitalView = Backbone.View.extend({
     }
 });
 
+//========================================================================================
+
+
+//## Saved list
+var SavedListView = Backbone.View.extend({
+    template: _.template($('#SavedListTemplate').html()),
+
+    render: function (eventName) {
+
+        var searchedResult = lm.getCurrentSessionOrNewSession().get("searchedResult");
+        
+        if (searchedResult != null) {
+
+            var savedResult = searchedResult.filter(function (item) {
+
+                return item.get("operation") == LocumOperationType.Accepted;
+            });
+
+            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON() }));
+            
+        } else {
+
+            $(this.el).html(this.template({ savedResult: null }));
+        }
+
+        
+        
+
+        return this;
+    },
+
+    events: {
+        "click #viewSavedList": "viewSavedList"
+    },
+
+    viewSavedList: function () {
+
+        app.trigger('SearchDoctorList');
+    }
+});
 
 //========================================================================================
 //## Search Hospital Review
@@ -227,7 +267,7 @@ var SearchHospitalResultView = Backbone.View.extend({
 
     viewSavedList: function () {
 
-        app.trigger('SearchDoctorList');
+        app.trigger('SavedList');
     },
     saveUser: function (e) {
         
