@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html class="ui-mobile-rendering">
 <head>
-    <title>BMJ OnExamination</title>
+    <title>Locum Matcher</title>
 	<meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, user-scalable=no" />
@@ -46,1082 +46,127 @@
 	</div>
     </script>
 	
-	
-	
-    <!-- Settings -->
-    <script type="text/template" id="SettingsTemplate">
-        <div data-role="header">
-	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    	<h1>My Profile</h1>
-        </div>
-
-        <div data-role="content" class="settings">
-	    
-                <h1 class="pageHeading">Account</h1>
-                <div class="ui-hide-label">
-                    <fieldset data-role="controlgroup">
-                        <label for="email">User name</label>
-                        <input id="email" placeholder="User name" value="<%= email %>" type="email" class="marginBottom" />
-                        <label for="password">Password</label>
-                        <input id="password" placeholder="change password" value="" type="password" />
-                    </fieldset>
-
-                </div>
-
-                <fieldset data-role="controlgroup">
-                    <h1 class="pageHeading">Professional</h1>
-                    <label for="speciality">Speciality</label>
-                    <select name="speciality" data-theme="e" id="speciality">
-                        <option value="Cardiology">
-                            Cardiology
-                        </option>
-                        <option value="Respiratory">
-                            Respiratory
-                        </option>
-                        <option value="Accident Emergency">
-                            Accident Emergency
-                        </option>
-                    </select>
-                    <select name="grade" data-theme="e" id="grade">
-                        <option value="Foundation Year 2">
-                            Foundation Year 2
-                        </option>
-                        <option value="Registrar">
-                            Registrar
-                        </option>
-                        <option value="Consultant">
-                            Consultant
-                        </option>
-                    </select>
-                </fieldset>
-
-
-                <div class="">
-                    <h4></h4>
-                    <button id="searchDoctor" data-theme="e" data-icon="alert">Save And Search</button>
-                </div>
-                <br />
-                <div class="hr"><hr /></div>
-                <div class="appInfo">
-                </div>
-
-                <br /><br />
-
-                <div class="webLink">
-                    <a onclick="window.open('', '_system');">Find out more about Locum.</a>  	
-                </div>
-
-            </div>
-    </script>
-    
-    <!-- Terms & Conditions -->
-    <script type="text/template" id="TermsConditionsTemplate">
-        <div data-role="header">
-	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    	<h1>T&amp;Cs</h1>
-        </div>
-
-        <div data-role="content" class="settings">
-		    <a href="#Settings" data-role="button" data-theme="e" data-icon="back">Back</a>
-	        <br /><br /><br />                                                                                                                                                                                                                                                                         
-		    <br /><br />
-
-		    <div class="webLink">
-				<a onclick="window.open('', '_system');">Find out more about Locum.</a>   
-		    </div>
-	      
-        </div>
-    </script>
-    
-    
-    
-    <!-- Privacy Policy -->
-    <script type="text/template" id="PrivacyPolicyTemplate">
-        <div data-role="header">
-	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Back</a>
-	    	<h1>Privacy Policy</h1>
-        </div>
-
-        <div data-role="content" class="settings">
-	      
-        </div>
-    </script>
-
-    
-    <!-- Getting Started -->
-    <script type="text/template" id="GettingStartedTemplate">
-        <div data-role="header">
-	    	<a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-        	<h1>About us</h1>
-        </div>
-        <div data-role="content" class="gettingStarted">
-        </div>
-    </script>
-	
-	
-	
     <!-- Login -->
     <script type="text/template" id="LoginTemplate">
-	<div data-role="header">
-	    
-	    <h1>Sign In Locum Matcher</h1>
-	</div>
-	<div data-role="content" class="login">
-	    <h1 class="pageHeading">Sign in to your account:</h1>
-	    <div class="ui-hide-label">
-			<fieldset data-role="controlgroup">
-			    <label for="email">User name</label>
-			    <input id="email" placeholder="User name" value="" type="email" class="marginBottom" />
-				<label for="password">Password</label>
-			    <input id="password" placeholder="password" value="" type="password" />	
-			</fieldset>
-
-			<br />
-			<button id="login-button" data-theme="e" data-icon="arrow-r">Sign In</button>
-	    </div>
-		<br />
-			
-		<div class="hr"><hr /></div>
-
-	    
-    	<div style="<%= demoModeStyle %>">
-			<div>
-		    	<h4>Don't have a Locum account?</h4>
-			</div>
-			<fieldset data-role="controlgroup">
-			    <a href='#Register' data-role="button" data-theme="e">Register now</a>   
-			</fieldset>
-    	</div>
-    	<br />
-    	<div class="clear"></div>
-	    <div class="webLink">
-			<a onclick="window.open('', '_system');">Find out more about Locum.</a>   
-	    </div>
-	</div>
-    </script>
-	
-    <!-- Register -->
-    <script type="text/template" id="RegisterTemplate">
         <div data-role="header">
-            <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-            <h1>Register Locum Matcher</h1>
+
+            <h1>Sign In Locum Matcher</h1>
         </div>
         <div data-role="content" class="login">
-            <h1 class="pageHeading">Register to your account:</h1>
+            <h1 class="pageHeading">Sign in to your account:</h1>
             <div class="ui-hide-label">
                 <fieldset data-role="controlgroup">
-                    <label for="email">Email address</label>
-                    <input id="email" placeholder="email" value="" type="email" pattern="[^ @]*@[^ @]*" class="marginBottom" />
+                    <label for="email">User name</label>
+                    <input id="email" placeholder="User name" value="stephen" type="email" class="marginBottom" />
                     <label for="password">Password</label>
-                    <input id="password" placeholder="password" value="" type="password" />
+                    <input id="password" placeholder="password" value="123" type="password" />
                 </fieldset>
+
                 <br />
-                <button id="login-button" data-theme="e" data-icon="arrow-r">Register</button>
+                <button id="login-button" data-theme="e" data-icon="arrow-r">Sign In</button>
             </div>
             <br />
-        </div>
-    </script>
 
-    <!-- Register step 1 -->
-    <script type="text/template" id="RegisterStep1Template">
-        <div data-role="header">
-            <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-            <h1>Register Locum Matcher</h1>
-        </div>
-        <div data-role="content" class="login">
-            <h1 class="pageHeading">Register to your account:</h1>
-            <div class="ui-hide-label">
+            <div class="hr"><hr /></div>
+
+
+            <div style="<%= registerStyle %>">
+                <div>
+                    <h4>Don't have a Locum account?</h4>
+                </div>
                 <fieldset data-role="controlgroup">
-                    <label for="email">Email address</label>
-                    <input id="email" placeholder="email" value="" type="email" pattern="[^ @]*@[^ @]*" class="marginBottom" />
-                    <label for="password">Password</label>
-                    <input id="password" placeholder="password" value="" type="password" />
+                    <a href='#Register' data-role="button" data-theme="e">Register now</a>
                 </fieldset>
-                <br />
-                <button id="login-button" data-theme="e" data-icon="arrow-r">Register</button>
-                <button id="login-button" data-theme="e" data-icon="arrow-r">Next Step</button>
             </div>
             <br />
+            <div class="clear"></div>
+            <div class="webLink">
+                <a onclick="window.open('', '_system');">Find out more about Locum.</a>
+            </div>
         </div>
     </script>
-	
-    <!-- Demo intro -->
-    <script type="text/template" id="DemoTemplate">
-	<div data-role="header">
-	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    <h1>Demo Questions</h1>		
-	</div>
-	<div data-role="content" class="demo">
-	    <p>Test yourself with our sample of 25 exam format questions. At the moment our App is only available on our MRCP Part 1 resource but all of our other resources are coming soon.</p>
-	    <p>To get more revision, visit the <a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">BMJ OnExamination website</a></p>
-	    <br />
-	    <button id="startQuestions" data-icon="arrow-r" data-theme="e">Start Demo Questions</button>
-	    
-	    <div class="webLink">
-		    <a onclick="window.open('', '_system');">Find out more about Locum.</a>   
-	    </div>
-	</div>
-	
-    </script>
-	
 
-
-    <!-- search Doctor View -->
-    <script type="text/template" id="SearchDoctorTemplate">	
-		<div data-role="header">
-			<a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-			<h1>Locum Search</h1>			
-		</div>
-		<div data-role="content">
-			<div data-role="fieldcontain">
-				<h1 class="pageHeading">Who are you looking for today?</h1>
-                <div class="ui-hide-label">
-                    <fieldset data-role="controlgroup">
-                        <label for="speciality">Speciality</label>
-                        <select name="speciality" data-theme="e" id="speciality">
-                            <option value="">
-                                Please select speciality
-                            </option>
-                            <option value="Cardiology">
-                                Cardiology
-                            </option>
-                            <option value="Respiratory">
-                                Respiratory
-                            </option>
-                            <option value="Accident Emergency">
-                                Accident Emergency
-                            </option>
-                        </select>
-                        <select name="grade" data-theme="e" id="grade">
-                            <option value="">
-                                Please select grade
-                            </option>
-                            <option value="Foundation Year 2">
-                                Foundation Year 2
-                            </option>
-                            <option value="Registrar">
-                                Registrar
-                            </option>
-                            <option value="Consultant">
-                                Consultant
-                            </option>
-                        </select>
-                    </fieldset>
-                    <br />
-                    <button id="searchDoctor" data-theme="e" data-icon="arrow-r">Search
-                    </button>
-                </div>
-                <br />
-			</div>
-		</div>
-    </script>
-	
-	
-    <!-- search Doctor Result View -->
-    <script type="text/template" id="SearchDoctorResultTemplate">
+    <!-- search For Hospital View -->
+    <script type="text/template" id="SearchForHospitalTemplate">
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-            <h1>Locum Search Result</h1>
-        </div>
-        <div data-role="content">
-            <div data-role="fieldcontain" style="<%= doctorStyle %>">
-                <div id="container">
-                    <div class="buddy" style="display: block;">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/AdrianHarris.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/AlexWalkinshaw.png)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/CarolineWebster.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/ChrisColquhoun.png)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/DerekThompson.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/EllieBeaven.jpeg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/ElyesGabel.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/doctors/Harris.jpg)">
-                        </div>
-                    </div>
-                </div>
-                <br />
-            </div>
-
-            <div data-role="fieldcontain" style="<%= hospitalStyle %>">
-                <div id="container">
-                    <div class="buddy" style="display: block;">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/BCH.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/BWH.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/GOSH.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/HEART_Logo.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/HOE.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/middlesex-logo.png)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/QEH.jpg)">
-                        </div>
-                    </div>
-                    <div class="buddy">
-                        <div class="avatar" style="display: block; background-image: url(http://172.24.10.113:8080/img/hospitals/WHH.png)">
-                        </div>
-                    </div>
-                </div>
-                <br />
-            </div>
-            <button id="viewSavedList" data-theme="e" data-icon="alert">View</button>
-        </div>
-    </script>
-
-    <!-- search Doctor List View -->
-    <script type="text/template" id="SearchDoctorListTemplate">
-        <div data-role="header">
-            <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-            <h1>Locum Search Result</h1>
+            <h1>Locum Search</h1>
         </div>
         <div data-role="content">
             <div data-role="fieldcontain">
-                <div id="container">
-                 
+                <h1 class="pageHeading">Who are you looking for today?</h1>
+                <div class="ui-hide-label">
+                    <fieldset data-role="controlgroup">
+                        <label for="grades">questionLimit</label>
+                        <select name="grades" data-theme="e" id="grades">
+                            <option value="ALL">All Grades</option>
+                            <% _(grades).each(function(grade) { %>
+                            <option value="<%= grade.id %>"><%= grade.fullName %></option>
+                            <% }); %>
+                        </select>
+
+                        <label for="speciality">Speciality</label>
+                        <select name="speciality" data-theme="e" id="speciality">
+                                <option value="ALL">All Specialities</option>    
+                                <% _(specialities).each(function(speciality) { %>
+                                <option value="<%= speciality.id %>"><%= speciality.fullName %></option>
+                                <% }); %>
+                        </select>
+                        <div id="locationSliderGroup" style="">
+                            <div class="sliderWrapper">
+                                <span class="diffEasy">10 miles</span><span class="diffHard">50 miles</span>
+                                <input type="range" name="slider" data-theme="e" data-track-theme="a" id="locationRange" value="20" min="10" max="50" data-highlight="true" class="ui-hidden-accessible diffSlider" 
+                                       onchange="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button id="searchHospital" data-theme="e" data-icon="arrow-r">
+                        Search
+                    </button>
                 </div>
+                <br />
+            </div>
+        </div>
+    </script>
+
+
+    <!-- search Hospital Result View -->
+    <script type="text/template" id="SearchHospitalResultTemplate">
+        <div data-role="header">
+            <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
+            <h1>Locum Search Result</h1>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain" class="ui-body">
+                    <div class="buddy" style="display: block;">
+                        <div class="avatar" style="display: block; background-image: url(http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BCH.jpg)">
+                        </div>
+                    </div>
+                    <div class="buddy">
+                        <div class="avatar" style="display: block; background-image: url(http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BWH.jpg)">
+                        </div>
+                    </div>
                 <br />
             </div>
             <button id="viewSavedList" data-theme="e" data-icon="alert">View</button>
         </div>
+
+
     </script>
-	
-    <!-- Revision Type Menu -->
-    <script type="text/template" id="RevisionTypeTemplate">	
-	<div data-role="header">
-	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    <h1>Revision Type</h1>			
-	</div>
-	<div data-role="content">
-	    <div data-role="fieldcontain">
-			<h1 class="pageHeading">How would you like to Revise?</h1>
-			<label for="revisionType" class="fullWidth marginTop">Choose your Revision Style:</label>
-			<select name="revisionType" data-theme="e" id="revisionType">
-				<option value="WorkHard">
-					Work Hard
-				</option>
-				<option value="WorkSmart">
-					Work Smart
-				</option>					
-				<!--
-				<option value="PastPaper">
-					Past Paper
-				</option>
-				-->
-			</select>
-	    </div>
-	    <!-- Past Paper Filters: -->
-	    <div data-role="fieldcontain" style="display: none;" id="pastPaperGroup">
-		<label for="pastPaper" class="fullWidth">Select a Past Paper</label>
-		<select name="pastPaper" data-theme="e" id="pastPaper">
-			<option value="Test">Test</option>					
-		</select>
-	    </div>
-	    <!-- Work Smart Filters: -->
-	    <div id="workSmartGroup" style="display: none;">
-		    <div data-role="fieldcontain">
-			<label for="questionDifficulty" class="fullWidth">Question Difficulty:</label>
-			<select name="questionDifficulty" id="questionDifficulty" data-theme="e">
-			    <option value="AllQuestions">
-				    All Questions
-			    </option>
-			    <option value="SelectDifficulty">
-				    Select Difficulty
-			    </option>						
-			</select>
-			<div id="difficultySliderGroup" style="display: none;">
-			    <div class="sliderWrapper">
-				<span class="diffEasy">Easy</span><span class="diffHard">Hard</span>
-				<input type="range" name="slider" data-theme="e" data-track-theme="a" id="questionDifficultyValue" value="5" min="0" max="10" data-highlight="true" class="ui-hidden-accessible diffSlider" />
-			    </div>
-			</div>
-		    </div>
-		    
-		    
-		    <div data-role="fieldcontain">
-			<label for="questionStatus" class="fullWidth">With Questions:</label>
-			<select name="questionStatus" id="questionStatus" data-theme="e">
-			    <option value="NotSeen">
-				    I have not seen before
-			    </option>
-			    <option value="AllQuestions">
-				    All Questions
-			    </option>
-			    <option value="WrongQuestions">
-				    I have got wrong before
-			    </option>
-			    <option value="TaggedQuestions">
-				    I have tagged
-			    </option>
-			</select>
-		    </div>
-		    
-		    <div data-role="fieldcontain">
-			<label for="questionCategory" class="fullWidth">Filter by Category:</label>
-			<select name="questionCategory" id="questionCategory" data-theme="e">
-			    <option value="AllCategories">
-				    All Categories
-			    </option>
-			    <option value="SelectCategories">
-				    Select Categories
-			    </option>
-			</select>
-		    </div>
-		    <div data-role="fieldcontain" id="questionCategorySection" style="display:none;">
-                <div data-role="controlgroup" data-type="horizontal" style='padding-bottom:10px;'>
-                    <legend>Categories:</legend>
-                    <button id="selectAllCats" data-theme="e">Select All</button>
-                    <button id="selectNoCats" data-theme="e">Select None</button>
-                </div>			
-			
-			    <fieldset data-role="controlgroup" id="questionCategoryList">											
-			    </fieldset>				
-		    </div>		    
-	    </div>		
-        
-        <!-- Shared question type filter -->    
-        <div data-role="fieldcontain">
-		<label for="questionType" class="fullWidth">Filter by Question Type:</label>
-		<select name="questionType" id="questionType" data-theme="e">
-			<option value="AllQuestionTypes">
-				All Types
-			</option>
-			<option value="SelectQuestionTypes">
-				Select Types
-			</option>
-		</select>
-		</div>
-		<div data-role="fieldcontain" id="questionTypeSection" style="display:none;">
-			<fieldset data-role="controlgroup" id="questionTypeList">											
-			</fieldset>
-		</div>
 		
-		
-        <!-- Shared number of question filter -->						
-	    <div data-role="fieldcontain" class="marginBottom">
-		<label for="questionLimit" class="fullWidth">Number of Questions:</label>
-		<select name="questionLimit" data-theme="e" id="questionLimit">					
-		    <option value="10">10 questions</option>
-		    <option value="20">20 questions</option>
-		    <option value="30">30 questions</option>
-		    <option value="40">40 questions</option>
-		    <option value="50">50 questions</option>
-		    <option value="60">60 questions</option>
-		    <option value="70">70 questions</option>
-		    <option value="80">80 questions</option>
-		    <option value="90">90 questions</option>
-		    <option value="100">100 questions</option>
-		</select>
-	    </div>
-	    
-	    <div class="marginTop">
-			<button id="startQuestions" data-icon="check" data-theme="b">Start Questions</button>			
-	    </div>
-		
-		<div id="workHardStatus" class="progress-bar">
- 			<div class="progress-bar-inner"></div>
-  			<p class="progress-text"></p>
-  		</div.
-	</div>
-    </script>
-	
-
-	
-    <!-- Popup Menu -->		
-	<script type="text/template" id="QuestionPreviewHeaderTemplate">
-		<div class="questionNav">
-			<h1 class="questionNavQCount"><%= questionCount %> question(s) available</h1>
-			<div class="nav-instruction">Touch a question number to preview</div>
-			<div class="questionNumberBlock" style="height: <%= height %>px;">
-				<%= questionOptionHtml %>
-			</div>
-			
-			<div id="questionPreview"></div>
-		</div>
-	</script>
-	
-	<script type="text/template" id="QuestionOptionPreviewTemplate">
-		<div id="questionPreview<%= id %>" class="questionPreviewBlock <%= colour %>">
-			<span>
-				<p><%= id %></p>
-			</span>
-		</div>
-	</script>
-	
-    <script type="text/template" id="QuestionPreviewFooterTemplate">
-		<div style="clear:both;">
-			<span>Q<%= id %>:</span> <%= text %>
-		</div>
-		<div style="padding-top:5px;">
-			<div class="ui-grid-a" style="min-height:40px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<button id="moveToPreviewQuestionButton" value="<%= id %>" data-theme="a" data-icon="arrow-r" data-iconpos="right" data-inline="true" data-mini="true">Go to Question</button>		
-				</div>
-				<div class="ui-block-b" style="text-align:right; <%= reviewButtonStyle %>">
-					<button id="sessionReviewButton" class="sessionReview" data-theme="a" data-icon="custom" data-inline="true" data-mini="true">Review</a>
-				</div>			
-			</div>
-		</div>
-	</script>
-	
-
-    <!-- Ask a BoF/NOM Question -->	
-    <script type="text/template" id="QuestionBrowserTemplate">
-        <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
-            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
-        </div>
-
-        <div data-role="content" class="questionPage" >
-	        <div class="question">
-		        <h1 class="questionHeading">Question:</h1>
-		        <%= text %>
-	        </div>
-		
-	        <fieldset data-role="controlgroup" id="optionList" >								
-		        <legend><%= selectText %></legend>
-		        <%= optionHtml %>
-	        </fieldset>		
-			
-			<div class="ui-grid-solo">
-				<div class="ui-block-a marginTop answerButton">
-					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
-				</div>
-			</div>	        
-		</div>
-	
-		<div data-role="footer">
-			<div class="ui-grid-b">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" data-icon="arrow-l" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" >Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" data-role="button"  data-icon="grid" data-shadow="false" data-inline="true" >Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" data-icon="arrow-r"  data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" >Next</a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-	
-    <!-- View BoF/NOM Question Answer -->
-    <script type="text/template" id="QuestionBrowserAnsweredTemplate">        
-	<div data-role="header">
-	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    <h1><%= questionIndex %> of <%= questionCount %></h1>
-	    <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
-	</div>
-				
-	<div data-role="content" class="answerPage">		
-	    <h2 class="<%= resultColour %>"><%= result %></h2>
-	    <div class="questionAnswer">
-		<h5>Explanation:</h5>
-		<%= comment %>
-	    </div>
-	    <div class="hr"><hr /></div>
-	    <div class="questionAnswer">
-		<h5>Question:</h5>
-		<%= text %>
-	    </div>
-    
-	    <fieldset data-role="controlgroup" id="optionList" data-theme="e">								
-		    <legend><i><%= selectText %></i></legend>
-		    <%= optionHtml %>
-	    </fieldset>
-
-	
-	</div>
-	<div data-role="footer">
-		<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-			<div class="ui-block-a" style="text-align:left;">
-				<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-			</div>		        
-			<div class="ui-block-b" style="text-align:center;">
-				<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-theme="a"  data-icon="grid" data-inline="true" data-mini="true">Overview</a>
-			</div>
-			<div class="ui-block-c" style="text-align:right;">
-				<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
-			</div>		        
-		</div>
-	</div>
-    </script>
-
-
-    <!-- Ask a MCQ Question -->	
-    <script type="text/template" id="MCQTemplate">
-        <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
-            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
-        </div>
-
-        <div data-role="content" class="questionPage">
-	        <div class="question">
-		        <h5>Question:</h5>
-		        <%= text %>
-	        </div>
-			
-            <div class="mcqQuestionOptions"> 
-		        <%= optionHtml %>
-            </div>
-	        		
-			<div class="ui-grid-solo">
-				<div class="ui-block-a marginTop answerButton">
-					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
-				</div>
-			</div>	        
-		</div>
-	
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" data-role="button"  data-theme="a" data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r"  data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-
-    <!-- View MCQ Answer -->
-    <script type="text/template" id="MCQAnsweredTemplate">        
-	    <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <h1><%= questionIndex %> of <%= questionCount %></h1>
-	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
-	    </div>
-				
-	    <div data-role="content" class="answerPage">		
-	        <h2 class="<%= resultColour %>"><%= result %></h2>
-	        <div class="questionAnswer">
-		        <h5>Explanation:</h5>
-		        <%= comment %>
-	        </div>
-	        <div class="hr"><hr /></div>
-	        <div class="questionAnswer">
-		        <h5>Question:</h5>
-		        <%= text %>
-	        </div>
-    
-	        <div class="mcqQuestionOptions"> 
-		        <%= optionHtml %>
-            </div>
-
-
-	    </div>
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a"  data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-
-
-     <!-- Ask a EMQ Question -->	
-    <script type="text/template" id="EMQTemplate">
-        <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
-            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
-        </div>
-
-        <div data-role="content" class="questionPage">
-	        <div class="question">
-                <h4>Theme: <%= theme %></h4>
-
-                <table class='alphaList'>
-                    <%= choiceList %>
-                </table>
-		        
-		        <span class="emqInstruction"><%= text %></span>
-	        </div>
-                        
-		    <%= stemHtml %>            
-	        		
-			<div class="ui-grid-solo">
-				<div class="ui-block-a marginTop answerButton">
-					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
-				</div>
-			</div>	        
-		</div>
-	
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-icon="grid" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-
-     <!-- View EMQ Answer -->	
-    <script type="text/template" id="EMQAnsweredTemplate">
-        <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <h1><%= questionIndex %> of <%= questionCount %></h1>
-	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
-	    </div>
-				
-	    <div data-role="content" class="answerPage">		
-	        <h2 class="<%= resultColour %>"><%= result %></h2>
-	        <div class="questionAnswer">
-		        <h5>Explanation:</h5>
-		        <%= comment %>
-	        </div>
-            <div class="questionAnswer">                
-                <table class='alphaList'>
-                    <%= choiceList %>
-                </table>
-		        
-		        <span class="emqInstruction"><%= text %></span>
-	        </div>
-                        
-		    <%= stemHtml %>            
-	        		
-
-	    </div>
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" class="icon-graph" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
-				</div>		        
-	        </div>
-	    </div>	
-	
-    </script>
-
-
-    <!-- Ask a SJQ Question -->	
-    <script type="text/template" id="SJQTemplate">
-        <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <a id="session-review-button" class="sessionReview" style="<%= reviewButtonStyle %>" data-role="button" data-icon="custom" data-mini="true">Review</a>
-            <h1><%= questionIndex %> of <%= questionCount %></h1>	    
-        </div>
-
-        <div data-role="content" class="questionPage">
-	        <div class="question">
-		        <h5>Question:</h5>
-		        <%= text %>
-	        </div>
-			
-            
-            <table class="sjqAnswersTable" border="0" cellpadding="0" cellspacing="0">
-			<tr>
-				<th class="sjqInstruction ui-bar-a "><p><%= selectionInfo %></p></th>
-			</tr>
-		        <%= optionHtml %>
-            </table>
-	        		
-			<div class="ui-grid-solo">
-				<div class="ui-block-a marginTop answerButton">
-					<button id="answer-button" data-theme="b" data-icon="arrow-r" data-iconpos="right" data-shadow="false">Answer Question</button>
-				</div>
-			</div>	        
-		</div>
-	
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Next</a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-
-    <!-- View SJQ Answer -->
-    <script type="text/template" id="SJQAnsweredTemplate">        
-	    <div data-role="header">
-	        <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	        <h1><%= questionIndex %> of <%= questionCount %></h1>
-	        <a href="#NextQuestion" data-role="button" data-mini="true" data-icon="arrow-r" data-iconpos="right"><%= nextNavButtonText %></a>	
-	    </div>
-				
-	    <div data-role="content" class="answerPage">		
-	        <h2 class="<%= resultColour %>"><%= result %></h2>
-	        <div class="questionAnswer">
-		        <h5>Explanation:</h5>
-		        <%= comment %>
-	        </div>
-	        <div class="hr"><hr /></div>
-	        <div class="questionAnswer">
-		        <h5>Question:</h5>
-		        <%= text %>
-	        </div>
-    
-   			<div class="sjqAnswerList">
-		        <h4>Your choices</h4>
-				<ul>
-					<%= userChoicesHtml %>
-				</ul>
-	            <h4>Correct order</h4>
-				<ul>
-					<%= correctChoicesHtml %>
-				</ul>
-			</div>
-
-	    </div>
-		<div data-role="footer">
-			<div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-				<div class="ui-block-a" style="text-align:left;">
-					<a href="#PreviousQuestion" style="min-width:90px;" data-icon="arrow-l" data-theme="a" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true">Previous</a>
-				</div>		        
-				<div class="ui-block-b" style="text-align:center;">
-					<a id="menuButton" style="min-width:90px;" data-role="button" data-theme="a" data-shadow="false" data-inline="true" data-mini="true">Overview</a>
-				</div>
-		        <div class="ui-block-c" style="text-align:right;">
-					<a href="#NextQuestion" style="min-width:90px;" data-icon="arrow-r" data-theme="a" data-iconpos="right" class="skipQuestion" data-role="button" data-shadow="false" data-inline="true" data-mini="true"><%= nextNavButtonText %></a>
-				</div>		        
-	        </div>
-	    </div>
-    </script>
-
-
-    <!-- Review Session -->
-    <script type="text/template" id="SessionReviewTemplate">
-	<div data-role="header">
-	    <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-	    <h1>Session Review</h1>
-	</div>
-
-	<div data-role="content" class="sessionResults">
-	    <div class="sessionScore ui-grid-b">
-		<div class="ui-block-a"><p>You<br />scored<br /><span class="sessionStat"><%= percentCorrect %></span><span class="percentageSign">&#37;</span></p></div>
-		<div class="ui-block-b"><p>Questions<br />answered<br /><span class="sessionStat"><%= questionsAnswered %></span></p></div>
-		<div class="ui-block-c"><p>Questions<br />correct<br /><span class="sessionStat"><%= questionsCorrect %></span></p></div>
-	    </div>
-	    <div class="graphWrapper">
-		<div id="livePie" class="graph"></div>
-	    </div>
-	    <div class="sessionStatus">
-		<span>Status: </span>
-		<span id="reviewStatus">Processing results...</span>
-	    </div>
-	    <div class="uploadAnswersButton">	
-		<a data-role="button" data-theme="e" data-icon="refresh" style="display:none;" id="uploadAnswersButton">Try Upload Again</a>
-	    </div>
-	    <div id="reviewMainMenuButton" style="display:none;">
-		<a href="#" data-role="button" data-theme="e" data-icon="home" >Main Menu</a>
-	    
-	    </div>
-	    <div class="webLink">
-		<a onclick="window.open('http://www.onexamination.com/?utm_source=<%= appLib.getDevice() %>-App&utm_medium=Link&utm_campaign=OE-Mobile-App', '_system');">Get more revision from BMJ OnExamination.</a>  	
-	    </div>
-	</div>
-
-    </script>
-
-	
-	
-	<!-- Component Templates ========================================================================= -->
-	<!-- NOTE: Underscore.js allows JS in the <% %> blocks. See: http://documentcloud.github.com/underscore/#template  -->
-	
-	<!-- Question Radio Option -->
-    <script type="text/template" id="QuestionOptionTemplate">    
-	    <input type="radio" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" />
-	    <label for="question-option-<%= id %>"><%= text %></label>
-    </script>	
-	
-    <!-- Disabled Question Radio Option -->
-    <script type="text/template" id="DisabledQuestionOptionTemplate">    
-	    <input type="radio" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" disabled="disabled" <%= checked %> />
-	    <label for="question-option-<%= id %>"><%= text %></label>
-    </script>
-
-
-    <!-- Question Checkbox Option -->
-    <script type="text/template" id="OptionCheckboxTemplate">    
-	    <input type="checkbox" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" />
-	    <label for="question-option-<%= id %>"><%= text %></label>
-    </script>	
-	
-    <!-- Disabled Question Checkbox Option -->
-    <script type="text/template" id="DisabledOptionCheckboxTemplate">    
-	    <input type="checkbox" name="options" data-theme="e" id="question-option-<%= id %>" value="<%= id %>" disabled="disabled" <%= checked %> />
-	    <label for="question-option-<%= id %>"><%= text %></label>
-    </script>
-
-
-    <!-- SJQ Question Option -->
-    <script type="text/template" id="SJQOptionTemplate">    
-        <tr class="sjqOption">
-            <td class="sjqOptionRank">
-	            <input type="number" data-theme="e" id="question-option-<%= id %>" value="" maxlength="1" data-mini="true" />
-            </td>
-            <td class="sjqOptionText">
-	            <label for="question-option-<%= id %>"><%= answerText %></label>
-            </td>
-        </tr>
-    </script>	
-	
-    <!-- Disabled SJQ Question Option -->
-    <script type="text/template" id="AnsweredSJQOptionTemplate">    
-        <li><%= answerText %></li>
-    </script>
-
-
-    <!-- MCQ Options -->
-    <script type="text/template" id="MCQOptionTemplate">    
-        <div class="mcqOptionRow">
-			<span class="mcqOptionText">
-				<%= answerText %>
-			</span>
-			<span class="mcqOption">
-				<fieldset data-role="controlgroup" data-theme="e" data-type="horizontal">
-					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-true" data-theme="e"  value="1" />
-					<label for="question-option-<%= id %>-true">True</label>
-					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-false" data-theme="e" value="0" />
-					<label for="question-option-<%= id %>-false">False</label>
-				</fieldset>
-			</span>
-		</div>	
-    </script>
-
-    <!-- Disabled MCQ Options -->
-    <script type="text/template" id="DisabledMCQOptionTemplate">    
-        <div class="mcqOptionRow">
-			<span class="mcqOptionText">
-				<%= answerText %>
-			</span>
-			<span class="mcqOption">
-				<fieldset data-role="controlgroup" data-theme="e" data-type="horizontal">
-					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-true" data-theme="e" value="1" disabled="disabled" <%= trueSelected %> />
-					<label for="question-option-<%= id %>-true">True</label>
-	
-					<input type="radio" name="question-option-<%= id %>" id="question-option-<%= id %>-false" data-theme="e" value="0" disabled="disabled" <%= falseSelected %> />
-					<label for="question-option-<%= id %>-false">False</label>
-				</fieldset>
-			</span>
-		</div>
-    </script>
-	
-
-    <!-- EMQ Choice (Alphabetic) -->
-    <script type="text/template" id="AlphabeticChoiceTemplate">    
-	    <tr><th style='width: 20px;'><%= letter %></th><td><%= text %></td></tr>
-    </script>	
-
-
-    <!-- EMQ Question Stem -->
-    <script type="text/template" id="EMQQuestionStemTemplate"> 
-        <div class="emqQuestionStem">
-			<span class="emqStemText" style="<%= style %>"><%= text %></span>
-			<span class="emqOption">
-				<select id="stem-<%= id %>" data-theme="e" data-additional-answer="<%= isAdditionalAnswer %>" >
-					<option value="-1">Please select an option</option>
-					<%= choiceHtml %>
-				</select>
-			</span>
-		</div>
-    
-    </script>	
-
-    <!-- EMQ Answered Question Stem -->
-    <script type="text/template" id="EMQAnsweredQuestionStemTemplate"> 
-        
-			<%= result %>
-			<span class="emqStemText" style="<%= style %>"><%= text %></span>
-			<span class="emqOption">
-				<select id="stem-<%= id %>" data-theme="e" disabled="disabled">            
-					<%= choiceHtml %>
-				</select>
-			</span>
-			<%= correctAnswerText %>
-			<div class="emqStemExplanation">
-				<%= comment %>
-			</div>
-		<!--// END OF DIV OPENED IN VIEWS  //-->
-		</div>
-        
-    </script>		
-		
-    <script type="text/javascript" src="cordova.js"></script>   
 	 
     <!-- Scripts -->
     <script src="lib/json2.js"></script>
     <script src="lib/jquery-1.8.2.min.js"></script>
     <script src="js/jqm-config.js"></script>
     <script src="lib/jquery.mobile-1.2.0.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/backbone-min.js"></script>    
+    <script src="http://underscorejs.org/underscore.js"></script>
+    <script src="http://backbonejs.org/backbone.js"></script>    
     <script src="lib/jquery.imagesloaded.min.js" type="text/javascript"></script>	
 	
     <script language="javascript" type="text/javascript" src="lib/jquery.flot.js"></script>
     <script language="javascript" type="text/javascript" src="lib/jquery.flot.pie.js"></script>	
-		
-    <script src="js/locumHardcode.js"></script>
-    <script src="js/locummodels.js"></script>
 
 	<script src="js/imageLib.js"></script>
     <script src="js/models.js"></script>
@@ -1129,6 +174,7 @@
     <script src="js/main.js"></script>
     <script src="js/views.js"></script>
     <script src="js/routes.js"></script>
+
 
     
    
@@ -1172,14 +218,10 @@
 			} catch(err) {
 				appLib.log(err);				
 			}
-
-			swipe();
-
-
 		}
 
 		function swipe() {
-
+            
 		    $(".buddy").on("swiperight", function () {
 		        $(this).addClass('rotate-left').delay(700).fadeOut(1);
 		        $('.buddy').find('.status').remove();
