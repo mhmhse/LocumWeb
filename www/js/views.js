@@ -15,9 +15,17 @@ var HomeView = Backbone.View.extend({
 
 		var loginStyle = (lm.auth.get('email') ? 'display:none;' : '');
 
+		searchPath = '';
+		if (lm.auth.get('userDetails').get('type') == UserTypes.Doctor) {
+            
+		    searchPath = 'SearchForHospital';
+		} else {
 
+		    searchPath = 'SearchForDoctor';
+		}
 		
-		var html = this.template({ buttonStyle: loginStyle });
+		
+		var html = this.template({ buttonStyle: loginStyle, searchPath: searchPath });
         $(this.el).html(html);		
                                     
         return this;
@@ -105,6 +113,46 @@ var LoginView = Backbone.View.extend({
     }
 });
 
+
+//========================================================================================
+
+//## Settings	
+var ProfileView = Backbone.View.extend({
+    template: _.template($('#ProfileTemplate').html()),
+
+    render: function (eventName) {
+
+        $(this.el).html(this.template({ email: lm.auth.get('email') }));
+        return this;
+    },
+
+
+    events: {
+        "click #save": "save"
+    },
+
+    save: function () {
+
+        app.trigger("home");
+    }
+});
+
+
+//========================================================================================
+
+
+//## Getting Started	
+var GettingStartedView = Backbone.View.extend({
+    template: _.template($('#GettingStartedTemplate').html()),
+
+    render: function (eventName) {
+        $(this.el).html(this.template());
+
+        return this;
+    }
+
+});
+
 //========================================================================================
 
 //## Search For Hospital
@@ -189,6 +237,94 @@ var SavedListView = Backbone.View.extend({
 });
 
 //========================================================================================
+
+//========================================================================================
+
+//## Search For Hospital
+var SearchForDoctorView = Backbone.View.extend({
+    template: _.template($('#SearchForDoctorTemplate').html()),
+
+    render: function (eventName) {
+        //## Get the user's exams
+        $(this.el).html(this.template({ specialities: specialities.toJSON(), grades: grades.toJSON() }));
+
+        return this;
+    },
+
+    events: {
+        "click #searchDoctor": "searchDoctor"
+    },
+
+    searchDoctor: function () {
+
+        if (this.model.currentSession() == null) {
+
+            this.model.startNewSession();
+        }
+        var currSession = this.model.currentSession();
+
+        var searchParameter = currSession.get("searchParameter");
+        if (searchParameter == null) {
+
+            searchParameter = new SearchParameters();
+        }
+
+        searchParameter.grade = this.$('#grade').val();
+        searchParameter.speciality = this.$('#speciality').val();
+        searchParameter.range = this.$('#range').val();
+
+
+        app.trigger('SearchDoctorResult',
+            searchParameter
+        );
+    }
+});
+
+
+
+
+//========================================================================================
+
+//## Saved list
+var MatcherView = Backbone.View.extend({
+    template: _.template($('#MatcherTemplate').html()),
+
+    render: function (eventName) {
+
+        var searchedResult = lm.getCurrentSessionOrNewSession().get("searchedResult");
+
+        if (searchedResult != null) {
+
+            var savedResult = searchedResult.filter(function (item) {
+
+                return item.get("operation") == LocumOperationType.Accepted;
+            });
+
+            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON() }));
+
+        } else {
+
+            $(this.el).html(this.template({ savedResult: null }));
+        }
+
+
+
+
+        return this;
+    },
+
+    events: {
+        "click #viewSavedList": "viewSavedList"
+    },
+
+    viewSavedList: function () {
+
+        app.trigger('SearchDoctorList');
+    }
+});
+
+//========================================================================================
+
 //## Search Hospital Review
 var SearchHospitalResultView = Backbone.View.extend({
     template: _.template($('#SearchHospitalResultTemplate').html()),
@@ -197,7 +333,7 @@ var SearchHospitalResultView = Backbone.View.extend({
 
         var searchParameter = lm.getCurrentSessionOrNewSession().get("searchParameter");
 
-        
+
         //TODO
         //var searchedResult = lm.search(searchParameter);
         var searchedResult = new SearchedResult([
@@ -236,6 +372,158 @@ var SearchHospitalResultView = Backbone.View.extend({
 
                 name: 'test4',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/HEART_Logo.jpg',
+                tel: 'teltest4',
+                grade: 'gradetest4',
+                specialty: 'specialtytest4',
+                postcode: 'postcodetest4',
+                operation: null
+            })
+        ]);
+
+
+
+
+        //TODO END
+
+        lm.getCurrentSessionOrNewSession().set("searchedResult", searchedResult);
+        var showUserIndex = lm.getCurrentSessionOrNewSession().get("showUserIndex");
+
+        $(this.el).html(this.template({ searchedResult: searchedResult.toJSON(), showUserIndex: showUserIndex }));
+
+
+
+        return this;
+    },
+
+    events: {
+        "click #viewSavedList": "viewSavedList",
+        "swipeleft": "denyUser",
+        "swiperight": "saveUser",
+    },
+
+    viewSavedList: function () {
+
+        app.trigger('SavedList');
+    },
+    saveUser: function (e) {
+
+        var currSession = this.model.getCurrentSessionOrNewSession();
+
+        var currIndex = currSession.get("showUserIndex");
+
+        var searchResult = currSession.get("searchedResult");
+
+        var currRow = searchResult.at(currIndex);
+        currRow.accept();
+
+        var currIMG = $(".buddy:nth-child(" + (currSession.get("showUserIndex") + 1) + ")");
+        currIMG.addClass('rotate-left').delay(700).fadeOut(1);
+        $('.buddy').find('.status').remove();
+
+        this.model.penddingStampOnImg(currIMG, LocumOperationType.Accepted);
+
+        var nextIMG = null;
+        var nextRowIndex = 0;
+
+        if (currIMG.is('.buddy:last')) {
+
+            nextIMG = $('.buddy:nth-child(1)');
+        } else {
+            nextIMG = currIMG.next()
+            nextRowIndex = currIndex + 1;
+        }
+
+        var nextRow = searchResult.at(nextRowIndex);
+        currSession.set("showUserIndex", nextRowIndex);
+
+        nextIMG.removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
+        this.model.penddingStampOnImg(nextIMG, nextRow.get("operation"));
+
+
+    },
+    denyUser: function (e) {
+
+        var currSession = this.model.getCurrentSessionOrNewSession();
+
+        var currIndex = currSession.get("showUserIndex");
+
+        var searchResult = currSession.get("searchedResult");
+
+        var currRow = searchResult.at(currIndex);
+        currRow.deny();
+
+        var currIMG = $(".buddy:nth-child(" + (currSession.get("showUserIndex") + 1) + ")");
+        currIMG.addClass('rotate-right').delay(700).fadeOut(1);
+        $('.buddy').find('.status').remove();
+
+        this.model.penddingStampOnImg(currIMG, LocumOperationType.Denied);
+
+        var nextIMG = null;
+        var nextRowIndex = 0;
+
+        if (currIMG.is('.buddy:last')) {
+
+            nextIMG = $('.buddy:nth-child(1)');
+        } else {
+            nextIMG = currIMG.next()
+            nextRowIndex = currIndex + 1;
+        }
+
+        var nextRow = searchResult.at(nextRowIndex);
+        currSession.set("showUserIndex", nextRowIndex);
+
+        nextIMG.removeClass('rotate-left rotate-right').delay(700).fadeIn(300);
+        this.model.penddingStampOnImg(nextIMG, nextRow.get("operation"));
+    }
+});
+
+//## Search Doctor Review
+var SearchDoctorResultView = Backbone.View.extend({
+    template: _.template($('#SearchDoctorResultTemplate').html()),
+
+    render: function (eventName) {
+
+        var searchParameter = lm.getCurrentSessionOrNewSession().get("searchParameter");
+
+        
+        //TODO
+        //var searchedResult = lm.search(searchParameter);
+        var searchedResult = new SearchedResult([
+
+            new SearchedRow({
+
+                name: 'test1',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/AdrianHarris.jpg',
+                tel: 'teltest1',
+                grade: 'gradetest1',
+                specialty: 'specialtytest1',
+                postcode: 'postcodetest1',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test2',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/AlexWalkinshaw.png',
+                tel: 'teltest2',
+                grade: 'gradetest2',
+                specialty: 'specialtytest2',
+                postcode: 'postcodetest2',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test3',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/CarolineWebster.jpg',
+                tel: 'teltest3',
+                grade: 'gradetest3',
+                specialty: 'specialtytest3',
+                postcode: 'postcodetest3',
+                operation: null
+            }),
+            new SearchedRow({
+
+                name: 'test4',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/ChrisColquhoun.png',
                 tel: 'teltest4',
                 grade: 'gradetest4',
                 specialty: 'specialtytest4',

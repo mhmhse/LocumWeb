@@ -4,9 +4,13 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         "": "home",
         "Login": "loginView",
-        "SearchForDoctor/:query": "searchForDoctorView",
+        "Matcher": "matcherView",
+        "Profile": "profileView",
+        "GettingStarted": "gettingStartedMenu",
         "SearchForHospital": "searchForHospitalView",
         "SearchHospitalResult/:query1/:query2/:query3/:query4/:query5": "searchHospitalResultView",
+        "SearchForDoctor": "searchForDoctorView",
+        "SearchDoctorResult/:query1/:query2/:query3/:query4/:query5": "searchDoctorResultView",
         "SavedList": "savedListView"
     },
 
@@ -35,9 +39,18 @@ var AppRouter = Backbone.Router.extend({
             this.navigate("SearchHospitalResult" + argus.getQueryString(), { trigger: true, replace: true });
         });
 
+        this.on('SearchForDoctor', function () {
+            this.navigate("SearchForDoctor", { trigger: true, replace: true });
+        });
+
+        this.on('SearchDoctorResult', function (argus) {
+            this.navigate("SearchDoctorResult" + argus.getQueryString(), { trigger: true, replace: true });
+        });
+
         this.on('SavedList', function () {
             this.navigate("SavedList", { trigger: true, replace: true });
         });
+
 
         //## Load data?
         lm.load();
@@ -74,7 +87,23 @@ var AppRouter = Backbone.Router.extend({
         this.changePage(new LoginView({ model: lm }));
     },
 
-    //## search Doctor View
+    //### Getting Started
+    gettingStartedMenu: function () {
+        appLib.track('getting-started');
+
+        this.changePage(new GettingStartedView({ model: lm.currentSession }));
+    },
+
+    //## Settings 
+    profileView: function () {
+        appLib.track('profileView');
+
+        this.changePage(new ProfileView({ model: lm }));
+
+
+    },
+
+    //## search Hostpital View
     searchForHospitalView: function () {
 
         appLib.track('searchForHospitalTemplate');
@@ -101,6 +130,33 @@ var AppRouter = Backbone.Router.extend({
         this.changePage(new SearchHospitalResultView({ model: lm }));
     },
 
+    //## search Doctor View
+    searchForDoctorView: function () {
+
+        appLib.track('searchForDoctorTemplate');
+
+        this.changePage(new SearchForDoctorView({ model: lm }));
+    },
+
+    //## search Doctor View
+    searchDoctorResultView: function (grade, specialty, postcode, range) {
+
+        appLib.track('searchDoctorResultTemplate');
+
+        var searchParameter = new SearchParameters({
+
+            grade: grade,
+            specialty: specialty,
+            postcode: postcode,
+            range: range
+        });
+
+        var currentSession = lm.getCurrentSessionOrNewSession();
+        currentSession.set("searchParameter", searchParameter);
+
+        this.changePage(new SearchDoctorResultView({ model: lm }));
+    },
+
     //## saved List View
     savedListView: function (grade, specialty, postcode, range) {
 
@@ -109,7 +165,12 @@ var AppRouter = Backbone.Router.extend({
         this.changePage(new SavedListView({ model: lm.getCurrentSessionOrNewSession().get("searchedResult") }));
     },
 
+    matcherView: function (grade, specialty, postcode, range) {
 
+        appLib.track('matcherViewTemplate');
+
+        this.changePage(new MatcherView({ model: lm.getCurrentSessionOrNewSession().get("searchedResult") }));
+    },
 
     //## Change page
     changePage: function (page) {
