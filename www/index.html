@@ -13,13 +13,20 @@
     
     <link rel="stylesheet" type="text/css" href="css/swipe.css">
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-	
-	
+	<link rel="stylesheet" type="text/css" href="css/hospitalstyles.css">
     <!-- Page Templates ========================================================================= -->
 
 	<!-- Home -->
     <script type="text/template" id="HomeTemplate">
+	
+	<%
+		if(usertype == 'doctor') {
+	%>
+			<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+	<%
+		}
+	%>
+	
 	<div data-role="header" class="home">
 	    <span class="logo">
 	    	<img src="img/logo.png" />
@@ -51,7 +58,17 @@
     </script>
 
     <!-- Matcher -->
+	
     <script type="text/template" id="MatcherTemplate">
+	
+	<%
+		if(usertype == 'doctor') {
+	%>
+			<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+	<%
+		}
+	%>
+	
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Matcher</h1>
@@ -94,6 +111,13 @@
 	
     <!-- Profile -->
     <script type="text/template" id="ProfileTemplate">
+		<%
+			if(usertype == 'doctor') {
+		%>
+				<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+		<%
+			}
+		%>
         <div data-role="header">
             <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>My Profile</h1>
@@ -160,6 +184,13 @@
 
     <!-- Getting Started -->
     <script type="text/template" id="GettingStartedTemplate">
+			<%
+			if(usertype == 'doctor') {
+		%>
+				<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+		<%
+			}
+		%>
         <div data-role="header">
             <a href='#' class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>About us</h1>
@@ -208,6 +239,13 @@
 
     <!-- search For Hospital View -->
     <script type="text/template" id="SearchForHospitalTemplate">
+			<%
+			if(usertype == 'doctor') {
+		%>
+				<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+		<%
+			}
+		%>
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Locum Search</h1>
@@ -258,6 +296,13 @@
 
     <!-- search Hospital Result View -->
     <script type="text/template" id="SearchHospitalResultTemplate">
+			<%
+			if(usertype == 'doctor') {
+		%>
+				<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+		<%
+			}
+		%>
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Locum Search Results</h1>
@@ -393,6 +438,13 @@
 
     <!-- saved List View -->
     <script type="text/template" id="SavedListTemplate">
+			<%
+			if(usertype == 'doctor') {
+		%>
+				<link rel="stylesheet" type="text/css" href="css/doctorstyles.css">
+		<%
+			}
+		%>
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Saved Search Result</h1>

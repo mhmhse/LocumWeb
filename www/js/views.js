@@ -24,8 +24,8 @@ var HomeView = Backbone.View.extend({
 		    searchPath = 'SearchForDoctor';
 		}
 		
-		
-		var html = this.template({ buttonStyle: loginStyle, searchPath: searchPath });
+		var usertype = lm.auth.get('userDetails').get('type');
+		var html = this.template({ buttonStyle: loginStyle, searchPath: searchPath, usertype:usertype });
         $(this.el).html(html);		
                                     
         return this;
@@ -122,7 +122,8 @@ var ProfileView = Backbone.View.extend({
 
     render: function (eventName) {
 
-        $(this.el).html(this.template({ email: lm.auth.get('email') }));
+		var usertype = lm.auth.get('userDetails').get('type');
+        $(this.el).html(this.template({ email: lm.auth.get('email'), usertype:usertype }));
         return this;
     },
 
@@ -143,10 +144,14 @@ var ProfileView = Backbone.View.extend({
 
 //## Getting Started	
 var GettingStartedView = Backbone.View.extend({
+	
     template: _.template($('#GettingStartedTemplate').html()),
 
+	
     render: function (eventName) {
-        $(this.el).html(this.template());
+	
+		var usertype = lm.auth.get('userDetails').get('type');
+        $(this.el).html(this.template({usertype:usertype}));
 
         return this;
     }
@@ -160,8 +165,10 @@ var SearchForHospitalView = Backbone.View.extend({
     template: _.template($('#SearchForHospitalTemplate').html()),
 
     render: function (eventName) {
+	
+		var usertype = lm.auth.get('userDetails').get('type');
         //## Get the user's exams
-        $(this.el).html(this.template({ specialities: specialities.toJSON(), grades: grades.toJSON() }));
+        $(this.el).html(this.template({ specialities: specialities.toJSON(), grades: grades.toJSON(), usertype:usertype }));
         
         return this;
     },
@@ -204,6 +211,7 @@ var SavedListView = Backbone.View.extend({
 
     render: function (eventName) {
 
+		var usertype = lm.auth.get('userDetails').get('type');
         var searchedResult = lm.getCurrentSessionOrNewSession().get("searchedResult");
         
         if (searchedResult != null) {
@@ -213,11 +221,11 @@ var SavedListView = Backbone.View.extend({
                 return item.get("operation") == LocumOperationType.Accepted;
             });
 
-            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON() }));
+            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON(), usertype:usertype }));
             
         } else {
 
-            $(this.el).html(this.template({ savedResult: null }));
+            $(this.el).html(this.template({ savedResult: null, usertype:usertype }));
         }
 
         
@@ -240,7 +248,7 @@ var SavedListView = Backbone.View.extend({
 
 //========================================================================================
 
-//## Search For Hospital
+//## Search For Doctor
 var SearchForDoctorView = Backbone.View.extend({
     template: _.template($('#SearchForDoctorTemplate').html()),
 
@@ -390,8 +398,8 @@ var SearchHospitalResultView = Backbone.View.extend({
 
         lm.getCurrentSessionOrNewSession().set("searchedResult", searchedResult);
         var showUserIndex = lm.getCurrentSessionOrNewSession().get("showUserIndex");
-
-        $(this.el).html(this.template({ searchedResult: searchedResult.toJSON(), showUserIndex: showUserIndex }));
+		var usertype = lm.auth.get('userDetails').get('type');
+        $(this.el).html(this.template({ searchedResult: searchedResult.toJSON(), showUserIndex: showUserIndex, usertype:usertype }));
 
 
 

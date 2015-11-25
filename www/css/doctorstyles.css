@@ -1,0 +1,131 @@
+
+// Fonts
+@font-face{
+	font-family:interfaceregular;
+	src:url('../fonts/if_std_rg-webfont.eot');
+	src:url('../fonts/if_std_rg-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/if_std_rg-webfont.woff') format('woff'),
+	url('../fonts/if_std_rg-webfont.ttf') format('truetype'),
+	url('../fonts/if_std_rg-webfont.svg#interfaceregular') format('svg');
+	font-weight:400;
+	font-style:normal;
+}
+
+/*@font-face{
+	font-family:'interfaceitalic';
+	src:url(../fonts/if_std_it-webfont.eot);
+	src:url(../fonts/if_std_it-webfont.eot?#iefix) format('embedded-opentype'),
+	url(../fonts/if_std_it-webfont.woff) format('woff'),
+	url(../fonts/if_std_it-webfont.ttf) format('truetype'),
+	url(../fonts/if_std_it-webfont.svg#interfaceregular) format('svg');
+	font-weight:400;
+	font-style:italic;
+}
+	@font-face{
+		font-family:'interfacebold';
+		src:url(../fonts/if_std_bd-webfont.eot);
+		src:url(../fonts/if_std_bd-webfont.eot?#iefix) format('embedded-opentype'),
+		url(../fonts/if_std_bd-webfont.woff) format('woff'),
+		url(../fonts/if_std_bd-webfont.ttf) format('truetype'),
+		url(../fonts/if_std_bd-webfont.svg#interfaceregular) format('svg');
+		font-weight:700;
+		font-style:normal;
+	}*/
+
+*{
+	font-family:interfaceregular, sans-serif!important;
+}
+body{
+	font-family:interfaceregular, sans-serif;
+	font-size:1.7rem;
+	-webkit-font-smoothing: antialiased;
+  line-height:2.5rem;
+}
+.home.ui-header.ui-bar-a .logo{
+	width:90%;
+}
+.home.ui-content{
+	padding-top:0;
+}
+.ui-header.ui-bar-a{
+	background-color:#00cc00;
+	width:100%;
+	margin:0;
+}
+.ui-header.ui-bar-a h1{
+	font-family:interfaceregular, sans-serif !important;
+	color: #fff;
+	font-weight:bold;
+	font-size:1.2rem;
+	margin-left:0!important;
+	margin-right:0!important;
+}
+.ui-header.ui-bar-a .ui-icon.ui-icon-home{
+	display:none;
+}
+.ui-header.ui-bar-a .ui-btn-left{
+	top:15px;
+}
+.ui-header.ui-bar-a a span.ui-btn-inner.ui-btn-corner-all{
+	color:#2a6ebb;
+	font-size:1.7;
+	line-height: 1.9rem;
+	padding:0 10px;
+}
+.pageHeading{
+	margin-top:30px;
+	line-height:0;
+}
+.questionHeading { 
+	text-align:center;
+	margin-bottom:0;
+	color:#2a6ebb;
+}
+.avatar{
+	margin-top:0;
+}
+.avatar .search-results-user-info {
+	font-size:1rem;
+	margin:0;
+	line-height: 1rem;
+	text-align:center;
+	color:#2a6ebb;
+}
+.search-results-user-info .column-left {
+	float:left;
+	text-align:right;	
+	width:43%;
+
+}
+.search-results-user-info .column-right {
+	float:right;
+	text-align:left;	
+	width:50%;
+}
+.search-results-user-info .column-left p,
+.search-results-user-info .column-right p{
+	font-size:1rem;
+	margin:0;
+	line-height: 1.2rem;
+}
+
+.webLink{
+	color:#fff!important;
+	background:#00cc00;
+	line-height: 0;
+}
+.webLink a.ui-link{
+	color:#fff;
+	font-size:14px;
+	padding-bottom:0px;
+	display:inline-block;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.webLink a.ui-link:hover{
+	color:#fff;
+	text-decoration: underline;
+	cursor: pointer;
+	}
+
+
