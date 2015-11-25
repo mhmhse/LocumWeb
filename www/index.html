@@ -64,17 +64,19 @@
                         <tr>
                             <th>Name </th>
                             <th>Tel </th>
-                            <th>Postcode</th>
-                            <th>Status</th>
                         </tr>
-                        <% _(savedResult).each(function(savedRow, index) { %>
-                        <tr>
-                            <td><%=savedRow.name %></td>
-                            <td><%=savedRow.tel %> </td>
-                            <td><%=savedRow.postcode %></td>
-                            <td></td>
-                        </tr>
-                        <% }); %>
+						
+						<% if( usertype == 'doctor') {  %>
+							<tr>
+								<td>Birmingham Womens Hospital</td>
+								<td>0121 472 1377</td>
+							</tr>
+						<% } else {%>
+							<tr>
+								<td>Ravinder Gill</td>
+								<td>07712096515</td>
+							</tr>
+						<% }%>
                     </tbody>
                 </table>
             </div>
@@ -177,9 +179,9 @@
             <div class="ui-hide-label">
                 <fieldset data-role="controlgroup">
                     <label for="email">User name</label>
-                    <input id="email" placeholder="User name" value="ravinder" type="email" class="marginBottom" />
+                    <input id="email" placeholder="User name" value="" type="email" class="marginBottom" />
                     <label for="password">Password</label>
-                    <input id="password" placeholder="password" value="123" type="password" />
+                    <input id="password" placeholder="password" value="" type="password" />
                 </fieldset>
 
                 <button id="login-button" data-theme="e" data-icon="arrow-r">Sign In</button>
@@ -268,7 +270,7 @@
                     <div class="avatar" style="display:block; background-color:#fff; height:300px; background-image: url('<%=searchRow.url%>');">
 
                         <div data-role="content" style="padding-top:170px;">
-                            <h1 class="questionHeading"><%=searchRow.name %></h1>                       
+                            <h1 class="questionHeading"><br></h1>                       
                             <div class="search-results-user-info">
                                 <div class="column-left">
                                     <p>Grade:</p>
@@ -278,7 +280,7 @@
                                 <div class="column-right">
                                     <p><%=searchRow.grade%></p>
                                     <p><%=searchRow.specialty%></p>
-                                    <p><%=searchRow.postcode%></p>
+                                    <p><%=searchRow.tel%></p>
                                 </div>
                             </div>
                         </div>
@@ -286,7 +288,6 @@
                 </div>
                 <% }); %>
                 <br />
-                <button id="viewSavedList" data-theme="e" data-icon="alert">View Saved List</button>
             </div>
 
         </div>
@@ -351,33 +352,35 @@
     <script type="text/template" id="SearchDoctorResultTemplate">
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
-            <h1>Locum Search Result</h1>
+            <h1>Locum Search Results</h1>
         </div>
         <div data-role="content">
             <div data-role="fieldcontain" class="ui-body">
                 <% _(searchedResult).each(function(searchRow, index) { %>
-                <div class="buddy" <% if (index == showUserIndex){ %> style="display: block;" <% } %>>
-                    <div class="avatar" style="display: block; background-image: url('<%=searchRow.url%>')">
-                        <div data-role="content" >
-                            <div >
-                                <h1 class="questionHeading"><%=searchRow.name %></h1>
-                            </div>
-                            <div class="ui-grid-b" style="padding-top:15px; padding-bottom:15px; padding-left:5px; padding-right:5px;">
-                                <table class="alphaList">
-                                    <tbody>
-                                        <tr><th>Grade: </th><td><%=searchRow.grade%></td></tr>
-                                        <tr><th>Specialty: </th><td><%=searchRow.specialty%></td></tr>
-                                        <tr><th>Tel: </th><td><%=searchRow.tel%></td></tr>
-                                        <tr><th>Postcode: </th><td><%=searchRow.postcode%></td></tr>
-                                    </tbody>
-                                </table>
+                <div class="buddy" <% if (index == showUserIndex){ %> style="display: block;" <% } %> >
+                    
+                    <div class="avatar" style="display:block; background-color:#fff; height:300px; background-image: url('<%=searchRow.url%>');">
+
+                        <div data-role="content" style="padding-top:170px;">
+                            <h1 class="questionHeading"><br></h1>                       
+                            <div class="search-results-user-info">
+                                <div class="column-left">
+                                    <p>Grade:</p>
+                                    <p>Specialty:</p>
+                                    <p>Telephone:</p>
+                                </div>
+                                <div class="column-right">
+                                    <p><%=searchRow.grade%></p>
+                                    <p><%=searchRow.specialty%></p>
+                                    <p><%=searchRow.tel%></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <% }); %>
                 <br />
-                <button id="viewSavedList" data-theme="e" data-icon="alert">View Saved List</button>
+                
             </div>
 
         </div>
@@ -402,22 +405,18 @@
                             <tr>
                                 <th>Name </th>
                                 <th>Tel </th>
-                                <th>Postcode</th>
                             </tr>
                             <% _(savedResult).each(function(savedRow, index) { %>
                             <tr>
                                 <td><%=savedRow.name %></td>
                                 <td><%=savedRow.tel %> </td>
-                                <td><%=savedRow.postcode %></td>
                             </tr>
                             <% }); %>
                         </tbody>
                     </table>
                 </div>
+				<button id="viewMatcher" data-theme="e" data-icon="alert">View Matcher</button>
                 <br />
-
-            <button id="viewSavedList" data-theme="e" data-icon="alert">Send Email</button>
-
             <div class="clear"></div>
             <div class="webLink">
                 <a onclick="window.open('', '_system');">Find out more about Locum.</a>

@@ -75,7 +75,7 @@ var LoginView = Backbone.View.extend({
 
 				            lm.auth.set('email', email);
 
-				            var locumRole = data.locumRole
+				            var locumRole = data.userRole
 
 				            var appEvent = '';
 				            if (locumRole && locumRole.toLowerCase().indexOf('hos') >= 0) {
@@ -227,12 +227,12 @@ var SavedListView = Backbone.View.extend({
     },
 
     events: {
-        "click #viewSavedList": "viewSavedList"
+        "click #viewMatcher": "viewMatcher"
     },
 
-    viewSavedList: function () {
+    viewMatcher: function () {
 
-        app.trigger('SearchDoctorList');
+        app.trigger('matcher');
     }
 });
 
@@ -292,6 +292,9 @@ var MatcherView = Backbone.View.extend({
     render: function (eventName) {
 
         var searchedResult = lm.getCurrentSessionOrNewSession().get("searchedResult");
+		
+		var usertype = lm.auth.get('userDetails').get('type');
+		
 
         if (searchedResult != null) {
 
@@ -300,7 +303,7 @@ var MatcherView = Backbone.View.extend({
                 return item.get("operation") == LocumOperationType.Accepted;
             });
 
-            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON() }));
+            $(this.el).html(this.template({ savedResult: new SearchedResult(savedResult).toJSON(), usertype:usertype }));
 
         } else {
 
@@ -314,12 +317,12 @@ var MatcherView = Backbone.View.extend({
     },
 
     events: {
-        "click #viewSavedList": "viewSavedList"
+        "click #viewMatcher": "viewMatcher"
     },
 
-    viewSavedList: function () {
+    viewMatcher: function () {
 
-        app.trigger('SearchDoctorList');
+        app.trigger('matcher');
     }
 });
 
@@ -340,42 +343,42 @@ var SearchHospitalResultView = Backbone.View.extend({
 
             new SearchedRow({
 
-                name: 'test1',
+                name: 'Birmingham Children\'s Hospital',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BCH.jpg',
-                tel: 'teltest1',
-                grade: 'gradetest1',
-                specialty: 'specialtytest1',
-                postcode: 'postcodetest1',
+                tel: '0121 333 9999',
+                grade: 'registrar',
+                specialty: 'paediatrics',
+                postcode: 'B4 6NH',
                 operation: null
             }),
             new SearchedRow({
 
-                name: 'test2',
+                name: 'Birmingham Womens Hospital',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/BWH.jpg',
-                tel: 'teltest2',
-                grade: 'gradetest2',
-                specialty: 'specialtytest2',
-                postcode: 'postcodetest2',
+                tel: '0121 472 1377',
+                grade: 'registrar',
+                specialty: 'geriatrics',
+                postcode: 'B15 2TG',
                 operation: null
             }),
             new SearchedRow({
 
-                name: 'test3',
+                name: 'Great Ormond Street Hospital',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/GOSH.jpg',
-                tel: 'teltest3',
-                grade: 'gradetest3',
-                specialty: 'specialtytest3',
-                postcode: 'postcodetest3',
+                tel: '020 7405 9200',
+                grade: 'consultant',
+                specialty: 'paediatrics',
+                postcode: 'WC1N 3JH',
                 operation: null
             }),
             new SearchedRow({
 
-                name: 'test4',
+                name: 'Heart of England NHS Trust',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/hospitals/HEART_Logo.jpg',
-                tel: 'teltest4',
-                grade: 'gradetest4',
-                specialty: 'specialtytest4',
-                postcode: 'postcodetest4',
+                tel: '0121 424 2000',
+                grade: 'consultant',
+                specialty: 'geriatrics',
+                postcode: 'B9 5SS',
                 operation: null
             })
         ]);
@@ -427,7 +430,9 @@ var SearchHospitalResultView = Backbone.View.extend({
 
         if (currIMG.is('.buddy:last')) {
 
-            nextIMG = $('.buddy:nth-child(1)');
+			app.trigger("SavedList");
+			return;
+            //nextIMG = $('.buddy:nth-child(1)');
         } else {
             nextIMG = currIMG.next()
             nextRowIndex = currIndex + 1;
@@ -462,8 +467,9 @@ var SearchHospitalResultView = Backbone.View.extend({
         var nextRowIndex = 0;
 
         if (currIMG.is('.buddy:last')) {
-
-            nextIMG = $('.buddy:nth-child(1)');
+			app.trigger("SavedList");
+			return;
+            //nextIMG = $('.buddy:nth-child(1)');
         } else {
             nextIMG = currIMG.next()
             nextRowIndex = currIndex + 1;
@@ -490,44 +496,55 @@ var SearchDoctorResultView = Backbone.View.extend({
         //var searchedResult = lm.search(searchParameter);
         var searchedResult = new SearchedResult([
 
-            new SearchedRow({
+		            new SearchedRow({
 
-                name: 'test1',
+                name: 'Adrian Harris',
                 url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/AdrianHarris.jpg',
-                tel: 'teltest1',
-                grade: 'gradetest1',
-                specialty: 'specialtytest1',
-                postcode: 'postcodetest1',
+                tel: '07912345678',
+                grade: 'registrar',
+                specialty: 'paediatrics',
+                postcode: 'B4 6NJ',
                 operation: null
             }),
             new SearchedRow({
 
-                name: 'test2',
-                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/AlexWalkinshaw.png',
-                tel: 'teltest2',
-                grade: 'gradetest2',
-                specialty: 'specialtytest2',
-                postcode: 'postcodetest2',
+                name: 'Alex Walkinshaw',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/AlexWalkinshaw.png',
+                tel: '07711345956',
+                grade: 'consultant',
+                specialty: 'oncology',
+                postcode: 'B8 6NH',
                 operation: null
             }),
             new SearchedRow({
 
-                name: 'test3',
-                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/CarolineWebster.jpg',
-                tel: 'teltest3',
-                grade: 'gradetest3',
-                specialty: 'specialtytest3',
-                postcode: 'postcodetest3',
+                name: 'Caroline Webster',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/CarolineWebster.jpg',
+                tel: '07911345956',
+                grade: 'registrar',
+                specialty: 'neurology',
+                postcode: 'B11 9NH',
                 operation: null
             }),
-            new SearchedRow({
+        
+			new SearchedRow({
 
-                name: 'test4',
-                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/doctors/ChrisColquhoun.png',
-                tel: 'teltest4',
-                grade: 'gradetest4',
-                specialty: 'specialtytest4',
-                postcode: 'postcodetest4',
+                name: 'Ravinder Gill',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/RavinderGill.jpg',
+                tel: '07712096515',
+                grade: 'registrar',
+                specialty: 'geriatrics',
+                postcode: 'B6 8AX',
+                operation: null
+            }),		
+			new SearchedRow({
+
+                name: 'Chris Colquhoun',
+                url: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/img/doctors/ChrisColquhoun.png',
+                tel: '07811305956',
+                grade: 'foundation_2',
+                specialty: 'rheumatology',
+                postcode: 'MK11 9NH',
                 operation: null
             })
         ]);
@@ -579,7 +596,10 @@ var SearchDoctorResultView = Backbone.View.extend({
 
         if (currIMG.is('.buddy:last')) {
 
-            nextIMG = $('.buddy:nth-child(1)');
+		
+			app.trigger("SavedList");
+			return;
+            //nextIMG = $('.buddy:nth-child(1)');
         } else {
             nextIMG = currIMG.next()
             nextRowIndex = currIndex + 1;
@@ -614,8 +634,9 @@ var SearchDoctorResultView = Backbone.View.extend({
         var nextRowIndex = 0;
 
         if (currIMG.is('.buddy:last')) {
-
-            nextIMG = $('.buddy:nth-child(1)');
+			app.trigger("SavedList");
+			return;
+            //nextIMG = $('.buddy:nth-child(1)');
         } else {
             nextIMG = currIMG.next()
             nextRowIndex = currIndex + 1;

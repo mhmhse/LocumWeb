@@ -26,7 +26,12 @@ var AppRouter = Backbone.Router.extend({
 
 
         //## Fired by view
-        this.on('home', function () {
+        this.on('matcher', function () {
+            //## Return to home screen			
+            this.navigate("Matcher", { trigger: true, replace: true });
+        });
+		
+		this.on('home', function () {
             //## Return to home screen			
             this.navigate("", { trigger: true, replace: true });
         });

@@ -125,8 +125,23 @@ var specialities = new Specialities([
     }),
     new Speciality({
         id: 2,
-        simpleName: 'Accident Emergency',
-        fullName: 'Accident Emergency'
+        simpleName: 'Geriatrics',
+        fullName: 'Geriatrics'
+    }),
+	new Speciality({
+        id: 3,
+        simpleName: 'Neurology',
+        fullName: 'Neurology'
+    }),
+	new Speciality({
+        id: 4,
+        simpleName: 'Pediatrics',
+        fullName: 'Pediatrics'
+    }),
+	new Speciality({
+        id: 5,
+        simpleName: 'Oncology',
+        fullName: 'Oncology'
     })
 
 ]);
