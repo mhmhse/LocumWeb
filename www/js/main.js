@@ -1,7 +1,8 @@
 ﻿var lmConstants = {	
     alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
 
-    baseUrl: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/',
+/*    baseUrl: 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/',*/
+    baseUrl: 'http://pupfish01.internal.bmjgroup.com:8081/locumservice/',
 
     //======================= Constants
     version: '1.7.4',
