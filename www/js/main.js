@@ -1,3 +1,44 @@
+
+//## Session
+Session = Backbone.Model.extend({
+    defaults: {
+
+        searchParameter: null,
+        showUserIndex: 0,
+        searchedResult: null
+    },
+
+    initialize: function (data) {
+        searchParameter = new SearchParameters();
+        searchedResult = new SearchedResult();
+        showUserIndex = 0;
+    }
+});
+
+Sessions = Backbone.Collection.extend({
+	model: Session
+});
+
+
+//========================================================================================
+
+//## Authorisation data
+Auth = Backbone.Model.extend({
+	defaults: {		
+		email: null,
+		key: null,
+		userDetails: null
+	},
+	
+	reset: function() {
+		this.set('email', null);
+		this.set('key', null);
+		this.set('userDetails', null);
+	}
+});
+
+//========================================================================================
+
 ﻿var lmConstants = {	
     alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
 
@@ -33,13 +74,13 @@ var lm = {
                         {
                             contentType: 'application/json; charset=utf-8',
                             dataType: 'json',
-                            type: 'POST',
+                            type: (options.httpMethod ? options.httpMethod : 'POST'),
                             cache: false
                         }); 					//## Enable for Cordova testing
     },
 
 
-    ajax: function (serviceName, data, successFunc, errorFunc) {
+    ajax: function (serviceName, httpMethod, data, successFunc, errorFunc) {
         appLib.maskUI(true);
 
         appLib.log(JSON.stringify(data));
@@ -50,6 +91,7 @@ var lm = {
         
 		var options = {
             url: lmConstants.baseUrl + serviceName + '?cacheBuster=' + cacheBuster,
+            httpMethod: httpMethod,
             data: JSON.stringify(data),
             success: function (data, textStatus) {
 
@@ -127,6 +169,7 @@ var lm = {
         }
 
         lm.ajax('search',
+        		'POST',
 				{
 				    searchType: parameters.searchType,
 				    grade: parameters.grade,
@@ -149,6 +192,31 @@ var lm = {
 
     },
 
+    
+    search: function (parameters) {
+
+    	if (parameters == null) {
+
+    		parameters = this.getCurrentSessionOrNewSession().get("searchParameter");
+    	}
+
+    	lm.ajax('getAllGrades',
+    			'GET',
+    			null,
+    			function (data, textStatus) {
+
+    				if (!_.isUndefined(data) && !_.isUndefined(data.valid)) {
+
+    					//TODO
+    					return data;
+    				}
+    				return null;
+    			},
+    			function (xhr, msg, errorText) {
+    				alert("can't access webservice");
+    			});
+
+    },
     penddingStampOnImg: function (imgdiv, operationType) {
 
         if (imgdiv) {
@@ -406,7 +474,7 @@ var appLib = {
 	
 	//## Log debug info to console, variable or no where
 	log: function(msg) {
-		//console.log(msg);
+		console.log(msg);
 	},
 	
 	

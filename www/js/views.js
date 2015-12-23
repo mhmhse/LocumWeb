@@ -63,6 +63,7 @@ var LoginView = Backbone.View.extend({
         var view = this;
 
         lm.ajax('login',
+        		'POST',
 				{
 				    name: email,
                     password: password

@@ -73,25 +73,9 @@ Grades = Backbone.Collection.extend({
     }
 });
 
-var grades = new Grades([
 
-    new Grade({
-        id: 0,
-        simpleName: 'FY2',
-        fullName: 'Foundation Year 2'
-    }),
-    new Grade({
-        id: 1,
-        simpleName: 'Registrar',
-        fullName: 'Registrar'
-    }),
-    new Grade({
-        id: 2,
-        simpleName: 'Consultant',
-        fullName: 'Consultant'
-    })
 
-]);
+var grades = lm.getAllGrades;
 
 //========================================================================================
 
@@ -268,42 +252,3 @@ SearchParameters = Backbone.Model.extend({
     }
 });
 
-//========================================================================================
-
-//## Session
-Session = Backbone.Model.extend({
-    defaults: {
-
-        searchParameter: null,
-        showUserIndex: 0,
-        searchedResult: null
-    },
-
-    initialize: function (data) {
-        searchParameter = new SearchParameters();
-        searchedResult = new SearchedResult();
-        showUserIndex = 0;
-    }
-});
-
-Sessions = Backbone.Collection.extend({
-	model: Session
-});
-
-
-//========================================================================================
-
-//## Authorisation data
-Auth = Backbone.Model.extend({
-	defaults: {		
-		email: null,
-		key: null,
-		userDetails: null
-	},
-	
-	reset: function() {
-		this.set('email', null);
-		this.set('key', null);
-		this.set('userDetails', null);
-	}
-});
