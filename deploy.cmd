@@ -1,0 +1,1 @@
+pscp -r -v -pw iwritecode www/* bmjdev@pupfish01.internal.bmjgroup.com:/home/bmjdev/hackday/locumapp/www/
