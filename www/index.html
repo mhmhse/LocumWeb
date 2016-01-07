@@ -259,15 +259,15 @@
                         <select name="grades" data-theme="e" id="grades">
                             <option value="ALL">All Grades</option>
                             <% _(grades).each(function(grade) { %>
-                            <option value="<%= grade.id %>"><%= grade.fullName %></option>
+                            <option value="<%= grade.value %>"><%= grade.value %></option>
                             <% }); %>
                         </select>
 
                         <label for="speciality">Speciality</label>
                         <select name="speciality" data-theme="e" id="speciality">
-                                <option value="ALL">All Specialities</option>    
-                                <% _(specialities).each(function(speciality) { %>
-                                <option value="<%= speciality.id %>"><%= speciality.fullName %></option>
+                                <option value="ALL">All Specialties</option>    
+                                <% _(specialties).each(function(speciality) { %>
+                                <option value="<%= speciality.value %>"><%= speciality.value %></option>
                                 <% }); %>
                         </select>
                         <div id="locationSliderGroup" style="">
@@ -364,8 +364,8 @@
 
                         <label for="speciality">Speciality</label>
                         <select name="speciality" data-theme="e" id="speciality">
-                            <option value="ALL">All Specialities</option>
-                            <% _(specialities).each(function(speciality) { %>
+                            <option value="ALL">All Specialties</option>
+                            <% _(specialties).each(function(speciality) { %>
                             <option value="<%= speciality.id %>"><%= speciality.fullName %></option>
                             <% }); %>
                         </select>
@@ -487,8 +487,8 @@
     <script src="lib/backbone-min.js"></script>    
     <script src="lib/jquery.imagesloaded.min.js" type="text/javascript"></script>	
 	
-    <script language="javascript" type="text/javascript" src="lib/jquery.flot.js"></script>
-    <script language="javascript" type="text/javascript" src="lib/jquery.flot.pie.js"></script>	
+    <script src="lib/jquery.flot.js"></script>
+    <script src="lib/jquery.flot.pie.js"></script>	
 
 	<script src="js/imageLib.js"></script>
     <script src="js/main.js"></script>
@@ -533,13 +533,14 @@
 			}, false);	
 
 			
+			
 			//## Attempt to setup GA tracker
-			try {
+			/* try {
 				analytics = window.plugins.gaPlugin;											
 				analytics.init(function() { appLib.log('ga success'); }, function() { appLib.log('ga fail'); }, "UA-140972-23", 10);
 			} catch(err) {
 				appLib.log(err);				
-			}
+			} */
 		}
 
 		function swipe() {

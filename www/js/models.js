@@ -6,13 +6,19 @@
 //## - QuestionBank and Session stores the answers. This is because I wasn't sure if a user would ever be able to answer a question
 //##   more than once, i.e. a 2nd attempt. Currently this isn't the case, so we could get rid of Session.answers
 
+
+//var baseUrl = 'http://pupfish01.internal.bmjgroup.com:8080/locumservice/';
+var baseUrl = 'http://localhost:8081/locumservice/';
+
+
+
 UserTypes = {
 
     Doctor: 'doctor',
     Hospital: 'hospital'
 };
 
-UserBase = Backbone.Model.extend({
+var UserBase = Backbone.Model.extend({
     defaults: {
         id: null,
         type: 'base',
@@ -22,14 +28,14 @@ UserBase = Backbone.Model.extend({
     }
 });
 
-DoctorUser = UserBase.extend({
+var DoctorUser = UserBase.extend({
 
     initialize: function (data) {
         this.set('type', UserTypes.Doctor);
     }
 });
 
-HospitalUser = UserBase.extend({
+var HospitalUser = UserBase.extend({
 
     initialize: function (data) {
         this.set('type', UserTypes.Hospital);
@@ -37,7 +43,7 @@ HospitalUser = UserBase.extend({
 });
 
 
-UserBaseBank = Backbone.Collection.extend({
+var UserBaseBank = Backbone.Collection.extend({
     model: UserBase,
     initialize: function (data) {
 
@@ -58,77 +64,35 @@ UserBaseBank = Backbone.Collection.extend({
 //========================================================================================
 
 //## Grade
-Grade = Backbone.Model.extend({
-
-    id: 0,
-    simpleName: '',
-    fullName: ''
+var Grade = Backbone.Model.extend({
+	value: ''
 });
 
-Grades = Backbone.Collection.extend({
+var Grades = Backbone.Collection.extend({
+	url: baseUrl + '/getAllGrades',
     model: Grade,
-    initialize: function (data) {
-
-
+    success: function(response){
+    	console.log(JSON.stringify(response));
     }
 });
 
 
-
-var grades = lm.getAllGrades;
 
 //========================================================================================
 
 //## Specialty
-Speciality = Backbone.Model.extend({
-
-    id: 0,
-    simpleName: '',
-    fullName: ''
+var Specialty = Backbone.Model.extend({
+	value: ''
 });
 
-Specialities = Backbone.Collection.extend({
-    model: Grade,
-    initialize: function (data) {
-
-
+var Specialties = Backbone.Collection.extend({
+	url: baseUrl + '/getAllSpecialties',
+    model: Specialty,
+    success: function(response){
+    	console.log(JSON.stringify(response));
     }
 });
 
-var specialities = new Specialities([
-
-    new Speciality({
-        id: 0,
-        simpleName: 'Cardiology',
-        fullName: 'Cardiology Year 2'
-    }),
-    new Speciality({
-        id: 1,
-        simpleName: 'Respiratory',
-        fullName: 'Respiratory'
-    }),
-    new Speciality({
-        id: 2,
-        simpleName: 'Geriatrics',
-        fullName: 'Geriatrics'
-    }),
-	new Speciality({
-        id: 3,
-        simpleName: 'Neurology',
-        fullName: 'Neurology'
-    }),
-	new Speciality({
-        id: 4,
-        simpleName: 'Pediatrics',
-        fullName: 'Pediatrics'
-    }),
-	new Speciality({
-        id: 5,
-        simpleName: 'Oncology',
-        fullName: 'Oncology'
-    })
-
-]);
 
 
 //========================================================================================
@@ -143,7 +107,7 @@ LocumOperationType = {
 
 //## SearchResult
 
-SearchedRow = Backbone.Model.extend({
+var SearchedRow = Backbone.Model.extend({
     url: '/search',
     defaults: {
         name: '',
@@ -174,7 +138,7 @@ SearchedRow = Backbone.Model.extend({
     }
 });
 
-SearchedResult = Backbone.Collection.extend({
+var SearchedResult = Backbone.Collection.extend({
     model: SearchedRow,
     initialize: function (data) {
 
@@ -189,7 +153,7 @@ SearchedResult = Backbone.Collection.extend({
 //========================================================================================
 
 //## SearchCondition
-SearchParameters = Backbone.Model.extend({
+var SearchParameters = Backbone.Model.extend({
 
     defaults: {
         searchType:null,

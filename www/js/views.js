@@ -167,9 +167,12 @@ var SearchForHospitalView = Backbone.View.extend({
 
     render: function (eventName) {
 	
+    	var grades = lm.getAllGrades;
+    	var specialties = lm.getAllSpecialties;
+    	
 		var usertype = lm.auth.get('userDetails').get('type');
         //## Get the user's exams
-        $(this.el).html(this.template({ specialities: specialities.toJSON(), grades: grades.toJSON(), usertype:usertype }));
+        $(this.el).html(this.template({ specialties: JSON.stringify(specialties), grades: JSON.stringify(grades), usertype:usertype }));
         
         return this;
     },
@@ -255,7 +258,7 @@ var SearchForDoctorView = Backbone.View.extend({
 
     render: function (eventName) {
         //## Get the user's exams
-        $(this.el).html(this.template({ specialities: specialities.toJSON(), grades: grades.toJSON() }));
+        $(this.el).html(this.template({ specialties: specialties.toJSON(), grades: grades.toJSON() }));
 
         return this;
     },

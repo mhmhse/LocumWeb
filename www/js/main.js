@@ -192,6 +192,18 @@ var lm = {
 
     },
 
+    getAllGrades: function(){
+    	var grades = new Grades();
+		grades.fetch();
+		return grades;
+    },
+    
+    
+    getAllSpecialties: function(){
+    	var specialties = new Specialties();
+    	specialties.fetch();
+    	return specialties;
+    },
     
     search: function (parameters) {
 
