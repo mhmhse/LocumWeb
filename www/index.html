@@ -1,23 +1,23 @@
 ﻿<!DOCTYPE html>
 <html class="ui-mobile-rendering">
 <head>
-    <title>Locum Matcher</title>
-	<meta charset="utf-8" />
+<title>Locum Matcher</title>
+<meta charset="utf-8" />
 
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
+<meta name="viewport" content="width=device-width, user-scalable=no" />
 
-    <!-- Custom theme version -->
-    
-    <link rel="stylesheet" href="css/jquery.mobile.structure-1.2.0.min.css" />
-    <link rel="stylesheet" href="css/oe-custom.css" />
-    
-    <link rel="stylesheet" type="text/css" href="css/swipe.css">
+<!-- Custom theme version -->
 
-	<link rel="stylesheet" type="text/css" href="css/hospitalstyles.css">
-    <!-- Page Templates ========================================================================= -->
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.2.0.min.css" />
+<link rel="stylesheet" href="css/oe-custom.css" />
 
-	<!-- Home -->
-    <script type="text/template" id="HomeTemplate">
+<link rel="stylesheet" type="text/css" href="css/swipe.css">
+
+<link rel="stylesheet" type="text/css" href="css/hospitalstyles.css">
+<!-- Page Templates ========================================================================= -->
+
+<!-- Home -->
+<script type="text/template" id="HomeTemplate">
 	
 	<%
 		if(usertype == 'doctor') {
@@ -57,9 +57,9 @@
 	</div>
     </script>
 
-    <!-- Matcher -->
-	
-    <script type="text/template" id="MatcherTemplate">
+<!-- Matcher -->
+
+<script type="text/template" id="MatcherTemplate">
 	
 	<%
 		if(usertype == 'doctor') {
@@ -108,9 +108,9 @@
         </div>
 
     </script>
-	
-    <!-- Profile -->
-    <script type="text/template" id="ProfileTemplate">
+
+<!-- Profile -->
+<script type="text/template" id="ProfileTemplate">
 		<%
 			if(usertype == 'doctor') {
 		%>
@@ -182,8 +182,8 @@
         </div>
     </script>
 
-    <!-- Getting Started -->
-    <script type="text/template" id="GettingStartedTemplate">
+<!-- Getting Started -->
+<script type="text/template" id="GettingStartedTemplate">
 			<%
 			if(usertype == 'doctor') {
 		%>
@@ -199,8 +199,8 @@
         </div>
     </script>
 
-    <!-- Login -->
-    <script type="text/template" id="LoginTemplate">
+<!-- Login -->
+<script type="text/template" id="LoginTemplate">
         <div data-role="header">
 
             <h1>Sign In Locum Matcher</h1>
@@ -237,8 +237,8 @@
         </div>
     </script>
 
-    <!-- search For Hospital View -->
-    <script type="text/template" id="SearchForHospitalTemplate">
+<!-- search For Hospital View -->
+<script type="text/template" id="SearchForHospitalTemplate">
 			<%
 			if(usertype == 'doctor') {
 		%>
@@ -294,8 +294,8 @@
     </script>
 
 
-    <!-- search Hospital Result View -->
-    <script type="text/template" id="SearchHospitalResultTemplate">
+<!-- search Hospital Result View -->
+<script type="text/template" id="SearchHospitalResultTemplate">
 			<%
 			if(usertype == 'doctor') {
 		%>
@@ -343,8 +343,8 @@
 
     </script>
 
-    <!-- search For Doctor View -->
-    <script type="text/template" id="SearchForDoctorTemplate">
+<!-- search For Doctor View -->
+<script type="text/template" id="SearchForDoctorTemplate">
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Locum Search</h1>
@@ -393,8 +393,8 @@
     </script>
 
 
-    <!-- search Doctor Result View -->
-    <script type="text/template" id="SearchDoctorResultTemplate">
+<!-- search Doctor Result View -->
+<script type="text/template" id="SearchDoctorResultTemplate">
         <div data-role="header">
             <a href="#" class="homeButton" data-role="button" data-icon="home" data-mini="true">Home</a>
             <h1>Locum Search Results</h1>
@@ -436,8 +436,8 @@
 
     </script>
 
-    <!-- saved List View -->
-    <script type="text/template" id="SavedListTemplate">
+<!-- saved List View -->
+<script type="text/template" id="SavedListTemplate">
 			<%
 			if(usertype == 'doctor') {
 		%>
@@ -476,131 +476,139 @@
         </div>
 
     </script>
-		
-	 
-    <!-- Scripts -->
-    <script src="lib/json2.js"></script>
-    <script src="lib/jquery-1.8.2.min.js"></script>
-    <script src="js/jqm-config.js"></script>
-    <script src="lib/jquery.mobile-1.2.0.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/backbone-min.js"></script>    
-    <script src="lib/jquery.imagesloaded.min.js" type="text/javascript"></script>	
-	
-    <script src="lib/jquery.flot.js"></script>
-    <script src="lib/jquery.flot.pie.js"></script>	
-
-	<script src="js/imageLib.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/models.js"></script>
-    <script src="js/demoQuestions.js"></script>
-    <script src="js/views.js"></script>
-    <script src="js/routes.js"></script>
 
 
-    
-   
-    <script type="text/javascript">	
-        var analytics;       	
-		var app;
-		
-		function onDeviceReady() {						
-			app = new AppRouter();
-			Backbone.history.start();
-			
-			appLib.log('On Device Ready');
-			
-			//## Android: Return to home screen if back button is pressed, if already on home screen then exit app
-			document.addEventListener("backbutton", function() { 
-				if(appLib.isUIMasked())
-					return;
-				
-				if($('#mainmenu').length > 0) {
-					//## Exit app
-					appLib.log('Exiting app...');
-					setTimeout(function() { navigator.app.exitApp(); });
-				} else {
-				    //## Return to homepage
-				    
-					appLib.log('Return to homepage');
-					app.trigger('Login');
-				}
-			}, false);
-			//## Android: Return to home screen if menu button is pressed
-			document.addEventListener("menubutton", function() { 
-				if(!appLib.isUIMasked())
-				    app.trigger('Login');
-			}, false);	
+<!-- Scripts -->
+<script src="lib/json2.js"></script>
+<script src="lib/jquery-1.8.2.min.js"></script>
+<script src="js/jqm-config.js"></script>
+<script src="lib/jquery.mobile-1.2.0.min.js"></script>
+<script src="lib/underscore-min.js"></script>
+<script src="lib/backbone-min.js"></script>
+<script src="lib/jquery.imagesloaded.min.js" type="text/javascript"></script>
 
-			
-			
-			//## Attempt to setup GA tracker
-			/* try {
-				analytics = window.plugins.gaPlugin;											
-				analytics.init(function() { appLib.log('ga success'); }, function() { appLib.log('ga fail'); }, "UA-140972-23", 10);
-			} catch(err) {
-				appLib.log(err);				
-			} */
-		}
+<script src="lib/jquery.flot.js"></script>
+<script src="lib/jquery.flot.pie.js"></script>
 
-		function swipe() {
-            
-		    $(".buddy").on("swiperight", function () {
-		        $(this).addClass('rotate-left').delay(700).fadeOut(1);
-		        $('.buddy').find('.status').remove();
-
-		        $(this).append('<div class="status like">Save!</div>');
-		        if ($(this).is(':last-child')) {
-		            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-		        } else {
-		            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-		        }
+<script src="js/imageLib.js"></script>
+<script src="js/main.js"></script>
+<script src="js/models.js"></script>
+<script src="js/demoQuestions.js"></script>
+<script src="js/views.js"></script>
+<script src="js/routes.js"></script>
 
 
 
-		    });
 
-		    $(".buddy").on("swipeleft", function () {
-		        $(this).addClass('rotate-right').delay(700).fadeOut(1);
-		        $('.buddy').find('.status').remove();
-		        $(this).append('<div class="status dislike">Discard!</div>');
+<script type="text/javascript">
+	var analytics;
+	var app;
 
-		        if ($(this).is(':last-child')) {
-		            $('.buddy:nth-child(1)').removeClass('rotate-left rotate-right').fadeIn(300);
-		            alert('No more matches. Check back later!');
-		        } else {
-		            $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-		        }
-		    });
+	function onDeviceReady() {
+		app = new AppRouter();
+		Backbone.history.start();
 
+		appLib.log('On Device Ready');
 
+		//## Android: Return to home screen if back button is pressed, if already on home screen then exit app
+		document.addEventListener("backbutton", function() {
+			if (appLib.isUIMasked())
+				return;
 
-		}
-        				
-
-		function onLoad() {
-			if(appLib.isPhoneGap()) {
-				document.addEventListener("deviceready", onDeviceReady, false);
-			} else {
-				$(document).ready(function() {
-					onDeviceReady();
+			if ($('#mainmenu').length > 0) {
+				//## Exit app
+				appLib.log('Exiting app...');
+				setTimeout(function() {
+					navigator.app.exitApp();
 				});
+			} else {
+				//## Return to homepage
+
+				appLib.log('Return to homepage');
+				app.trigger('Login');
 			}
+		}, false);
+		//## Android: Return to home screen if menu button is pressed
+		document.addEventListener("menubutton", function() {
+			if (!appLib.isUIMasked())
+				app.trigger('Login');
+		}, false);
+
+		//## Attempt to setup GA tracker
+		/* try {
+			analytics = window.plugins.gaPlugin;											
+			analytics.init(function() { appLib.log('ga success'); }, function() { appLib.log('ga fail'); }, "UA-140972-23", 10);
+		} catch(err) {
+			appLib.log(err);				
+		} */
+	}
+
+	function swipe() {
+
+		$(".buddy").on(
+				"swiperight",
+				function() {
+					$(this).addClass('rotate-left').delay(700).fadeOut(1);
+					$('.buddy').find('.status').remove();
+
+					$(this).append('<div class="status like">Save!</div>');
+					if ($(this).is(':last-child')) {
+						$('.buddy:nth-child(1)').removeClass(
+								'rotate-left rotate-right').fadeIn(300);
+					} else {
+						$(this).next().removeClass('rotate-left rotate-right')
+								.fadeIn(400);
+					}
+
+				});
+
+		$(".buddy")
+				.on(
+						"swipeleft",
+						function() {
+							$(this).addClass('rotate-right').delay(700)
+									.fadeOut(1);
+							$('.buddy').find('.status').remove();
+							$(this)
+									.append(
+											'<div class="status dislike">Discard!</div>');
+
+							if ($(this).is(':last-child')) {
+								$('.buddy:nth-child(1)').removeClass(
+										'rotate-left rotate-right').fadeIn(300);
+								alert('No more matches. Check back later!');
+							} else {
+								$(this).next().removeClass(
+										'rotate-left rotate-right').fadeIn(400);
+							}
+						});
+
+	}
+
+	function onLoad() {
+		if (appLib.isPhoneGap()) {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		} else {
+			$(document).ready(function() {
+				onDeviceReady();
+			});
 		}
-		
-		
-		function onUnload() {
-			try {
-				//## Attempt to unload GA plugin
-				analytics.exit(function() { }, function() { });
-			} catch(e) { 
-			}
+	}
+
+	function onUnload() {
+		try {
+			//## Attempt to unload GA plugin
+			analytics.exit(function() {
+			}, function() {
+			});
+		} catch (e) {
 		}
-	</script>
+	}
+</script>
 
 </head>
 
-<body onload="onLoad();" onunload="onUnload();">	
+<body onload="onLoad();" onunload="onUnload();">
 </body>
 
 </html>
